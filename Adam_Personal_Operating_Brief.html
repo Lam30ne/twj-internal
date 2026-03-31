@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adam Lehman — Personal Operating Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Karla:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ── LIGHT MODE ── */
+  :root {
+    --ink:        #0e0d0b;
+    --ink-soft:   #1c1a16;
+    --paper:      #f7f3ec;
+    --paper-2:    #ede8dd;
+    --paper-3:    #e2dbd0;
+    --rule:       rgba(14,13,11,0.12);
+    --rule-soft:  rgba(14,13,11,0.07);
+
+    --amber:      #7a5010;    /* 6.5:1 on --paper */
+    --amber-bg:   #f0e6d6;
+    --amber-text: #4a2e06;
+
+    --forest:     #253d2c;
+    --fern:       #3d6648;
+    --fern-bg:    #deeee4;
+    --fern-text:  #0e2016;
+
+    --red:        #7a2a1a;
+    --red-bg:     #f2e0da;
+    --red-text:   #3a1008;
+
+    --body-text:  #1a1610;    /* 14:1 on paper */
+    --muted:      #4a4438;    /* 7:1 on paper */
+    --dim:        #6a6258;    /* 4.7:1 — labels only */
+
+    /* Cover (always dark) */
+    --cover-bg:   #1c1a16;
+    --cover-text: #f7f3ec;
+    --cover-sub:  #b0a898;    /* 4.6:1 on cover-bg */
+    --cover-dim:  #7a7268;
+    --cover-rule: rgba(247,243,236,0.12);
+    --cover-amber:#c89040;    /* 4.6:1 on cover-bg */
+
+    /* North-star block (also dark) */
+    --ns-bg:      #1c1a16;
+    --ns-text:    #f7f3ec;
+    --ns-sub:     #b0a898;
+    --ns-label:   #c89040;
+
+    --mirror-from:#7a2a1a;
+    --mirror-to:  #253d2c;
+    --mirror-arrow:#c0b0a0;
+  }
+
+  /* ── DARK MODE ── */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink:        #f0e8d8;
+      --ink-soft:   #e0d4c0;
+      --paper:      #141210;
+      --paper-2:    #1e1c18;
+      --paper-3:    #282420;
+      --rule:       rgba(240,232,216,0.1);
+      --rule-soft:  rgba(240,232,216,0.06);
+
+      --amber:      #d4a84a;    /* 5.6:1 on dark paper */
+      --amber-bg:   #281e0a;
+      --amber-text: #e8c870;
+
+      --forest:     #7abf90;
+      --fern:       #68a878;
+      --fern-bg:    #0c1a10;
+      --fern-text:  #90d4a8;
+
+      --red:        #d87868;
+      --red-bg:     #1c0c08;
+      --red-text:   #f0a090;
+
+      --body-text:  #d4ccb8;    /* 9:1 on dark paper */
+      --muted:      #968e7a;    /* 4.6:1 on dark paper */
+      --dim:        #706860;
+
+      --cover-bg:   #0c0a08;
+      --cover-text: #f0e8d8;
+      --cover-sub:  #a09080;
+      --cover-dim:  #605850;
+      --cover-rule: rgba(240,232,216,0.1);
+      --cover-amber:#d4a84a;
+
+      --ns-bg:      #0c0a08;
+      --ns-text:    #f0e8d8;
+      --ns-sub:     #a09080;
+      --ns-label:   #d4a84a;
+
+      --mirror-from:#d87868;
+      --mirror-to:  #7abf90;
+      --mirror-arrow:#3a3228;
+    }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Karla', sans-serif;
+    font-size: 15px;
+    line-height: 1.78;
+  }
+
+  .cover {
+    background: var(--cover-bg);
+    padding: 72px 70px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--cover-amber), transparent 60%);
+  }
+  .cover-eyebrow {
+    font-size: 9.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--cover-amber);
+    margin-bottom: 28px;
+  }
+  .cover h1 {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 58px;
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--cover-text);
+    max-width: 580px;
+    margin-bottom: 18px;
+  }
+  .cover h1 em {
+    font-style: italic;
+    color: var(--cover-sub);
+  }
+  .cover-desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--cover-sub);
+    max-width: 460px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--cover-rule);
+  }
+  .cover-meta-item label {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cover-dim);
+    margin-bottom: 3px;
+  }
+  .cover-meta-item span {
+    font-size: 12px;
+    color: var(--cover-sub);
+  }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 70px 100px;
+  }
+
+  /* ── SECTION ── */
+  section {
+    margin-top: 68px;
+    padding-top: 48px;
+    border-top: 1px solid var(--rule);
+  }
+  section:first-child {
+    margin-top: 60px;
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .section-tag {
+    font-size: 9px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-tag::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(176,120,24,0.3), transparent);
+  }
+
+  h2 {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 40px;
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  h2 em { font-style: italic; color: var(--fern); }
+
+  h3 {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 21px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-top: 36px;
+    margin-bottom: 10px;
+  }
+  h3 em { font-style: italic; }
+
+  p {
+    font-size: 14.5px;
+    color: var(--body-text);
+    line-height: 1.85;
+    margin-bottom: 16px;
+    font-weight: 300;
+  }
+  p strong { font-weight: 600; color: var(--ink); }
+
+  /* ── QUADRANT GRID ── */
+  .quad {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    margin: 32px 0;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .quad-cell {
+    padding: 30px 28px;
+    position: relative;
+  }
+  .qc-do      { background: var(--fern-bg);  border: 1px solid rgba(61,102,72,0.2);  border-radius: 0; }
+  .qc-dont    { background: var(--red-bg);   border: 1px solid rgba(122,42,26,0.18); border-radius: 0; }
+  .qc-well    { background: var(--amber-bg); border: 1px solid rgba(122,80,16,0.2);  border-radius: 0; }
+  .qc-low     { background: var(--paper-2);  border: 1px solid var(--rule);           border-radius: 0; }
+
+  .qc-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .qc-do   .qc-label { color: var(--fern); }
+  .qc-dont .qc-label { color: var(--red); }
+  .qc-well .qc-label { color: var(--amber); }
+  .qc-low  .qc-label { color: var(--muted); }
+
+  .qc-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .qc-do   .qc-dot { background: var(--fern); }
+  .qc-dont .qc-dot { background: var(--red); }
+  .qc-well .qc-dot { background: var(--amber); }
+  .qc-low  .qc-dot { background: var(--muted); }
+
+  .qc-items { list-style: none; }
+  .qc-items li {
+    font-size: 13px;
+    line-height: 1.65;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-weight: 300;
+    color: var(--body-text);
+  }
+  .qc-items li:last-child { border-bottom: none; padding-bottom: 0; }
+  .qc-items li::before {
+    flex-shrink: 0;
+    margin-top: 3px;
+    font-size: 10px;
+  }
+  .qc-do   .qc-items li::before { content: '✓'; color: var(--fern); }
+  .qc-dont .qc-items li::before { content: '✗'; color: var(--red); }
+  .qc-well .qc-items li::before { content: '★'; color: var(--amber); font-size: 9px; }
+  .qc-low  .qc-items li::before { content: '↓'; color: var(--muted); }
+
+  /* ── NORTH STAR ── */
+  .north-star {
+    background: var(--ns-bg);
+    color: var(--ns-text);
+    border-radius: 6px;
+    padding: 40px 44px;
+    margin: 32px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .north-star::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--ns-label), transparent 50%);
+  }
+  .ns-label {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ns-label);
+    margin-bottom: 16px;
+  }
+  .ns-statement {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 26px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--ns-text);
+    margin-bottom: 20px;
+  }
+  .ns-statement strong {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--ns-text);
+  }
+  .ns-sub {
+    font-size: 13px;
+    color: var(--ns-sub);
+    line-height: 1.7;
+    font-weight: 300;
+    max-width: 520px;
+  }
+
+  /* ── SIGNAL CARDS ── */
+  .signals {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3px;
+    margin: 28px 0;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .signal {
+    background: var(--paper-2);
+    padding: 20px;
+    border: 1px solid var(--rule-soft);
+  }
+  .signal-icon {
+    font-size: 22px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .signal-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 5px;
+  }
+  .signal-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 300;
+  }
+
+  /* ── RHYTHM ── */
+  .rhythm {
+    margin: 28px 0;
+    border-left: 2px solid var(--rule);
+    padding-left: 0;
+  }
+  .rhythm-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .rhythm-row:last-child { border-bottom: none; }
+  .rhythm-cadence {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--amber);
+    padding: 14px 20px 14px 24px;
+    border-right: 1px solid var(--rule-soft);
+    display: flex;
+    align-items: flex-start;
+    padding-top: 16px;
+  }
+  .rhythm-content {
+    padding: 12px 20px;
+  }
+  .rhythm-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .rhythm-desc {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── PEOPLE INVESTMENT ── */
+  .people-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    margin: 28px 0;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .person-invest {
+    background: var(--paper-2);
+    padding: 22px;
+    border: 1px solid var(--rule-soft);
+  }
+  .pi-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .pi-role {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 10px;
+  }
+  .pi-ask {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.65;
+    font-weight: 300;
+    margin: 0;
+  }
+  .pi-ask strong { color: var(--ink); font-weight: 500; }
+
+  /* ── CALLOUT ── */
+  .callout {
+    border-left: 3px solid var(--amber);
+    background: var(--amber-bg);
+    border-radius: 0 5px 5px 0;
+    padding: 18px 22px;
+    margin: 24px 0;
+  }
+  .callout p { color: var(--amber-text); margin: 0; font-size: 14px; line-height: 1.7; }
+  .callout strong { color: var(--amber); font-weight: 700; }
+
+  .callout-red {
+    border-left-color: var(--red);
+    background: var(--red-bg);
+  }
+  .callout-red p { color: var(--red-text); }
+  .callout-red strong { color: var(--red); }
+
+  .callout-forest {
+    border-left-color: var(--fern);
+    background: var(--fern-bg);
+  }
+  .callout-forest p { color: var(--fern-text); }
+  .callout-forest strong { color: var(--fern); }
+
+  /* ── MIRROR ── */
+  .mirror {
+    background: var(--paper-2);
+    border-radius: 6px;
+    padding: 32px 36px;
+    margin: 28px 0;
+    border: 1px solid var(--paper-3);
+  }
+  .mirror-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .mirror-items {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .mirror-item {
+    display: grid;
+    grid-template-columns: 1fr 24px 1fr;
+    gap: 14px;
+    align-items: center;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .mirror-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .mi-from {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--mirror-from);
+    font-weight: 300;
+    text-align: right;
+  }
+  .mi-arrow { text-align: center; color: var(--mirror-arrow); font-size: 16px; }
+  .mi-to {
+    font-size: 13px;
+    color: var(--mirror-to);
+    font-weight: 400;
+  }
+
+  .closing-line {
+    margin-top: 32px;
+    font-family: 'Cormorant Garant', serif;
+    font-size: 20px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--fern);
+    line-height: 1.5;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--cover-bg);
+    color: var(--cover-dim);
+    padding: 26px 70px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .cover h1, .cover-desc, .cover-eyebrow {
+    animation: fadeUp 0.75s ease both;
+  }
+  .cover-eyebrow { animation-delay: 0.1s; }
+  .cover h1      { animation-delay: 0.2s; }
+  .cover-desc    { animation-delay: 0.35s; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-eyebrow">Personal Operating Brief · Confidential</div>
+  <h1>Adam Lehman —<br><em>The Role Only<br>You Can Play</em></h1>
+  <p class="cover-desc">What to protect. What to stop. What to do excellently. What to let go of. A grounded reminder of why you're here and how to stay in your highest use.</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item"><label>Role</label><span>Co-Founder · CEO · Business Architect</span></div>
+    <div class="cover-meta-item"><label>Horizon</label><span>$3M Wonderly → next Wonder Jam business</span></div>
+    <div class="cover-meta-item"><label>Written</label><span>March 2026</span></div>
+  </div>
+</div>
+
+<main>
+
+<!-- WHY THIS EXISTS -->
+<section>
+  <div class="north-star">
+    <div class="ns-label">The north star</div>
+    <p class="ns-statement">Your job is to build a business that <strong>doesn't need you to run it</strong> — so that you can build the next one.</p>
+    <p class="ns-sub">Everything in this brief flows from that. Every decision, every week, every hour you protect or surrender — ask whether it moves toward or away from a Wonderly that holds itself. That is the success condition. Not revenue. Not client satisfaction. Not a perfect brief system. A business that is genuinely self-sustaining, built by a team that owns their domains, powered by financial visibility and clear standards — and freed from dependency on you being in every room.</p>
+  </div>
+
+  <p>You are not the creative director. Allie is. You are not the account lead on creator clients. Allie is. You are not the dev process lead, the design lead, or the marketing lead. Matt, Taylor, and Tori are. You are not the Chief of Staff. Camila is. Your job is to build and hold the conditions that let all of them be excellent — and to make the decisions that require someone with the whole picture.</p>
+
+  <p>The drift to watch for is the same one that got you here: doing whatever the business needs. That instinct is what built Wonderly. It is also what will prevent it from scaling if you don't replace it with something more deliberate. The new instinct is not "what does the business need?" but rather <strong>"what does only Adam need to do?"</strong> Everything else should be owned, delegated, or designed out of your week.</p>
+</section>
+
+<!-- THE QUADRANT -->
+<section>
+  <div class="section-tag">The operating map</div>
+  <h2>What to Do, Stop,<br><em>Excel At,</em> and Release</h2>
+  <p>Four quadrants, each grounded in the real structure of the business and the real gap between where you are now and where you're going.</p>
+
+  <div class="quad">
+
+    <div class="quad-cell qc-do">
+      <div class="qc-label"><span class="qc-dot"></span>Do These Things</div>
+      <ul class="qc-items">
+        <li>Hold the long-range view and make the structural decisions no one else can see from their position</li>
+        <li>Develop Marin, Matt, and Camila as leaders — invest in their growth like it's the highest-ROI work in the business, because it is</li>
+        <li>Stay close to the financial numbers — budget vs actuals, cash position, gross margin, utilization — weekly, not monthly</li>
+        <li>Make the hard pricing and client decisions: who to reprice, who to prune, where the business is undervaluing itself</li>
+        <li>Build the pipeline on the non-creator track alongside Marin — this is the track that scales without Allie</li>
+        <li>Protect Allie's creative domain from operational drift so she can be fully what Wonderly needs her to be</li>
+        <li>Begin cultivating the conditions for the next Wonder Jam business — even quietly, even slowly — now</li>
+        <li>Be the person who tells the truth about what the data says, even when it's uncomfortable</li>
+      </ul>
+    </div>
+
+    <div class="quad-cell qc-dont">
+      <div class="qc-label"><span class="qc-dot"></span>Stop Doing These</div>
+      <ul class="qc-items">
+        <li>Client delivery work that someone else on the team could own — every hour here is borrowed from the business itself</li>
+        <li>Being the default answer to operational questions that Camila should own — redirect, don't absorb</li>
+        <li>Sitting in project-level meetings that don't require your judgment or authority</li>
+        <li>Making decisions below your altitude — if it doesn't require the whole-business view, it belongs to someone else</li>
+        <li>Absorbing the work that falls through cracks in the org — plug the structural gap, don't become the filler</li>
+        <li>Carrying the weight of Allie's transition out of delivery — support it, but don't manage it for her</li>
+        <li>Being available for every interruption — your highest work requires uninterrupted blocks, not an open door policy</li>
+      </ul>
+    </div>
+
+    <div class="quad-cell qc-well">
+      <div class="qc-label"><span class="qc-dot"></span>Do These Excellently</div>
+      <ul class="qc-items">
+        <li><strong>Leadership development conversations</strong> — the quality of your 1:1s with Marin, Matt, and Camila determines whether they grow or plateau</li>
+        <li><strong>Hiring decisions</strong> — every hire either raises or lowers the ceiling; slow down on this and get it right</li>
+        <li><strong>The quarterly strategy review</strong> — this is where you hold the whole picture and course-correct before problems compound</li>
+        <li><strong>Pricing and repricing decisions</strong> — the Pasta Queen conversation, the retainer escalators, the project minimums — these are worth more per hour than almost anything else you do</li>
+        <li><strong>Financial transparency with the team</strong> — opening the books by Q3 is a leadership moment that compounds for years; do it with care and clarity</li>
+        <li><strong>The daily Adam-and-Allie alignment</strong> — this is the connective tissue of everything; protect it like the non-negotiable it is</li>
+      </ul>
+    </div>
+
+    <div class="quad-cell qc-low">
+      <div class="qc-label"><span class="qc-dot"></span>Low Priority for Your Role</div>
+      <ul class="qc-items">
+        <li>Being in every client communication — account leads own client relationships</li>
+        <li>Reviewing every piece of creative output — Taylor and Allie hold that standard</li>
+        <li>Managing the QBO cleanup in detail — Camila and the bookkeeper own this; you defined the roadmap</li>
+        <li>Day-to-day ClickUp project management — Marin, Lucy, and Andrea own the operational rhythm</li>
+        <li>Building every internal tool and dashboard yourself — define the need, delegate the build</li>
+        <li>Attending meetings that exist to coordinate work rather than to make decisions</li>
+        <li>Being the person who knows how every system works — knowing where things live is enough; mastery belongs to the people who operate them daily</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- THE TRANSITION -->
+<section>
+  <div class="section-tag">The shift</div>
+  <h2>The Transition<br>You're <em>Actually Making</em></h2>
+
+  <p>The Harvest data puts it plainly: you spent 47% of your time on client delivery in 2025. The target for your role is 25% or less by the end of 2026. That is not a small adjustment. It is a fundamental reorientation of where your time lives. Here is what that transition actually looks like — not in the abstract, but as a concrete before-and-after.</p>
+
+  <div class="mirror">
+    <div class="mirror-label">From → To</div>
+    <div class="mirror-items">
+      <div class="mirror-item">
+        <div class="mi-from">Doing client work because you can</div>
+        <div class="mi-arrow">→</div>
+        <div class="mi-to">Developing the people who do client work</div>
+      </div>
+      <div class="mirror-item">
+        <div class="mi-from">Being in the room for every important thing</div>
+        <div class="mi-arrow">→</div>
+        <div class="mi-to">Designing the room so it works without you</div>
+      </div>
+      <div class="mirror-item">
+        <div class="mi-from">Knowing all the answers</div>
+        <div class="mi-arrow">→</div>
+        <div class="mi-to">Asking the questions that get others to better answers</div>
+      </div>
+      <div class="mirror-item">
+        <div class="mi-from">Absorbing operational gaps because you notice them</div>
+        <div class="mi-arrow">→</div>
+        <div class="mi-to">Naming the gap, assigning the owner, following up once</div>
+      </div>
+      <div class="mirror-item">
+        <div class="mi-from">Building tools and systems yourself</div>
+        <div class="mi-arrow">→</div>
+        <div class="mi-to">Defining what's needed, delegating the build, reviewing the output</div>
+      </div>
+      <div class="mirror-item">
+        <div class="mi-from">Reacting to what the business needs day to day</div>
+        <div class="mi-arrow">→</div>
+        <div class="mi-to">Protecting time for the strategic work that only you can do</div>
+      </div>
+      <div class="mirror-item">
+        <div class="mi-from">Both founders doing everything</div>
+        <div class="mi-arrow">→</div>
+        <div class="mi-to">Allie owns the creative and heart. Adam owns the machine and future.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout-red callout">
+    <p><strong>The risk to watch:</strong> The transition back to delivery is seductive because delivery feels productive. It produces tangible outputs. It helps people directly. It feels like contribution. But every hour you spend doing work that someone else could own is an hour not spent on the structural decisions, leadership development, and long-range thinking that compound for years. The business needs you in the second category far more than the first.</p>
+  </div>
+</section>
+
+<!-- PEOPLE TO INVEST IN -->
+<section>
+  <div class="section-tag">Your leverage</div>
+  <h2>The People Who<br><em>Multiply Your Work</em></h2>
+
+  <p>The path to $3M does not run through Adam working harder. It runs through five or six people growing into their full capacity with Adam's investment and support. These are the most important leadership relationships in your portfolio — not client relationships, not vendor relationships. These.</p>
+
+  <div class="people-grid">
+    <div class="person-invest">
+      <div class="pi-name">Camila Camargo</div>
+      <div class="pi-role">Chief of Staff · Your Closest Operational Partner</div>
+      <p class="pi-ask">She is new and excellent. <strong>Give her the mandate clearly and early.</strong> Define her authority boundaries precisely. Let her find things before you tell her what to find. When she surfaces a problem, resist the urge to solve it yourself — ask what she thinks. Your investment here pays off faster than anywhere else in the business right now.</p>
+    </div>
+    <div class="person-invest">
+      <div class="pi-name">Marin Cook</div>
+      <div class="pi-role">Non-Creator Track Lead · Your Growth Engine</div>
+      <p class="pi-ask">Marin can grow into an elite account manager. She has the capacity and the instincts. <strong>The limiting factor is authority and support, not talent.</strong> Give her real ownership of Track B. Be the thought partner she needs to handle the hard client conversations. Don't make the decisions she should be making — help her make them better.</p>
+    </div>
+    <div class="person-invest">
+      <div class="pi-name">Matt Hart</div>
+      <div class="pi-role">Dev Process Lead · Your Quality Infrastructure</div>
+      <p class="pi-ask">Matt is currently constrained by an informal role in a business that hasn't fully named what he does. <strong>Formalizing the Dev Process Lead role unlocks him.</strong> Be explicit about what you expect — brief compliance, QA standards, hours-to-estimate accuracy — and then let him own it completely. His utilization number is not the metric. His standards are.</p>
+    </div>
+    <div class="person-invest">
+      <div class="pi-name">Taylor Moser</div>
+      <div class="pi-role">Design Lead · The Creative Standard in Practice</div>
+      <p class="pi-ask">Taylor holds the execution standard that Allie defines. <strong>Your role here is mostly structural:</strong> make sure the brief system exists so Taylor has what she needs before design starts, make sure Maria and Laura are resourced properly, and ensure that Allie's creative direction actually reaches Taylor clearly. When design is slow or quality dips, look for the structural cause first.</p>
+    </div>
+    <div class="person-invest">
+      <div class="pi-name">Allie Lehman</div>
+      <div class="pi-role">Creative Director · Your Partner in Everything</div>
+      <p class="pi-ask">The daily alignment ritual is the most important meeting in your week. <strong>Protect it absolutely.</strong> Your job in relation to Allie is to build the organizational structure that frees her from operational weight — so her creative energy and external voice can be fully available to Wonderly and its clients. When she is in execution, something structural has failed. Find it and fix it.</p>
+    </div>
+    <div class="person-invest">
+      <div class="pi-name">Tori Metzger</div>
+      <div class="pi-role">Marketing Lead · Already at Her Ceiling</div>
+      <p class="pi-ask">Tori is at 76% utilization — the highest on the team. <strong>The content coordinator hire is urgent,</strong> not aspirational. Until that hire is made, Tori's capacity to support both tracks strategically is constrained. This is one of the clearest decisions in the near-term operating plan. Make it soon.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OPERATING RHYTHM -->
+<section>
+  <div class="section-tag">The weekly structure</div>
+  <h2>A Rhythm That<br><em>Protects the Work</em></h2>
+
+  <p>Without a deliberate structure, the week fills with whatever is loudest. Urgent things displace important ones. Client delivery creeps back in. The strategic work that only you can do gets pushed to "when things calm down" — which never comes. The rhythm below is not a rigid schedule. It is a set of protected commitments that keep you in your highest use.</p>
+
+  <div class="rhythm">
+    <div class="rhythm-row">
+      <div class="rhythm-cadence">Daily</div>
+      <div class="rhythm-content">
+        <div class="rhythm-title">Adam + Allie alignment</div>
+        <div class="rhythm-desc">Non-negotiable. The connective tissue between the creative track and the business track. Short, but sacred.</div>
+      </div>
+    </div>
+    <div class="rhythm-row">
+      <div class="rhythm-cadence">Weekly</div>
+      <div class="rhythm-content">
+        <div class="rhythm-title">Financial pulse check</div>
+        <div class="rhythm-desc">Cash position, revenue vs budget, DSO, pipeline. Fifteen minutes with the numbers before the week gets away from you. Camila surfaces the data; you read it and act on it.</div>
+      </div>
+    </div>
+    <div class="rhythm-row">
+      <div class="rhythm-cadence">Weekly</div>
+      <div class="rhythm-content">
+        <div class="rhythm-title">Leadership 1:1s</div>
+        <div class="rhythm-desc">Camila, Marin, and Matt at minimum. These are the development conversations that compound. Ask about obstacles, decisions they're wrestling with, what they need from you. Don't make it a status update.</div>
+      </div>
+    </div>
+    <div class="rhythm-row">
+      <div class="rhythm-cadence">Weekly</div>
+      <div class="rhythm-content">
+        <div class="rhythm-title">Protected strategic block</div>
+        <div class="rhythm-desc">Half a day, minimum, with nothing booked. Business architecture, growth thinking, leadership development planning, next-business ideation. This is the work that won't schedule itself.</div>
+      </div>
+    </div>
+    <div class="rhythm-row">
+      <div class="rhythm-cadence">Monthly</div>
+      <div class="rhythm-content">
+        <div class="rhythm-title">P&L review with Camila</div>
+        <div class="rhythm-desc">Actuals vs budget, gross margin trend, client profitability signals, payroll allocation. This is the moment to catch drift before it becomes a problem.</div>
+      </div>
+    </div>
+    <div class="rhythm-row">
+      <div class="rhythm-cadence">Quarterly</div>
+      <div class="rhythm-content">
+        <div class="rhythm-title">Leadership team strategy session</div>
+        <div class="rhythm-desc">Scorecard review, milestone progress, org adjustments, what's working and what isn't. The cadence that keeps the whole system honest and adaptive.</div>
+      </div>
+    </div>
+    <div class="rhythm-row">
+      <div class="rhythm-cadence">Ongoing</div>
+      <div class="rhythm-content">
+        <div class="rhythm-title">Next-business cultivation</div>
+        <div class="rhythm-desc">Not a meeting. A habit of noticing — conversations, patterns, opportunities within The Wonder Jam's orbit that might become the next business. Keep a running note. Don't let this get crowded out by the urgent.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNALS TO WATCH -->
+<section>
+  <div class="section-tag">Self-check</div>
+  <h2>Signals That You're<br><em>Drifting Off Course</em></h2>
+
+  <p>These are not failures. They are early warning signs — the kind of patterns that are easy to rationalize in the moment and only obvious in hindsight. Learn to catch them early.</p>
+
+  <div class="signals">
+    <div class="signal">
+      <span class="signal-icon">⏱</span>
+      <div class="signal-title">Your week filled up before you chose it</div>
+      <p class="signal-desc">If your calendar was shaped by other people's needs rather than your protected priorities, the week is already lost. Reset the next one deliberately.</p>
+    </div>
+    <div class="signal">
+      <span class="signal-icon">🔧</span>
+      <div class="signal-title">You're building something someone else should own</div>
+      <p class="signal-desc">Every tool, dashboard, or system you build yourself is both a gift and a dependency. Ask who should own this — and whether building it yourself serves them or just moves faster.</p>
+    </div>
+    <div class="signal">
+      <span class="signal-icon">📋</span>
+      <div class="signal-title">You're in a meeting to stay informed, not to decide</div>
+      <p class="signal-desc">If you could receive the information as a summary after the meeting, you probably don't need to be there. Information is not a reason to attend. Decisions are.</p>
+    </div>
+    <div class="signal">
+      <span class="signal-icon">🔁</span>
+      <div class="signal-title">You're solving the same operational problem again</div>
+      <p class="signal-desc">If you've answered the same question twice, the structural solution is to build the system that answers it permanently — or to put someone in a role where it becomes their question to answer.</p>
+    </div>
+    <div class="signal">
+      <span class="signal-icon">📉</span>
+      <div class="signal-title">You haven't looked at the numbers this week</div>
+      <p class="signal-desc">If you don't know the current cash position, the revenue-to-budget variance, and the pipeline health, you cannot make good business decisions. This is a non-negotiable weekly habit.</p>
+    </div>
+    <div class="signal">
+      <span class="signal-icon">🌱</span>
+      <div class="signal-title">You haven't thought about the next business in a month</div>
+      <p class="signal-desc">The next Wonder Jam business will not announce itself. It requires quiet attention amid a busy operation. If it hasn't crossed your mind recently, protect the space to let it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING REMINDER -->
+<section>
+  <div class="section-tag">The reminder</div>
+  <h2>What This Is<br><em>Really For</em></h2>
+
+  <p>You and Allie started The Wonder Jam because you wanted to build something that genuinely reflected what you believe — about creative work, about how businesses should treat people, about what a good life looks like when your work is also your vocation. Wonderly is the clearest expression of that so far. The $3M target, the profit sharing, the equity path, the next business — these are not abstract financial goals. They are the conditions that let you keep building things that matter, with people who are genuinely growing, in a way that is sustainable for both of you.</p>
+
+  <p>The work you're doing now — building the org, developing the team, designing the financial visibility, making the hard pricing decisions — is the unglamorous infrastructure of that dream. It does not feel as immediate as client work. It does not produce a deliverable you can point to at the end of the day. But it is the work that makes everything else possible. It is, in the language of the natural growth framework you've been building, the mycelium. Unseen, essential, and the substrate on which everything else grows.</p>
+
+  <div class="callout-forest callout">
+    <p><strong>Return to this when the week gets away from you.</strong> Not as a performance review — as a compass. The question is never whether you worked hard enough. It's whether you worked in the right place. You almost certainly did enough. The question is whether the hours went toward the work that only you can do, or toward the work that felt urgent but belonged to someone else. Adjust accordingly and move forward.</p>
+  </div>
+
+  <p class="closing-line">Build the business that holds itself. Then build the next one.<br>That's the whole job.</p>
+</section>
+
+</main>
+
+<footer>
+  <span>Adam Lehman · Personal Operating Brief · March 2026 · Confidential</span>
+  <span>Part of: Wonder Jam Strategic Document Set</span>
+</footer>
+
+</body>
+</html>

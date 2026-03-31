@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wonderly — Strategic Operating Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0c;
+    --paper: #f5f2ec;
+    --paper-2: #ede9e1;
+    --rule: #d4cfc6;
+    --accent: #c85a1e;
+    --accent-light: #f2e8e1;
+    --gold: #b8892a;
+    --green: #2d6a4f;
+    --green-light: #e8f4f0;
+    --red: #9b2226;
+    --red-light: #fdecea;
+    --muted: #7a7570;
+    --col-width: 860px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* COVER */
+  .cover {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 80px 60px 70px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border: 1px solid rgba(245,242,236,0.1);
+    border-radius: 50%;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 40px;
+    width: 180px; height: 180px;
+    border: 1px solid rgba(200,90,30,0.3);
+    border-radius: 50%;
+  }
+  .cover-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+  }
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    max-width: 580px;
+  }
+  .cover-sub {
+    font-size: 15px;
+    color: rgba(245,242,236,0.6);
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 40px;
+    border-top: 1px solid rgba(245,242,236,0.12);
+    padding-top: 24px;
+    margin-top: 40px;
+  }
+  .cover-meta-item label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,242,236,0.4);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .cover-meta-item span {
+    font-size: 13px;
+    color: var(--paper);
+    font-weight: 500;
+  }
+
+  /* NAV */
+  .toc {
+    background: var(--paper-2);
+    border-bottom: 1px solid var(--rule);
+    padding: 24px 60px;
+  }
+  .toc-inner {
+    max-width: var(--col-width);
+    margin: 0 auto;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  .toc a {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 3px;
+    transition: all 0.15s;
+  }
+  .toc a:hover { background: var(--rule); color: var(--ink); }
+
+  /* MAIN */
+  main {
+    max-width: var(--col-width);
+    margin: 0 auto;
+    padding: 0 60px 80px;
+  }
+
+  /* SECTION */
+  section {
+    margin-top: 64px;
+    padding-top: 40px;
+    border-top: 1px solid var(--rule);
+  }
+  section:first-child { border-top: none; margin-top: 40px; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.2;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .section-desc {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 28px;
+    max-width: 560px;
+  }
+  h3 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 12px;
+    margin-top: 28px;
+    color: var(--ink);
+  }
+  p { margin-bottom: 14px; color: #2a2724; font-size: 13.5px; }
+
+  /* ORG CHART */
+  .org {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 6px;
+    padding: 40px;
+    margin-top: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    line-height: 1.9;
+  }
+  .org-top { text-align: center; margin-bottom: 28px; }
+  .org-founders {
+    display: inline-flex;
+    gap: 16px;
+    background: rgba(200,90,30,0.2);
+    border: 1px solid rgba(200,90,30,0.4);
+    border-radius: 4px;
+    padding: 12px 24px;
+  }
+  .org-founders span { color: var(--accent); font-weight: 500; }
+  .org-cos {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .org-cos-box {
+    display: inline-block;
+    background: rgba(184,137,42,0.15);
+    border: 1px solid rgba(184,137,42,0.4);
+    border-radius: 4px;
+    padding: 8px 20px;
+    color: var(--gold);
+  }
+  .org-connector { text-align: center; color: rgba(245,242,236,0.2); font-size: 18px; margin: 6px 0; }
+  .org-tracks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .org-track {
+    border: 1px solid rgba(245,242,236,0.1);
+    border-radius: 4px;
+    padding: 16px;
+  }
+  .org-track-label {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245,242,236,0.4);
+    margin-bottom: 8px;
+  }
+  .org-track-lead {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--paper);
+    margin-bottom: 8px;
+  }
+  .org-track-members {
+    font-size: 11px;
+    color: rgba(245,242,236,0.5);
+    line-height: 1.8;
+  }
+  .org-disciplines {
+    border-top: 1px solid rgba(245,242,236,0.08);
+    padding-top: 20px;
+    margin-top: 4px;
+  }
+  .org-disciplines-label {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245,242,236,0.3);
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .org-disc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .org-disc {
+    border: 1px solid rgba(245,242,236,0.08);
+    border-radius: 4px;
+    padding: 12px;
+  }
+  .org-disc-lead { font-size: 12px; font-weight: 500; color: var(--paper); margin-bottom: 4px; }
+  .org-disc-title { font-size: 10px; color: rgba(245,242,236,0.4); margin-bottom: 6px; }
+  .org-disc-team { font-size: 10px; color: rgba(245,242,236,0.45); line-height: 1.7; }
+  .org-support {
+    border-top: 1px solid rgba(245,242,236,0.08);
+    margin-top: 20px;
+    padding-top: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .org-support-box {
+    background: rgba(245,242,236,0.03);
+    border-radius: 3px;
+    padding: 10px 14px;
+    font-size: 11px;
+    color: rgba(245,242,236,0.45);
+  }
+  .org-support-box strong { color: rgba(245,242,236,0.7); font-size: 12px; display: block; margin-bottom: 2px; }
+
+  /* SCORECARDS */
+  .scorecard {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .scorecard-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .scorecard-header-left {}
+  .sc-name {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+  .sc-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .sc-cadence {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 4px 8px;
+    color: var(--muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .scorecard-metrics { padding: 0; }
+  .metric-row {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 1.2fr 1fr;
+    padding: 11px 20px;
+    border-bottom: 1px solid var(--paper-2);
+    align-items: center;
+    gap: 12px;
+  }
+  .metric-row:last-child { border-bottom: none; }
+  .metric-row.header-row {
+    background: var(--paper-2);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 8px 20px;
+  }
+  .metric-name { font-size: 13px; color: var(--ink); }
+  .metric-source { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+  .metric-target { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; color: var(--green); }
+  .metric-freq { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+
+  /* FINANCIAL TARGETS */
+  .milestone-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+  }
+  .milestone-row:last-child { border-bottom: none; }
+  .milestone-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--accent);
+    padding-top: 2px;
+  }
+  .milestone-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .milestone-desc { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+  .milestone-numbers { }
+  .milestone-number {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 5px;
+  }
+  .mn-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    min-width: 80px;
+  }
+  .mn-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  /* HIRING */
+  .hire-card {
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 14px;
+    background: #fff;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: start;
+  }
+  .hire-title { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+  .hire-track {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .hire-rationale { font-size: 12.5px; color: #3a3630; line-height: 1.6; }
+  .hire-trigger {
+    background: var(--accent-light);
+    border: 1px solid rgba(200,90,30,0.2);
+    border-radius: 4px;
+    padding: 10px 14px;
+    text-align: right;
+    min-width: 130px;
+  }
+  .hire-trigger-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 3px;
+  }
+  .hire-trigger-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+  }
+  .hire-cost {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* BRIEF FRAMEWORKS */
+  .brief-box {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .brief-header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .brief-header-name {
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .brief-header-type {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245,242,236,0.5);
+  }
+  .brief-fields { padding: 0; }
+  .brief-field {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--paper-2);
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+  .brief-field:last-child { border-bottom: none; }
+  .brief-field-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    padding-top: 1px;
+  }
+  .brief-field-required {
+    color: var(--accent);
+  }
+  .brief-field-desc { font-size: 12.5px; color: #2a2724; line-height: 1.6; }
+  .brief-field-example {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    color: var(--muted);
+    margin-top: 3px;
+    font-style: italic;
+  }
+
+  /* IMMEDIATE ACTIONS */
+  .action-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .action-card {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    padding: 16px;
+  }
+  .action-priority {
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .p-now { color: var(--red); }
+  .p-week { color: var(--gold); }
+  .p-month { color: var(--green); }
+  .action-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .action-owner {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .action-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  /* TABLES */
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    padding: 9px 12px;
+    background: var(--paper-2);
+    border-bottom: 1px solid var(--rule);
+    text-align: left;
+    font-weight: 500;
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--paper-2);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  .td-mono { font-family: 'DM Mono', monospace; font-size: 11.5px; }
+  .td-green { color: var(--green); font-weight: 500; }
+  .td-red { color: var(--red); }
+  .td-muted { color: var(--muted); }
+
+  /* CALLOUT */
+  .callout {
+    background: var(--accent-light);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+    padding: 14px 18px;
+    margin: 20px 0;
+  }
+  .callout p { color: #4a2010; font-size: 13px; margin: 0; }
+  .callout strong { color: var(--accent); }
+
+  .callout-green {
+    background: var(--green-light);
+    border-left-color: var(--green);
+  }
+  .callout-green p { color: #1a3d2e; }
+  .callout-green strong { color: var(--green); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: rgba(245,242,236,0.3);
+    padding: 28px 60px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* PRINT */
+  @media print {
+    .toc { display: none; }
+    section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-label">Confidential — Leadership Team Only</div>
+  <h1>Wonderly Strategic Operating Brief</h1>
+  <div class="cover-sub">Org structure · Scorecards · Financial targets · Hiring roadmap · Brief frameworks</div>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <label>Prepared</label>
+      <span>March 2026</span>
+    </div>
+    <div class="cover-meta-item">
+      <label>Revenue Baseline</label>
+      <span>$1.1M (2025 Actual)</span>
+    </div>
+    <div class="cover-meta-item">
+      <label>2026 Target</label>
+      <span>$1.54M (+40%)</span>
+    </div>
+    <div class="cover-meta-item">
+      <label>Long-Range Goal</label>
+      <span>$3M by 2029</span>
+    </div>
+  </div>
+</div>
+
+<!-- TOC -->
+<nav class="toc">
+  <div class="toc-inner">
+    <a href="#org">01 Org Structure</a>
+    <a href="#scorecards">02 Scorecards</a>
+    <a href="#targets">03 Financial Targets</a>
+    <a href="#hiring">04 Hiring Roadmap</a>
+    <a href="#briefs">05 Brief Frameworks</a>
+    <a href="#actions">06 Immediate Actions</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ORG STRUCTURE -->
+<section id="org">
+  <div class="section-label">01</div>
+  <h2>Org Structure</h2>
+  <p class="section-desc">A discipline-lead model with two delivery tracks. Account leads own relationships and outcomes. Discipline leads own craft and process. They are orthogonal, not competitive.</p>
+
+  <div class="org">
+    <div class="org-top">
+      <div style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(245,242,236,0.3);margin-bottom:10px;">Founders</div>
+      <div class="org-founders">
+        <span>Adam Lehman</span>
+        <span style="color:rgba(245,242,236,0.3);">·</span>
+        <span>Allie Lehman</span>
+      </div>
+      <div style="font-size:10px;color:rgba(245,242,236,0.3);margin-top:6px;">Strategy · Brand · Business Development</div>
+    </div>
+
+    <div class="org-connector">↓</div>
+
+    <div class="org-cos">
+      <div class="org-cos-box">Camila Camargo — Chief of Staff / BOH Lead</div>
+      <div style="font-size:10px;color:rgba(245,242,236,0.3);margin-top:5px;">Finance · Operations · Systems · Compliance</div>
+    </div>
+
+    <div class="org-connector">↓</div>
+
+    <div style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(245,242,236,0.3);text-align:center;margin-bottom:12px;">Delivery Tracks</div>
+
+    <div class="org-tracks">
+      <div class="org-track">
+        <div class="org-track-label">Creator Track — Design-First</div>
+        <div class="org-track-lead">Allie Lehman — Account Lead</div>
+        <div class="org-track-members">
+          Chefs · Authors · Podcasters · Personal brands<br>
+          Design is the primary value driver<br>
+          Taylor (Design Lead) embedded<br>
+          <span style="color:rgba(245,242,236,0.3);">PM gap — open role</span>
+        </div>
+      </div>
+      <div class="org-track">
+        <div class="org-track-label">Non-Creator Track — Dev + Growth-First</div>
+        <div class="org-track-lead">Marin Cook — Account Lead</div>
+        <div class="org-track-members">
+          Organizations · Brands · B2B<br>
+          Dev + growth primary value driver<br>
+          Runs fully without Allie<br>
+          Marin owns booking → delivery → close
+        </div>
+      </div>
+    </div>
+
+    <div class="org-disciplines">
+      <div class="org-disciplines-label">Discipline Leads — Shared Across Both Tracks</div>
+      <div class="org-disc-grid">
+        <div class="org-disc">
+          <div class="org-disc-lead">Matt Hart</div>
+          <div class="org-disc-title">Development Process Lead</div>
+          <div class="org-disc-team">
+            WP: Alyssa (Lead) · Catherine<br>
+            Shopify: Jerrod (Lead) · Malik · Maira<br>
+            White-label: Nakul's team<br>
+            Hosting: Valerian
+          </div>
+        </div>
+        <div class="org-disc">
+          <div class="org-disc-lead">Taylor Moser</div>
+          <div class="org-disc-title">Design Lead</div>
+          <div class="org-disc-team">
+            Maria — marketing/sales lean<br>
+            &nbsp;&nbsp;↔ Tori interface, comms<br>
+            Laura — craft/execution<br>
+            &nbsp;&nbsp;High output, deep focus
+          </div>
+        </div>
+        <div class="org-disc">
+          <div class="org-disc-lead">Tori Metzger</div>
+          <div class="org-disc-title">Marketing Lead</div>
+          <div class="org-disc-team">
+            Content strategy — both tracks<br>
+            Advisory, not execution<br>
+            76% utilization — needs support<br>
+            Standards + output review
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="org-support">
+      <div class="org-support-box">
+        <strong>Lucy + Andrea — Admin Support</strong>
+        Invoicing · Scheduling · Inbox · Time tracking<br>
+        Split TBD: client-facing vs. ops-oriented
+      </div>
+      <div class="org-support-box">
+        <strong>Maria ↔ Tori — Design/Marketing Bridge</strong>
+        Maria's natural lean toward marketing work<br>
+        creates an informal but functional intake path.<br>
+        Formalize in brief workflow when ready.
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><strong>The unlocking move:</strong> The non-creator track runs entirely without Allie. This is not just a client split — it's a second delivery model sharing infrastructure (Camila, discipline leads, tools). Allie's domain becomes smaller and better-defined: creator clients + design standards + Taylor, Maria, and Laura. That's a real job with real limits.</p>
+  </div>
+</section>
+
+<!-- SCORECARDS -->
+<section id="scorecards">
+  <div class="section-label">02</div>
+  <h2>Scorecards</h2>
+  <p class="section-desc">One scorecard per role or function. Metrics are sourced from systems already in place: Harvest, Pipedrive, ChargeOver, QuickBooks, ClickUp. Reviewed weekly in L10 or monthly in all-hands.</p>
+
+  <!-- EXEC -->
+  <h3>Executive — Adam + Allie</h3>
+  <div class="scorecard">
+    <div class="scorecard-header">
+      <div class="scorecard-header-left">
+        <div class="sc-name">Adam + Allie Lehman</div>
+        <div class="sc-role">Co-Founders · Strategy · Brand · Business Development</div>
+      </div>
+      <div class="sc-cadence">Monthly Review</div>
+    </div>
+    <div class="scorecard-metrics">
+      <div class="metric-row header-row">
+        <span>Metric</span><span>Source</span><span>Target</span><span>Freq</span>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Total Revenue vs Budget</div><div class="metric-source">QuickBooks / ChargeOver</div></div>
+        <div class="metric-target">QBO Monthly</div>
+        <div class="metric-target">≥ Budget Line</div>
+        <div class="metric-freq">Monthly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Gross Margin %</div><div class="metric-source">QuickBooks (Harvest-adjusted)</div></div>
+        <div class="metric-target">QBO + Harvest</div>
+        <div class="metric-target">≥ 50% → 54% by Q4</div>
+        <div class="metric-freq">Monthly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Net Income vs Budget</div><div class="metric-source">QuickBooks</div></div>
+        <div class="metric-target">QBO</div>
+        <div class="metric-target">≥ $106K (FY26)</div>
+        <div class="metric-freq">Monthly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">New Revenue Closed (both tracks)</div><div class="metric-source">Pipedrive (Won deals)</div></div>
+        <div class="metric-target">Pipedrive</div>
+        <div class="metric-target">≥ $128K/mo avg</div>
+        <div class="metric-freq">Weekly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Cash Position</div><div class="metric-source">QuickBooks / Bank</div></div>
+        <div class="metric-target">QBO</div>
+        <div class="metric-target">≥ $80K</div>
+        <div class="metric-freq">Weekly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Adam Delivery Utilization %</div><div class="metric-source">Harvest</div></div>
+        <div class="metric-target">Harvest</div>
+        <div class="metric-target">≤ 25% (↓ from 47%)</div>
+        <div class="metric-freq">Monthly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Revenue per Active Client</div><div class="metric-source">ChargeOver / QBO</div></div>
+        <div class="metric-target">ChargeOver</div>
+        <div class="metric-target">≥ $14.6K avg (2026)</div>
+        <div class="metric-freq">Quarterly</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CREATOR TRACK -->
+  <h3>Creator Track — Allie (Account Lead)</h3>
+  <div class="scorecard">
+    <div class="scorecard-header">
+      <div class="scorecard-header-left">
+        <div class="sc-name">Allie Lehman</div>
+        <div class="sc-role">Creator Track Account Lead · Design-First Clients</div>
+      </div>
+      <div class="sc-cadence">Weekly Check-In</div>
+    </div>
+    <div class="scorecard-metrics">
+      <div class="metric-row header-row">
+        <span>Metric</span><span>Source</span><span>Target</span><span>Freq</span>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Creator Track Revenue</div><div class="metric-source">ChargeOver / QBO (tagged)</div></div>
+        <div class="metric-target">ChargeOver</div>
+        <div class="metric-target">≥ 60% of total revenue</div>
+        <div class="metric-freq">Monthly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Active Creator Client Count</div><div class="metric-source">Pipedrive / ChargeOver</div></div>
+        <div class="metric-target">Pipedrive</div>
+        <div class="metric-target">45–55 (pruning to quality)</div>
+        <div class="metric-freq">Monthly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Creator Track Avg Gross Margin</div><div class="metric-source">QBO + Harvest</div></div>
+        <div class="metric-target">Harvest + QBO</div>
+        <div class="metric-target">≥ 55%</div>
+        <div class="metric-freq">Quarterly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Allie Delivery Hours (should decrease)</div><div class="metric-source">Harvest</div></div>
+        <div class="metric-target">Harvest</div>
+        <div class="metric-target">≤ 30% on delivery</div>
+        <div class="metric-freq">Monthly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Retainer Retention Rate</div><div class="metric-source">ChargeOver</div></div>
+        <div class="metric-target">ChargeOver</div>
+        <div class="metric-target">≥ 90% QoQ</div>
+        <div class="metric-freq">Quarterly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Pipeline Value (Track A)</div><div class="metric-source">Pipedrive</div></div>
+        <div class="metric-target">Pipedrive</div>
+        <div class="metric-target">≥ 2× monthly revenue target</div>
+        <div class="metric-freq">Weekly</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NON-CREATOR TRACK -->
+  <h3>Non-Creator Track — Marin (Account Lead)</h3>
+  <div class="scorecard">
+    <div class="scorecard-header">
+      <div class="scorecard-header-left">
+        <div class="sc-name">Marin Cook</div>
+        <div class="sc-role">Non-Creator Track Account Lead · Dev + Growth Clients</div>
+      </div>
+      <div class="sc-cadence">Weekly Check-In</div>
+    </div>
+    <div class="scorecard-metrics">
+      <div class="metric-row header-row">
+        <span>Metric</span><span>Source</span><span>Target</span><span>Freq</span>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Non-Creator Track Revenue</div><div class="metric-source">ChargeOver / QBO (tagged)</div></div>
+        <div class="metric-target">ChargeOver</div>
+        <div class="metric-target">Growing share → 40% of total</div>
+        <div class="metric-freq">Monthly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Change Orders Issued</div><div class="metric-source">ChargeOver / ClickUp</div></div>
+        <div class="metric-target">ChargeOver</div>
+        <div class="metric-target">&gt; 0 on scope expansion</div>
+        <div class="metric-freq">Per project</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Project Margin % (vs estimate)</div><div class="metric-source">Harvest + ChargeOver</div></div>
+        <div class="metric-target">Harvest + QBO</div>
+        <div class="metric-target">≥ 50% per project</div>
+        <div class="metric-freq">Per project</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Pipeline Value (Track B)</div><div class="metric-source">Pipedrive</div></div>
+        <div class="metric-target">Pipedrive</div>
+        <div class="metric-target">≥ 2× monthly revenue target</div>
+        <div class="metric-freq">Weekly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Marin Utilization %</div><div class="metric-source">Harvest</div></div>
+        <div class="metric-target">Harvest</div>
+        <div class="metric-target">55–65% (↑ from 40%)</div>
+        <div class="metric-freq">Monthly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Project On-Time Delivery %</div><div class="metric-source">ClickUp</div></div>
+        <div class="metric-target">ClickUp</div>
+        <div class="metric-target">≥ 85%</div>
+        <div class="metric-freq">Monthly</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEV PROCESS -->
+  <h3>Development Process — Matt (Discipline Lead)</h3>
+  <div class="scorecard">
+    <div class="scorecard-header">
+      <div class="scorecard-header-left">
+        <div class="sc-name">Matt Hart</div>
+        <div class="sc-role">Development Process Lead · WP + Shopify Standards</div>
+      </div>
+      <div class="sc-cadence">Weekly</div>
+    </div>
+    <div class="scorecard-metrics">
+      <div class="metric-row header-row">
+        <span>Metric</span><span>Source</span><span>Target</span><span>Freq</span>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Dev Team Utilization (Alyssa, Jerrod, Catherine, Malik, Maira)</div><div class="metric-source">Harvest</div></div>
+        <div class="metric-target">Harvest</div>
+        <div class="metric-target">≥ 65% blended</div>
+        <div class="metric-freq">Weekly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Hours vs Estimate per Project</div><div class="metric-source">Harvest + ClickUp</div></div>
+        <div class="metric-target">Harvest</div>
+        <div class="metric-target">≤ 110% of estimate</div>
+        <div class="metric-freq">Per project</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Brief Compliance Rate (dev briefs submitted)</div><div class="metric-source">ClickUp</div></div>
+        <div class="metric-target">ClickUp</div>
+        <div class="metric-target">100% before dev starts</div>
+        <div class="metric-freq">Weekly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">QA Pass Rate (first review)</div><div class="metric-source">ClickUp / internal</div></div>
+        <div class="metric-target">ClickUp</div>
+        <div class="metric-target">≥ 80%</div>
+        <div class="metric-freq">Monthly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Matt Utilization % (oversight, not delivery)</div><div class="metric-source">Harvest</div></div>
+        <div class="metric-target">Harvest</div>
+        <div class="metric-target">45–55% (process role)</div>
+        <div class="metric-freq">Monthly</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESIGN + MARKETING -->
+  <h3>Design + Marketing Discipline Leads</h3>
+  <div class="scorecard">
+    <div class="scorecard-header">
+      <div class="scorecard-header-left">
+        <div class="sc-name">Taylor Moser + Tori Metzger</div>
+        <div class="sc-role">Design Lead (Taylor, Maria, Laura) · Marketing Lead (Tori)</div>
+      </div>
+      <div class="sc-cadence">Monthly</div>
+    </div>
+    <div class="scorecard-metrics">
+      <div class="metric-row header-row">
+        <span>Metric</span><span>Source</span><span>Target</span><span>Freq</span>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Design Brief Compliance (briefs before Figma opens)</div><div class="metric-source">ClickUp</div></div>
+        <div class="metric-target">ClickUp</div>
+        <div class="metric-target">100%</div>
+        <div class="metric-freq">Weekly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Design Revision Rounds (quality proxy)</div><div class="metric-source">ClickUp / Harvest</div></div>
+        <div class="metric-target">Harvest</div>
+        <div class="metric-target">≤ 2 rounds avg</div>
+        <div class="metric-freq">Per project</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Taylor Utilization %</div><div class="metric-source">Harvest</div></div>
+        <div class="metric-target">Harvest</div>
+        <div class="metric-target">60–70%</div>
+        <div class="metric-freq">Monthly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Laura Utilization % (craft output)</div><div class="metric-source">Harvest</div></div>
+        <div class="metric-target">Harvest</div>
+        <div class="metric-target">65–75%</div>
+        <div class="metric-freq">Monthly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Maria — Marketing/Design Brief Turnaround</div><div class="metric-source">ClickUp</div></div>
+        <div class="metric-target">ClickUp</div>
+        <div class="metric-target">≤ 2 days from Tori brief</div>
+        <div class="metric-freq">Per project</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Tori Utilization % (cap to prevent burnout)</div><div class="metric-source">Harvest</div></div>
+        <div class="metric-target">Harvest</div>
+        <div class="metric-target">70–75% (currently 76% — at ceiling)</div>
+        <div class="metric-freq">Monthly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Marketing Deliverables On-Time</div><div class="metric-source">ClickUp</div></div>
+        <div class="metric-target">ClickUp</div>
+        <div class="metric-target">≥ 90%</div>
+        <div class="metric-freq">Monthly</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOH -->
+  <h3>Back of House — Camila (COO / Chief of Staff)</h3>
+  <div class="scorecard">
+    <div class="scorecard-header">
+      <div class="scorecard-header-left">
+        <div class="sc-name">Camila Camargo</div>
+        <div class="sc-role">Chief of Staff · Finance · Operations · Systems</div>
+      </div>
+      <div class="sc-cadence">Weekly</div>
+    </div>
+    <div class="scorecard-metrics">
+      <div class="metric-row header-row">
+        <span>Metric</span><span>Source</span><span>Target</span><span>Freq</span>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Days Sales Outstanding (DSO)</div><div class="metric-source">QuickBooks / ChargeOver</div></div>
+        <div class="metric-target">QBO</div>
+        <div class="metric-target">≤ 45 days (now at 59)</div>
+        <div class="metric-freq">Weekly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Cash Position vs $80K Floor</div><div class="metric-source">QuickBooks / Bank</div></div>
+        <div class="metric-target">QBO</div>
+        <div class="metric-target">≥ $80K at all times</div>
+        <div class="metric-freq">Weekly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Budget vs Actuals Variance</div><div class="metric-source">QuickBooks</div></div>
+        <div class="metric-target">QBO</div>
+        <div class="metric-target">≤ 5% variance per line</div>
+        <div class="metric-freq">Monthly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Team Time Tracking Submission Rate</div><div class="metric-source">Harvest</div></div>
+        <div class="metric-target">Harvest</div>
+        <div class="metric-target">100% weekly by Friday</div>
+        <div class="metric-freq">Weekly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Invoice Turnaround (days from project milestone)</div><div class="metric-source">ChargeOver / QBO</div></div>
+        <div class="metric-target">ChargeOver</div>
+        <div class="metric-target">≤ 2 business days</div>
+        <div class="metric-freq">Per invoice</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">QBO Categorization Accuracy</div><div class="metric-source">QuickBooks (uncategorized tx)</div></div>
+        <div class="metric-target">QBO</div>
+        <div class="metric-target">≤ 5 uncategorized/mo</div>
+        <div class="metric-freq">Monthly</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Credit Card Balance (paydown goal)</div><div class="metric-source">QuickBooks</div></div>
+        <div class="metric-target">QBO</div>
+        <div class="metric-target">$0 by Q4 2026</div>
+        <div class="metric-freq">Monthly</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCIAL TARGETS -->
+<section id="targets">
+  <div class="section-label">03</div>
+  <h2>Financial Targets</h2>
+  <p class="section-desc">Targets sourced from the Growth P&L Model and Milestones tabs. Every number below traces back to real assumptions in the spreadsheets.</p>
+
+  <h3>Annual Revenue & Margin Roadmap</h3>
+  <div style="background:#fff;border:1px solid var(--rule);border-radius:6px;overflow:hidden;margin-bottom:28px;">
+    <table>
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Revenue</th>
+          <th>Gross Margin</th>
+          <th>Net Income</th>
+          <th>Avg Clients</th>
+          <th>Avg Rev/Client</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-mono">2025 Actual</td>
+          <td class="td-mono">$1.10M</td>
+          <td class="td-mono">50%</td>
+          <td class="td-mono">~$96K</td>
+          <td class="td-mono">150</td>
+          <td class="td-mono">$7,333</td>
+        </tr>
+        <tr style="background:var(--accent-light);">
+          <td class="td-mono" style="color:var(--accent);font-weight:600;">2026 Budget</td>
+          <td class="td-mono td-green">$1.54M</td>
+          <td class="td-mono td-green">54%</td>
+          <td class="td-mono td-green">$347K</td>
+          <td class="td-mono">105</td>
+          <td class="td-mono td-green">$14,667</td>
+        </tr>
+        <tr>
+          <td class="td-mono">2027 Plan</td>
+          <td class="td-mono">$2.00M</td>
+          <td class="td-mono">56%</td>
+          <td class="td-mono">~$417K</td>
+          <td class="td-mono">90</td>
+          <td class="td-mono">$22,222</td>
+        </tr>
+        <tr>
+          <td class="td-mono">2028 Plan</td>
+          <td class="td-mono">$2.50M</td>
+          <td class="td-mono">57%</td>
+          <td class="td-mono">~$526K</td>
+          <td class="td-mono">80</td>
+          <td class="td-mono">$31,250</td>
+        </tr>
+        <tr>
+          <td class="td-mono">2029 Goal</td>
+          <td class="td-mono td-green" style="font-weight:600;">$3.00M</td>
+          <td class="td-mono td-green">58%</td>
+          <td class="td-mono td-green">~$640K</td>
+          <td class="td-mono">75</td>
+          <td class="td-mono td-green">$40,000</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Quarterly Milestones</h3>
+
+  <div class="milestone-row">
+    <div class="milestone-date">Q2 2026</div>
+    <div>
+      <div class="milestone-title">First $125K Month</div>
+      <div class="milestone-desc">Pricing increases landing. Validates the 40% growth thesis. 50% above 2025 monthly average of $84K.</div>
+    </div>
+    <div class="milestone-numbers">
+      <div class="milestone-number"><span class="mn-label">Revenue</span><span class="mn-val">$125K/mo</span></div>
+      <div class="milestone-number"><span class="mn-label">Lever</span><span class="mn-val">Pricing</span></div>
+      <div class="milestone-number"><span class="mn-label">Signal</span><span class="mn-val">New deal sizes ↑</span></div>
+    </div>
+  </div>
+
+  <div class="milestone-row">
+    <div class="milestone-date">Q3 2026</div>
+    <div>
+      <div class="milestone-title">Open the Books + 60% Utilization</div>
+      <div class="milestone-desc">Camila leads first all-hands financial review with simplified P&L. Team utilization benchmark hit. Scorecards live.</div>
+    </div>
+    <div class="milestone-numbers">
+      <div class="milestone-number"><span class="mn-label">Utilization</span><span class="mn-val">≥ 60% blended</span></div>
+      <div class="milestone-number"><span class="mn-label">Transparency</span><span class="mn-val">P&L shared</span></div>
+      <div class="milestone-number"><span class="mn-label">Owner</span><span class="mn-val">Camila</span></div>
+    </div>
+  </div>
+
+  <div class="milestone-row">
+    <div class="milestone-date">Q4 2026</div>
+    <div>
+      <div class="milestone-title">$400K Quarter</div>
+      <div class="milestone-desc">Annualizes to $1.6M run rate. 40% growth achieved. Gross margin improvement visible in actuals. Fewer clients, higher value confirmed in data.</div>
+    </div>
+    <div class="milestone-numbers">
+      <div class="milestone-number"><span class="mn-label">Quarter Rev</span><span class="mn-val">$400K</span></div>
+      <div class="milestone-number"><span class="mn-label">Run Rate</span><span class="mn-val">$1.6M</span></div>
+      <div class="milestone-number"><span class="mn-label">Gross Margin</span><span class="mn-val">≥ 54%</span></div>
+    </div>
+  </div>
+
+  <div class="milestone-row">
+    <div class="milestone-date">Q1 2027</div>
+    <div>
+      <div class="milestone-title">First Team Profit Bonus</div>
+      <div class="milestone-desc">Even $1,000–2,000 per person. The signal that matters: when the company wins, you win. Builds trust for everything that follows.</div>
+    </div>
+    <div class="milestone-numbers">
+      <div class="milestone-number"><span class="mn-label">Pool size</span><span class="mn-val">$10–20K</span></div>
+      <div class="milestone-number"><span class="mn-label">Trigger</span><span class="mn-val">Net margin &gt; 9%</span></div>
+      <div class="milestone-number"><span class="mn-label">Owner</span><span class="mn-val">Adam + Camila</span></div>
+    </div>
+  </div>
+
+  <div class="milestone-row">
+    <div class="milestone-date">Q4 2027</div>
+    <div>
+      <div class="milestone-title">$2M Achieved — VTO Target Hit</div>
+      <div class="milestone-desc">One year late from the VTO, but built correctly. Gross margin at 56%. New PM and marketing hires contributing. Recurring revenue at 30%.</div>
+    </div>
+    <div class="milestone-numbers">
+      <div class="milestone-number"><span class="mn-label">Revenue</span><span class="mn-val">$2.0M</span></div>
+      <div class="milestone-number"><span class="mn-label">Recurring</span><span class="mn-val">≥ 30%</span></div>
+      <div class="milestone-number"><span class="mn-label">Clients</span><span class="mn-val">~90</span></div>
+    </div>
+  </div>
+
+  <div class="milestone-row">
+    <div class="milestone-date">Q1 2028</div>
+    <div>
+      <div class="milestone-title">Profit Sharing Launches</div>
+      <div class="milestone-desc">Annual pool = 10% of net income. Transparent formula. Documented allocation. This is the Zingerman's commitment made real.</div>
+    </div>
+    <div class="milestone-numbers">
+      <div class="milestone-number"><span class="mn-label">Pool est.</span><span class="mn-val">$40–75K/yr</span></div>
+      <div class="milestone-number"><span class="mn-label">Model</span><span class="mn-val">10% net income</span></div>
+    </div>
+  </div>
+
+  <div class="milestone-row">
+    <div class="milestone-date">Q1 2029</div>
+    <div>
+      <div class="milestone-title">$3M Run Rate — The Goal</div>
+      <div class="milestone-desc">~75 clients at $40K average. 58% gross margin. Net margin above 25%. 3+ months cash reserve. Equity conversations begin with senior team.</div>
+    </div>
+    <div class="milestone-numbers">
+      <div class="milestone-number"><span class="mn-label">Revenue</span><span class="mn-val">$3.0M</span></div>
+      <div class="milestone-number"><span class="mn-label">Net Margin</span><span class="mn-val">≥ 25%</span></div>
+      <div class="milestone-number"><span class="mn-label">Cash Reserve</span><span class="mn-val">3+ months</span></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:36px;">Key Pricing Targets (Growth Lever 1)</h3>
+  <div style="background:#fff;border:1px solid var(--rule);border-radius:6px;overflow:hidden;margin-bottom:8px;">
+    <table>
+      <thead>
+        <tr>
+          <th>Metric</th><th>2025 Actual</th><th>2026 Target</th><th>2028 Target</th><th>2029 Target</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Blended effective rate (rev/hr)</td>
+          <td class="td-mono">~$85/hr</td>
+          <td class="td-mono td-green">$110–120/hr</td>
+          <td class="td-mono">$135/hr</td>
+          <td class="td-mono">$150/hr</td>
+        </tr>
+        <tr>
+          <td>Project minimum</td>
+          <td class="td-mono">Variable (low)</td>
+          <td class="td-mono td-green">$15K</td>
+          <td class="td-mono">$20K</td>
+          <td class="td-mono">$25K</td>
+        </tr>
+        <tr>
+          <td>Annual retainer escalator</td>
+          <td class="td-mono td-red">0% (none)</td>
+          <td class="td-mono td-green">5–8%</td>
+          <td class="td-mono">5–8%</td>
+          <td class="td-mono">5–8%</td>
+        </tr>
+        <tr>
+          <td>Revenue per client (avg)</td>
+          <td class="td-mono">$7,333</td>
+          <td class="td-mono td-green">$14,667</td>
+          <td class="td-mono">$31,250</td>
+          <td class="td-mono">$40,000</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout-green callout" style="margin-top:16px;">
+    <p><strong>The Pasta Queen decision:</strong> 759 hours, $73K revenue, $96/hr effective rate, 29% margin. The retainer hasn't kept pace with scope. January was 2% margin. Every month this isn't repriced costs approximately $3–4K in margin erosion. This conversation cannot wait for Q3.</p>
+  </div>
+</section>
+
+<!-- HIRING ROADMAP -->
+<section id="hiring">
+  <div class="section-label">04</div>
+  <h2>Hiring Roadmap</h2>
+  <p class="section-desc">Roles in priority order with revenue triggers. Every hire is tied to a capacity gap or a structural gap — not headcount for its own sake.</p>
+
+  <div class="hire-card">
+    <div>
+      <div class="hire-title">Content Coordinator / Marketing Support</div>
+      <div class="hire-track">Support · Tori's Team · Both Tracks</div>
+      <div class="hire-rationale">Tori is at 76% utilization — the highest on the team and already at her capacity ceiling. She's functioning as a discipline lead (strategic, advisory) but being pulled into execution. A coordinator absorbs execution, letting Tori hold standards across both tracks without burning out. This is the highest-leverage next hire because it also unblocks marketing output for the whole business.</div>
+    </div>
+    <div class="hire-trigger">
+      <span class="hire-trigger-label">Revenue Trigger</span>
+      <div class="hire-trigger-val">Now / $1.2M</div>
+      <div class="hire-cost">$45–55K</div>
+    </div>
+  </div>
+
+  <div class="hire-card">
+    <div>
+      <div class="hire-title">Project Coordinator / Producer (Creator Track)</div>
+      <div class="hire-track">Creator Track · Allie's Team · PM Gap</div>
+      <div class="hire-rationale">The creator track has account lead (Allie), design lead (Taylor), and dev access (Matt) — but no one whose job is the project. Timeline, brief intake, scope documentation, client communication between milestones. Without this role, Allie is doing account management AND project management, which keeps her in execution. This is the last piece that lets Allie actually function as an account lead.</div>
+    </div>
+    <div class="hire-trigger">
+      <span class="hire-trigger-label">Revenue Trigger</span>
+      <div class="hire-trigger-val">$1.3M</div>
+      <div class="hire-cost">$50–65K</div>
+    </div>
+  </div>
+
+  <div class="hire-card">
+    <div>
+      <div class="hire-title">Mid-Level Developer (WP or Shopify)</div>
+      <div class="hire-track">Dev Team · Matt's Team · Capacity</div>
+      <div class="hire-rationale">Matt holds standards. Alyssa and Jerrod lead their platforms. But when either lead is at capacity, there's no backup — Nakul's white-label team is a bridge, not a solution for complex builds. A mid-level developer (not senior) that Alyssa or Jerrod can direct gives the dev team resilience and reduces white-label dependency. Platform (WP vs Shopify) depends on which track grows faster.</div>
+    </div>
+    <div class="hire-trigger">
+      <span class="hire-trigger-label">Revenue Trigger</span>
+      <div class="hire-trigger-val">$1.4M</div>
+      <div class="hire-cost">$65–80K</div>
+    </div>
+  </div>
+
+  <div class="hire-card">
+    <div>
+      <div class="hire-title">Senior Developer (WP or Shopify)</div>
+      <div class="hire-track">Dev Team · Complex Builds · A+ Talent</div>
+      <div class="hire-rationale">The hire the Growth Plan identified as the path to premium non-creator client acquisition. Organizational clients wanting dev and growth need confidence in technical execution. A senior developer raises the ceiling on what you can bid on and deliver. This also gives Alyssa and Jerrod a peer/mentor, which matters for retention of your best technical people.</div>
+    </div>
+    <div class="hire-trigger">
+      <span class="hire-trigger-label">Revenue Trigger</span>
+      <div class="hire-trigger-val">$1.7M</div>
+      <div class="hire-cost">$85–110K</div>
+    </div>
+  </div>
+
+  <div class="hire-card">
+    <div>
+      <div class="hire-title">Account Manager / Partner Lead (Non-Creator)</div>
+      <div class="hire-track">Non-Creator Track · Marin's Team · Scale</div>
+      <div class="hire-rationale">Marin can grow into an elite account manager — but at $2M in revenue, the non-creator track will have more active relationships than one person can hold at depth. An AM reporting to Marin owns 15–20 accounts post-launch, drives upsells and renewals, and lets Marin focus on enterprise relationships and new business. Also creates a career path that retains Marin.</div>
+    </div>
+    <div class="hire-trigger">
+      <span class="hire-trigger-label">Revenue Trigger</span>
+      <div class="hire-trigger-val">$2.0M</div>
+      <div class="hire-cost">$55–75K + commission</div>
+    </div>
+  </div>
+
+  <h3>Roles to Evaluate / Restructure</h3>
+
+  <div style="background:#fff;border:1px solid var(--rule);border-radius:6px;overflow:hidden;margin-bottom:8px;">
+    <table>
+      <thead>
+        <tr><th>Person / Team</th><th>Current State</th><th>Decision Point</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:600;">Andrea + Lucy split</td>
+          <td class="td-muted">Both doing mixed client-facing + ops admin</td>
+          <td class="td-muted">Clarify natural split: one client-facing (onboarding, scheduling, inbox), one ops (invoicing, time tracking, reporting). Or align one to each delivery track.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">Matt Hart</td>
+          <td class="td-muted">53% utilization — informal process role</td>
+          <td class="td-muted">Formalize as Dev Process Lead. Utilization is the wrong metric for this role — QA pass rates and brief compliance are the right ones.</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">Maria ↔ Tori interface</td>
+          <td class="td-muted">Informal — Maria naturally leans toward marketing/sales work with Tori</td>
+          <td class="td-muted">Formalize this in brief workflow. Tori briefs Maria → Maria translates to design brief → Taylor reviews. Works by accident today; should work by design.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- BRIEF FRAMEWORKS -->
+<section id="briefs">
+  <div class="section-label">05</div>
+  <h2>Brief Frameworks</h2>
+  <p class="section-desc">No Figma opens. No dev environment spins up. No Nakul gets briefed. Until a brief is submitted and approved by the discipline lead. These are the minimum required fields.</p>
+
+  <div class="brief-box">
+    <div class="brief-header">
+      <div class="brief-header-name">Design Brief</div>
+      <div class="brief-header-type">Required before any design work begins · Owner: Taylor</div>
+    </div>
+    <div class="brief-fields">
+      <div class="brief-field">
+        <div class="brief-field-label brief-field-required">Client + Project ✱</div>
+        <div>
+          <div class="brief-field-desc">Client name, project name, track (Creator / Non-Creator), account lead.</div>
+          <div class="brief-field-example">e.g. Aunt Flow · Retainer Q2 Campaign · Creator Track · Allie</div>
+        </div>
+      </div>
+      <div class="brief-field">
+        <div class="brief-field-label brief-field-required">Deliverable ✱</div>
+        <div>
+          <div class="brief-field-desc">Exactly what is being designed. Format, dimensions, quantity. No vague categories.</div>
+          <div class="brief-field-example">e.g. 3 email headers (600px wide) + 1 social cover (1200×630) + homepage hero refresh (desktop + mobile)</div>
+        </div>
+      </div>
+      <div class="brief-field">
+        <div class="brief-field-label brief-field-required">Goal ✱</div>
+        <div>
+          <div class="brief-field-desc">What is this design trying to accomplish? Not aesthetic — business or campaign goal.</div>
+          <div class="brief-field-example">e.g. Drive email sign-ups for new product launch. Not "look good."</div>
+        </div>
+      </div>
+      <div class="brief-field">
+        <div class="brief-field-label brief-field-required">Audience ✱</div>
+        <div>
+          <div class="brief-field-desc">Who is seeing this? Age, context, platform, relationship to the brand.</div>
+        </div>
+      </div>
+      <div class="brief-field">
+        <div class="brief-field-label brief-field-required">Brand Reference ✱</div>
+        <div>
+          <div class="brief-field-desc">Link to brand guide, existing assets, approved color palette, fonts. Taylor does not go hunting for these.</div>
+        </div>
+      </div>
+      <div class="brief-field">
+        <div class="brief-field-label">Tone + Direction</div>
+        <div>
+          <div class="brief-field-desc">3–5 adjectives. Optional inspiration references or "do not do" examples.</div>
+          <div class="brief-field-example">e.g. Warm, editorial, premium. Not: corporate, busy, or neon.</div>
+        </div>
+      </div>
+      <div class="brief-field">
+        <div class="brief-field-label brief-field-required">Copy / Content ✱</div>
+        <div>
+          <div class="brief-field-desc">All text that will appear in the design. If copy isn't ready, design doesn't start.</div>
+        </div>
+      </div>
+      <div class="brief-field">
+        <div class="brief-field-label brief-field-required">Hours Estimate ✱</div>
+        <div>
+          <div class="brief-field-desc">Account lead or Taylor provides an hour estimate before design opens. Actual hours tracked in Harvest against this estimate.</div>
+          <div class="brief-field-example">e.g. Estimated: 6 hours. Triggers change order if exceeded by &gt;20%.</div>
+        </div>
+      </div>
+      <div class="brief-field">
+        <div class="brief-field-label brief-field-required">Due Date ✱</div>
+        <div>
+          <div class="brief-field-desc">Hard client-facing deadline. Taylor sets internal deadline 2 days prior for review buffer.</div>
+        </div>
+      </div>
+      <div class="brief-field">
+        <div class="brief-field-label">Revision Rounds Included</div>
+        <div>
+          <div class="brief-field-desc">State how many rounds are included per contract. Default: 2. Any additional rounds require account lead approval.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brief-box">
+    <div class="brief-header">
+      <div class="brief-header-name">Development Brief</div>
+      <div class="brief-header-type">Required before any dev environment opens · Owner: Matt (approved by Alyssa or Jerrod)</div>
+    </div>
+    <div class="brief-fields">
+      <div class="brief-field">
+        <div class="brief-field-label brief-field-required">Client + Project ✱</div>
+        <div>
+          <div class="brief-field-desc">Client name, project name, platform (WP or Shopify), account lead, dev lead assigned.</div>
+          <div class="brief-field-example">e.g. Citron Hygiene · New Site Build · Shopify · Marin · Jerrod</div>
+        </div>
+      </div>
+      <div class="brief-field">
+        <div class="brief-field-label brief-field-required">Scope of Work ✱</div>
+        <div>
+          <div class="brief-field-desc">Detailed list of what is being built. Every page, integration, feature, and custom element. This is the scope protection document.</div>
+          <div class="brief-field-example">e.g. 6-page Shopify build, custom product filter, Klaviyo integration, Google Analytics 4, mobile QA.</div>
+        </div>
+      </div>
+      <div class="brief-field">
+        <div class="brief-field-label brief-field-required">Explicitly Out of Scope ✱</div>
+        <div>
+          <div class="brief-field-desc">List what is not included. This protects against scope creep and enables change orders.</div>
+          <div class="brief-field-example">e.g. Blog migration, custom checkout, email design, photography.</div>
+        </div>
+      </div>
+      <div class="brief-field">
+        <div class="brief-field-label brief-field-required">Design Status ✱</div>
+        <div>
+          <div class="brief-field-desc">Where are approved designs? Dev does not start until designs are approved by the client. Link to approved Figma frames.</div>
+        </div>
+      </div>
+      <div class="brief-field">
+        <div class="brief-field-label brief-field-required">Integrations / Third-Party ✱</div>
+        <div>
+          <div class="brief-field-desc">All tools to be connected: CRM, email, analytics, payment, booking, forms. Credentials location.</div>
+        </div>
+      </div>
+      <div class="brief-field">
+        <div class="brief-field-label brief-field-required">Hosting + Environment ✱</div>
+        <div>
+          <div class="brief-field-desc">Who hosts (Valerian? Client? Other)? Staging environment URL. Domain ownership. DNS access confirmed?</div>
+        </div>
+      </div>
+      <div class="brief-field">
+        <div class="brief-field-label brief-field-required">Hours Estimate ✱</div>
+        <div>
+          <div class="brief-field-desc">Matt or lead dev provides hour estimate per deliverable. Tracked in Harvest. &gt;20% overrun triggers account lead review before continuing.</div>
+        </div>
+      </div>
+      <div class="brief-field">
+        <div class="brief-field-label">White-Label Involved?</div>
+        <div>
+          <div class="brief-field-desc">If Nakul's team is involved: define exactly what they're building, who reviews their output, and who communicates changes. Not Nakul directly to client.</div>
+        </div>
+      </div>
+      <div class="brief-field">
+        <div class="brief-field-label brief-field-required">QA Checklist ✱</div>
+        <div>
+          <div class="brief-field-desc">Link to or attach platform-specific QA checklist (WP or Shopify). QA is completed by lead dev before handoff to account lead. Not by client first.</div>
+        </div>
+      </div>
+      <div class="brief-field">
+        <div class="brief-field-label brief-field-required">Launch Date ✱</div>
+        <div>
+          <div class="brief-field-desc">Client-facing go-live date. Internal dev complete date set 5 business days prior for QA and account lead review.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><strong>Implementation note:</strong> These briefs should live as ClickUp templates — one for design, one for dev. A project cannot move from "Scoping" to "In Progress" in ClickUp until the brief template is completed. Matt owns the dev brief gate. Taylor owns the design brief gate. This is where the discipline of briefs gets enforced without a separate process layer.</p>
+  </div>
+</section>
+
+<!-- IMMEDIATE ACTIONS -->
+<section id="actions">
+  <div class="section-label">06</div>
+  <h2>Immediate Actions</h2>
+  <p class="section-desc">What happens next, by whom, and when. Sourced from the QBO cleanup roadmap, balance sheet notes, and org decisions.</p>
+
+  <div class="action-grid">
+
+    <div class="action-card">
+      <div class="action-priority p-now">This Week</div>
+      <div class="action-title">Fix ChargeOver → QBO Mapping</div>
+      <div class="action-owner">Owner: Adam + Bookkeeper</div>
+      <div class="action-desc">$1M+ sitting in "Billable Expense Income" catch-all. Implement 7 revenue rules + 8 expense rules from the QBO Rules tab. Single biggest data quality fix.</div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-priority p-now">This Week</div>
+      <div class="action-title">Pasta Queen Pricing Conversation</div>
+      <div class="action-owner">Owner: Allie (Account Lead)</div>
+      <div class="action-desc">759 hours, $96/hr, 29% margin. Scope expanded to email marketing, automations, copywriting with no rate increase. Each month delayed costs ~$3–4K in margin.</div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-priority p-now">This Week</div>
+      <div class="action-title">Cancel Slab, Clockwise, Zoom</div>
+      <div class="action-owner">Owner: Adam</div>
+      <div class="action-desc">$4,363/year confirmed savings. No dependencies remaining. Slab moving to ClickUp Docs, Calendly replacing Clockwise, Google Meet replacing Zoom.</div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-priority p-now">This Week</div>
+      <div class="action-title">Formally Hand BOH Mandate to Camila</div>
+      <div class="action-owner">Owner: Adam</div>
+      <div class="action-desc">Define her scope, owned metrics, and decision authority (free action / recommendation / sign-off). She's been here a week and done interviews. Time to give her the keys.</div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-priority p-week">This Month</div>
+      <div class="action-title">Audit Seat Counts on 8 Tools</div>
+      <div class="action-owner">Owner: Adam + Team Leads</div>
+      <div class="action-desc">Google Workspace, Figma, Dropbox, Harvest, Fireflies, Missive, ChatGPT, Loom. Potential $3–8K additional annual savings. Assign each tool to the relevant discipline lead to audit their team's seats.</div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-priority p-week">This Month</div>
+      <div class="action-title">Officer Loans Promissory Note</div>
+      <div class="action-owner">Owner: Adam + CPA</div>
+      <div class="action-desc">$76,323 outstanding to Allie, no repayment, no documentation. IRS requires AFR-compliant promissory note for loans to officers. Not urgent — but is a compliance risk.</div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-priority p-week">This Month</div>
+      <div class="action-title">Establish Annual Retainer Escalators</div>
+      <div class="action-owner">Owner: Allie + Marin (Account Leads)</div>
+      <div class="action-desc">Currently zero systematic escalation on retainers. Add 5–8% annual increase clause to all new and renewing retainer contracts. Adds $60–80K/yr to existing recurring revenue within 12 months.</div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-priority p-week">This Month</div>
+      <div class="action-title">Build ClickUp Brief Templates</div>
+      <div class="action-owner">Owner: Matt + Taylor</div>
+      <div class="action-desc">Design brief and dev brief as ClickUp templates. Gate: project cannot move from Scoping → In Progress without completed brief. Matt owns dev gate. Taylor owns design gate.</div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-priority p-month">Q2 2026</div>
+      <div class="action-title">QBO Phase 2 Cleanup</div>
+      <div class="action-owner">Owner: Camila + Bookkeeper</div>
+      <div class="action-desc">Archive deleted accounts, consolidate merchant fees, create Affiliate Income and Strategy/Consulting income accounts. After Phase 1 rules are live and working.</div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-priority p-month">Q2 2026</div>
+      <div class="action-title">Publish Scorecard Dashboard</div>
+      <div class="action-owner">Owner: Camila</div>
+      <div class="action-desc">Scorecards above need a home. Harvest + QBO data pulled weekly. Visible to leadership team. TV in studio or Slack channel. Camila leads design and rollout based on her audit findings.</div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-priority p-month">Q2 2026</div>
+      <div class="action-title">Quarterly Payroll Allocation Process</div>
+      <div class="action-owner">Owner: Camila + Bookkeeper</div>
+      <div class="action-desc">Pull Harvest each quarter, calculate client-work %, do journal entry to split G&A Personnel between COGS and OPEX. Payroll Deep Dive tab has the exact formula. Run it for Q1 2026 as a baseline.</div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-priority p-month">Q3 2026</div>
+      <div class="action-title">Open the Books — First All-Hands</div>
+      <div class="action-owner">Owner: Camila + Adam</div>
+      <div class="action-desc">Simplified P&L shared with full team. Revenue, gross margin, OPEX, net income — no salaries. Executive Summary doc is the starting point. This is the Zingerman's foundation moment.</div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <span>Wonderly / The Wonder Jam — Confidential</span>
+  <span>March 2026 · Sources: QBO, Harvest, ChargeOver, Pipedrive, ClickUp</span>
+</footer>
+
+</body>
+</html>

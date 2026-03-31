@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wonderly — A Note on Where We're Headed</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Karla:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:       #1a1612;
+    --paper:     #f5f0e8;
+    --paper-2:   #ede7d8;
+    --paper-3:   #e4dcc8;
+    --rule:      rgba(26,22,18,0.1);
+    --amber:     #b8841e;
+    --amber-lit: #d4a030;
+    --forest:    #2a4a34;
+    --fern:      #4a7a58;
+    --lichen:    #7aaa88;
+    --rust:      #8a3820;
+    --muted:     #4a4438;
+    --warm-red:  #9a3818;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Karla', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 64px 70px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    border: 1px solid rgba(245,240,232,0.06);
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; right: 60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    border: 1px solid rgba(184,132,30,0.15);
+  }
+  .header-label {
+    font-size: 9.5px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+  }
+  header h1 {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 54px;
+    font-weight: 300;
+    line-height: 1.08;
+    color: var(--paper);
+    max-width: 620px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+  }
+  header h1 em { font-style: italic; color: #b8d8c0; }
+  .header-sub {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(245,240,232,0.55);
+    max-width: 480px;
+    line-height: 1.7;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 40px;
+  }
+  .header-from {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-top: 1px solid rgba(245,240,232,0.1);
+    padding-top: 24px;
+    position: relative;
+    z-index: 2;
+  }
+  .header-from-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.35);
+  }
+  .header-from-names {
+    font-size: 13px;
+    color: rgba(245,240,232,0.7);
+    font-weight: 300;
+  }
+  .header-from-names strong { color: var(--paper); font-weight: 500; }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 70px 100px;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    margin-top: 64px;
+    padding-top: 48px;
+    border-top: 1px solid var(--rule);
+  }
+  section:first-child {
+    border-top: none;
+    margin-top: 56px;
+  }
+
+  .section-tag {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-tag::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(184,132,30,0.25), transparent);
+  }
+
+  h2 {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 38px;
+    font-weight: 300;
+    line-height: 1.12;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  h2 em { font-style: italic; color: var(--fern); }
+
+  h3 {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-top: 36px;
+    margin-bottom: 10px;
+  }
+  h3 em { font-style: italic; }
+
+  p {
+    font-size: 14.5px;
+    line-height: 1.85;
+    color: #1e1810;
+    margin-bottom: 16px;
+    font-weight: 300;
+  }
+  p strong { font-weight: 600; color: var(--ink); }
+  p em { font-style: italic; color: var(--forest); }
+
+  /* ── LETTER OPENING ── */
+  .letter {
+    background: var(--paper-2);
+    border-radius: 6px;
+    padding: 40px 44px;
+    margin-bottom: 0;
+    border: 1px solid var(--paper-3);
+    position: relative;
+  }
+  .letter::before {
+    content: '"';
+    font-family: 'Cormorant Garant', serif;
+    font-size: 120px;
+    color: rgba(184,132,30,0.12);
+    position: absolute;
+    top: -10px;
+    left: 28px;
+    line-height: 1;
+  }
+  .letter p {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--ink);
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 2;
+  }
+  .letter p:last-child { margin-bottom: 0; }
+  .letter-sign {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font-size: 13px;
+    color: var(--muted);
+    position: relative;
+    z-index: 2;
+  }
+  .letter-sign strong { color: var(--ink); font-weight: 600; }
+
+  /* ── PERSON CARDS ── */
+  .person-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    margin: 28px 0;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .person-card {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 36px 32px;
+  }
+  .person-card:first-child { background: var(--forest); }
+  .pc-role {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.4);
+    margin-bottom: 8px;
+  }
+  .pc-name {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--paper);
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+  .pc-name em { font-style: italic; }
+  .pc-essence {
+    font-size: 13px;
+    color: rgba(245,240,232,0.65);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-weight: 300;
+    border-bottom: 1px solid rgba(245,240,232,0.1);
+    padding-bottom: 18px;
+  }
+  .pc-focus-label {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.35);
+    margin-bottom: 10px;
+  }
+  .pc-focus-items { list-style: none; }
+  .pc-focus-items li {
+    font-size: 12.5px;
+    color: rgba(245,240,232,0.75);
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(245,240,232,0.06);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-weight: 300;
+  }
+  .pc-focus-items li:last-child { border-bottom: none; }
+  .pc-focus-items li::before {
+    content: '→';
+    color: rgba(245,240,232,0.25);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── DEMAND / BRING TABLE ── */
+  .exchange {
+    background: var(--paper-2);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 24px 0;
+    border: 1px solid var(--paper-3);
+  }
+  .exchange-header {
+    background: var(--ink);
+    padding: 14px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .exchange-col-label {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.45);
+  }
+  .exchange-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .exchange-row:last-child { border-bottom: none; }
+  .exchange-cell {
+    padding: 14px 24px;
+    font-size: 13px;
+    line-height: 1.65;
+    color: #1e1810;
+    font-weight: 300;
+  }
+  .exchange-cell:first-child {
+    border-right: 1px solid var(--rule);
+    font-style: italic;
+    color: var(--forest);
+  }
+  .exchange-row:nth-child(even) .exchange-cell { background: rgba(26,22,18,0.025); }
+
+  /* ── WHAT WE'RE BUILDING ── */
+  .milestones {
+    margin: 24px 0;
+    padding-left: 24px;
+    border-left: 2px solid var(--amber);
+    position: relative;
+  }
+  .milestone {
+    padding: 0 0 28px 20px;
+    position: relative;
+  }
+  .milestone::before {
+    content: '';
+    position: absolute;
+    left: -28px; top: 5px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--amber);
+  }
+  .milestone:last-child { padding-bottom: 0; }
+  .milestone:last-child::before { background: var(--fern); }
+  .ms-when {
+    font-size: 9.5px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 3px;
+  }
+  .ms-title {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 19px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .ms-desc { font-size: 13px; color: var(--muted); line-height: 1.65; margin: 0; }
+
+  /* ── COMMITMENTS ── */
+  .commitments {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    margin: 24px 0;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .commitment {
+    background: var(--paper-2);
+    border: 1px solid var(--paper-3);
+    padding: 24px;
+    border-radius: 0;
+  }
+  .commit-who {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 6px;
+  }
+  .commit-title {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .commit-items { list-style: none; }
+  .commit-items li {
+    font-size: 12.5px;
+    color: #1e1810;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    gap: 8px;
+    font-weight: 300;
+    line-height: 1.55;
+  }
+  .commit-items li:last-child { border-bottom: none; }
+  .commit-items li::before {
+    content: '✦';
+    color: var(--amber);
+    font-size: 8px;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  /* ── CALLOUT ── */
+  .callout {
+    border-left: 3px solid var(--forest);
+    background: rgba(42,74,52,0.06);
+    border-radius: 0 5px 5px 0;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+  .callout p { color: var(--forest); margin: 0; font-size: 14px; }
+  .callout strong { color: var(--forest); font-weight: 700; }
+
+  .callout-amber {
+    border-left-color: var(--amber);
+    background: rgba(184,132,30,0.06);
+  }
+  .callout-amber p { color: #5a3c08; }
+  .callout-amber strong { color: var(--amber); }
+
+  /* ── PULL QUOTE ── */
+  .pull {
+    margin: 36px 0;
+    text-align: center;
+    padding: 32px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .pull p {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 26px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.45;
+    margin: 0;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(245,240,232,0.3);
+    padding: 28px 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  header h1, header .header-sub, header .header-label {
+    animation: fadeUp 0.8s ease both;
+  }
+  header .header-label { animation-delay: 0.1s; }
+  header h1 { animation-delay: 0.2s; }
+  header .header-sub { animation-delay: 0.35s; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-label">Wonderly · Internal Team Brief · March 2026</div>
+  <h1>Where We're Going —<br>and What That <em>Means for You</em></h1>
+  <p class="header-sub">A note from Adam and Allie on how we're each showing up differently as Wonderly grows — and what we need from each other to get there.</p>
+  <div class="header-from">
+    <div class="header-from-label">From</div>
+    <div class="header-from-names"><strong>Adam + Allie Lehman</strong> · Co-founders, Wonderly</div>
+  </div>
+</header>
+
+<main>
+
+<!-- OPENING LETTER -->
+<section>
+  <div class="letter">
+    <p>We've been building this together for a long time. And one of the things that's made us good at it is that we've both been willing to do whatever the business needed — design, sales, operations, client calls, admin, strategy, all of it.</p>
+    <p>That willingness got us here. But it's also the thing that, if we don't address it intentionally, will keep us from getting to where we're going. When both founders are everywhere, no one owns anything fully. And the team deserves leaders who are fully present in a defined place — not spread across every corner of the business.</p>
+    <p>So this is a note about something we're doing on purpose: specializing. It's not that our work changes dramatically overnight. It's that we're being deliberate about where each of us puts our best energy, and we're being honest with you about what that means for how you work with us.</p>
+    <p>We're sharing this because we believe the team deserves to know what to expect — and what to ask for — from the people leading this business. Clear process makes creativity effortless. That applies to leadership too.</p>
+    <div class="letter-sign">
+      With love and intention — <strong>Adam + Allie</strong>
+    </div>
+  </div>
+</section>
+
+<!-- WHERE WE'RE GOING -->
+<section>
+  <div class="section-tag">The big picture</div>
+  <h2>What We're <em>Building</em><br>and Why It Matters</h2>
+
+  <p>Wonderly is on a path to $3M — not as a vanity milestone, but because it represents something real: a business that can invest in A+ talent, pay people well, share its profits with the team, and deliver a level of work that none of us could do alone. The numbers and the org structure are being designed to get us there, but numbers don't move on their own. People do.</p>
+
+  <p>Here's the honest version of what's happening: we're growing up as a business. We're transitioning from a studio where the founders handle everything to a company where a real leadership team owns real domains. Two client tracks, three discipline leads, a Chief of Staff running the back of house. The pieces are in place or being put in place. And the founders are specializing along with everyone else.</p>
+
+  <div class="milestones">
+    <div class="milestone">
+      <div class="ms-when">Now through Q3 2026</div>
+      <div class="ms-title">Getting the structure right</div>
+      <p class="ms-desc">Org clarity, financial visibility, brief discipline, scorecard rollout. Building the systems that let everyone do their best work with less friction.</p>
+    </div>
+    <div class="milestone">
+      <div class="ms-when">Q4 2026</div>
+      <div class="ms-title">First $400K quarter</div>
+      <p class="ms-desc">Fewer clients at higher value. Pricing that reflects what we actually deliver. Both tracks running with confidence.</p>
+    </div>
+    <div class="milestone">
+      <div class="ms-when">2027</div>
+      <div class="ms-title">$2M and the first team profit bonus</div>
+      <p class="ms-desc">When the company wins, you win. The transparency roadmap opens up the books, and the bonus structure makes that real.</p>
+    </div>
+    <div class="milestone">
+      <div class="ms-when">2029</div>
+      <div class="ms-title">$3M — and what comes next</div>
+      <p class="ms-desc">A team that can hold Wonderly without both founders in every room. Profit sharing, equity conversations, and the next business in The Wonder Jam's family of businesses beginning to take shape.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><strong>Why we're telling you this:</strong> because the path to $3M runs directly through you. It runs through Marin growing into an elite account manager. Through Matt being fully unleashed as a dev process lead. Through Taylor, Tori, and the design team doing the best work of their careers. Through Camila building the operational infrastructure that makes all of it visible and sustainable. This is not a founders-lead-everything story. It's a team story.</p>
+  </div>
+</section>
+
+<!-- ALLIE'S FOCUS -->
+<section>
+  <div class="section-tag">Allie's role</div>
+  <h2>Allie Is the<br><em>Heart and Voice</em> of Wonderly</h2>
+
+  <p>Wonderly exists because Allie has a point of view — about what great creative work looks like, about what it means for a brand to truly own its relationship with its audience, about what the internet should be for the people and communities it serves. That point of view is not a marketing asset. It is the business.</p>
+
+  <p>The clients we do our most meaningful work with — the chefs, the authors, the podcasters, the personality-driven brands — they are not buying a website. They are buying access to Allie's sensibility, her philosophy, her deep listening. That's rare and it compounds over time. It should be protected.</p>
+
+  <p>What that means practically is that Allie is shifting away from day-to-day delivery and toward the work that only she can do. Taylor, Maria, and Laura execute within the standard Allie's aesthetic defines. The project coordinator role being added to the creator track exists specifically to absorb the operational weight so Allie can hold relationships at the level they deserve.</p>
+
+  <h3>What Allie is <em>moving toward</em></h3>
+
+  <div class="exchange">
+    <div class="exchange-header">
+      <div class="exchange-col-label">Where Allie's energy goes</div>
+      <div class="exchange-col-label">What that looks like in practice</div>
+    </div>
+    <div class="exchange-row">
+      <div class="exchange-cell">Creative direction and the quality standard</div>
+      <div class="exchange-cell">Allie sets the aesthetic bar for what leaves the studio. She reviews the work that matters most. She defines what "Wonderly quality" means — Taylor, Maria, and Laura execute within that standard.</div>
+    </div>
+    <div class="exchange-row">
+      <div class="exchange-cell">Creator client relationships</div>
+      <div class="exchange-cell">The dozen or so creator client relationships that are at the heart of Wonderly's track record. These clients want Allie's judgment and perspective. She's deepening those, not managing timelines on them.</div>
+    </div>
+    <div class="exchange-row">
+      <div class="exchange-cell">External voice and thought leadership</div>
+      <div class="exchange-cell">Huge Fan, Offline Recess, speaking, panels — this is not a side project. It is one of Wonderly's most powerful business development tools. The creator world follows people, not brands. Allie writing and speaking with authority is how the next generation of creator clients finds us.</div>
+    </div>
+    <div class="exchange-row">
+      <div class="exchange-cell">Deep listening as a leadership practice</div>
+      <div class="exchange-cell">Allie brings her listening practice to the team too — being present to what's working and what isn't, what people need to do their best work, what the studio needs to stay true to itself as it grows.</div>
+    </div>
+  </div>
+
+  <div class="callout-amber callout">
+    <p><strong>What this means for you:</strong> If you're on the design team, you should expect clear creative direction from Allie — not day-to-day project management. Bring her the work that needs creative judgment. Don't wait for her to track your Harvest hours. If you're on the creator track, Allie is genuinely available for the relationship moments that matter. Use that access intentionally.</p>
+  </div>
+</section>
+
+<!-- ADAM'S FOCUS -->
+<section>
+  <div class="section-tag">Adam's role</div>
+  <h2>Adam Is Building<br>the <em>Machine That Scales</em></h2>
+
+  <p>Adam's job is to build a company that can hold itself — and then build the next one. That's not an abstract ambition. It's a specific, practical set of responsibilities that require sustained focus: the org structure, the financial visibility, the leadership development, the growth decisions, and eventually the new business that will emerge from The Wonder Jam's family of businesses.</p>
+
+  <p>The truth is that as long as Adam is deep in client delivery and day-to-day operations, those things get squeezed out. And they're the things that, if done well, are worth more to the business than any single project. So Adam is moving his energy toward the work that multiplies everyone else's capacity — not just adding to his own.</p>
+
+  <h3>What Adam is <em>moving toward</em></h3>
+
+  <div class="exchange">
+    <div class="exchange-header">
+      <div class="exchange-col-label">Where Adam's energy goes</div>
+      <div class="exchange-col-label">What that looks like in practice</div>
+    </div>
+    <div class="exchange-row">
+      <div class="exchange-cell">Business architecture and strategy</div>
+      <div class="exchange-cell">The org structure, the two-track model, the hiring roadmap, the financial targets. Adam holds the long-range view of what Wonderly is becoming and makes the structural decisions that shape it.</div>
+    </div>
+    <div class="exchange-row">
+      <div class="exchange-cell">Team and leadership development</div>
+      <div class="exchange-cell">The path to $3M runs through Marin, Matt, Taylor, Tori, and Camila growing into their full potential. Adam's investment in developing this leadership team is the investment in eventually stepping back — and the most important thing he can do with his time.</div>
+    </div>
+    <div class="exchange-row">
+      <div class="exchange-cell">Financial stewardship</div>
+      <div class="exchange-cell">Pricing decisions, client mix, cash position, the budget, the growth levers. Adam is in the numbers so the business decisions are grounded in reality — not instinct alone.</div>
+    </div>
+    <div class="exchange-row">
+      <div class="exchange-cell">Business development — non-creator track</div>
+      <div class="exchange-cell">Alongside Marin, Adam is helping build the pipeline and client relationships on the non-creator track — the organizational clients where Allie isn't needed in the room and the business can scale most independently.</div>
+    </div>
+    <div class="exchange-row">
+      <div class="exchange-cell">The next chapter of The Wonder Jam</div>
+      <div class="exchange-cell">The Wonder Jam is a family of businesses. Wonderly is the core. But the long vision includes additional businesses born from this team's expertise. Adam is beginning to think about what comes next — while making sure Wonderly doesn't need him to exist.</div>
+    </div>
+  </div>
+
+  <div class="callout-amber callout">
+    <p><strong>What this means for you:</strong> Adam is your resource for business clarity — strategy questions, structural decisions, growth-related concerns. Bring him real problems that need real thinking. Don't wait for him to check in on your daily tasks. If you're on the leadership team, expect direct investment in your development — and expect to be held to clear standards in return.</p>
+  </div>
+</section>
+
+<!-- PERSON CARDS SIDE BY SIDE -->
+<section>
+  <div class="section-tag">In plain terms</div>
+  <h2>What to <em>Expect</em> from Each of Us</h2>
+  <p>Here is the simplest version. What you should feel empowered to ask for, and what you can count on from each of us.</p>
+
+  <div class="person-cards">
+    <div class="person-card">
+      <div class="pc-role">Creative Director · Creator Track Lead</div>
+      <div class="pc-name"><em>Allie</em></div>
+      <p class="pc-essence">Bring Allie your creative questions, your taste decisions, the work that needs someone to ask whether it's really Wonderly. She is the north star for what the studio makes and why it matters.</p>
+      <div class="pc-focus-label">Ask Allie for</div>
+      <ul class="pc-focus-items">
+        <li>Creative direction and quality feedback</li>
+        <li>The "is this really us?" question on work that matters</li>
+        <li>Perspective on creator client relationships</li>
+        <li>Guidance on what "world building" means for a specific brand</li>
+        <li>Honest feedback on your work with warmth attached to it</li>
+      </ul>
+    </div>
+    <div class="person-card">
+      <div class="pc-role">CEO · Business Architect · Builder</div>
+      <div class="pc-name"><em>Adam</em></div>
+      <p class="pc-essence">Bring Adam your structural questions, your growth ideas, the things that are blocking you systemically. He is building the company that holds all of us — and he needs to know when something isn't working.</p>
+      <div class="pc-focus-label">Ask Adam for</div>
+      <ul class="pc-focus-items">
+        <li>Business strategy and direction questions</li>
+        <li>Resources, tools, or support you need to do your job better</li>
+        <li>Leadership feedback and development investment</li>
+        <li>Decisions that require financial or structural authority</li>
+        <li>Honesty about where things stand — he wants the real picture</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE NEED FROM THE TEAM -->
+<section>
+  <div class="section-tag">The other direction</div>
+  <h2>What We're<br><em>Asking From You</em></h2>
+
+  <p>Specialization only works if it runs both ways. We can't hold our focus if the team isn't growing into theirs. Here is what we genuinely need from each part of the team — not as a performance standard, but as a partnership agreement.</p>
+
+  <div class="commitments">
+    <div class="commitment">
+      <div class="commit-who">Taylor + Maria + Laura · Design Team</div>
+      <div class="commit-title">Own the craft standard</div>
+      <ul class="commit-items">
+        <li>Complete briefs before Figma opens — every time</li>
+        <li>Bring Allie the work that needs creative direction, not the daily updates</li>
+        <li>Hold the "is this really us?" question yourselves before escalating</li>
+        <li>Track time honestly in Harvest — it's how we know what's sustainable</li>
+      </ul>
+    </div>
+    <div class="commitment">
+      <div class="commit-who">Matt + Alyssa + Jerrod + Dev Team</div>
+      <div class="commit-title">Own the process standard</div>
+      <ul class="commit-items">
+        <li>No dev environment opens without a completed brief</li>
+        <li>Hours-to-estimate accuracy is the quality metric that matters most</li>
+        <li>Escalate scope changes before they become margin problems</li>
+        <li>Build the QA discipline that lets the team trust dev output</li>
+      </ul>
+    </div>
+    <div class="commitment">
+      <div class="commit-who">Marin · Non-Creator Track Lead</div>
+      <div class="commit-title">Own the non-creator track</div>
+      <ul class="commit-items">
+        <li>Book it, deliver it, close it — Allie doesn't need to be in the room</li>
+        <li>Track project margin on every engagement, not just at the end</li>
+        <li>Issue change orders when scope expands — that's not awkward, it's professional</li>
+        <li>Grow into the account manager this track needs you to become</li>
+      </ul>
+    </div>
+    <div class="commitment">
+      <div class="commit-who">Tori · Marketing Lead</div>
+      <div class="commit-title">Own the voice standard</div>
+      <ul class="commit-items">
+        <li>Content strategy for both tracks — advisory, not just execution</li>
+        <li>Brief Maria when you need design; don't absorb execution yourself</li>
+        <li>Support Allie's external voice work — it's also Wonderly's marketing</li>
+        <li>Signal early when you're at capacity — 76% is the ceiling, not the floor</li>
+      </ul>
+    </div>
+    <div class="commitment">
+      <div class="commit-who">Camila · Chief of Staff</div>
+      <div class="commit-title">Own the operating system</div>
+      <ul class="commit-items">
+        <li>Build the financial visibility that makes everything else intelligent</li>
+        <li>Own the metrics — clean data is what lets us make real decisions</li>
+        <li>Tell us what you find, even when it's uncomfortable — that's the job</li>
+        <li>Design the systems that free everyone to focus on their actual work</li>
+      </ul>
+    </div>
+    <div class="commitment">
+      <div class="commit-who">Lucy + Andrea · Admin Team</div>
+      <div class="commit-title">Own the client experience backbone</div>
+      <ul class="commit-items">
+        <li>The first and last impression clients have is often shaped by you</li>
+        <li>Invoicing, scheduling, inbox — when these are clean, everything flows</li>
+        <li>Flag patterns you're seeing that leadership should know about</li>
+        <li>Help define where your roles have the most impact as we grow</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- OUR SHARED COMMITMENTS -->
+<section>
+  <div class="section-tag">Our promise to you</div>
+  <h2>What We Commit<br>to <em>in Return</em></h2>
+
+  <div class="pull">
+    <p>"When the company wins, you win. That's not a slogan — it's the structure we're building toward."</p>
+  </div>
+
+  <p>We are working toward a business where the team understands the numbers, shares in the profits, and has a real stake in what we're building together. That's the Zingerman's model we've been inspired by — open books, shared wins, and eventually equity conversations with the people who helped build this. Here is what we commit to as we get there.</p>
+
+  <div class="exchange">
+    <div class="exchange-header">
+      <div class="exchange-col-label">What we commit to doing</div>
+      <div class="exchange-col-label">Why it matters</div>
+    </div>
+    <div class="exchange-row">
+      <div class="exchange-cell">Open the books by Q3 2026</div>
+      <div class="exchange-cell">You will see revenue, gross margin, and net income. Not individual salaries — the business metrics. Because a team that understands the business can make better decisions inside it.</div>
+    </div>
+    <div class="exchange-row">
+      <div class="exchange-cell">Publish scorecards for every role</div>
+      <div class="exchange-cell">No one should wonder if they're doing a good job. Clear metrics, honest feedback, real signals — so you know where you stand and what excellent looks like.</div>
+    </div>
+    <div class="exchange-row">
+      <div class="exchange-cell">Pay a team bonus when the company hits its targets</div>
+      <div class="exchange-cell">First bonus in Q1 2027 if we hit our numbers. Tied to company performance, paid to everyone. The point is the signal: we win together.</div>
+    </div>
+    <div class="exchange-row">
+      <div class="exchange-cell">Invest in your growth, not just your output</div>
+      <div class="exchange-cell">We want Marin to become elite. We want Matt to be fully unleashed. We want Taylor, Tori, and Alyssa to grow into the leaders this business needs. That requires investment, not just expectation.</div>
+    </div>
+    <div class="exchange-row">
+      <div class="exchange-cell">Protect maker time and calm execution</div>
+      <div class="exchange-cell">A happy, calm creative team makes better work. Allie built Wonderly around that belief. We're building processes, briefing systems, and scheduling norms that protect focus — yours and ours.</div>
+    </div>
+    <div class="exchange-row">
+      <div class="exchange-cell">Tell you the truth, even when it's hard</div>
+      <div class="exchange-cell">Clear feedback, honest numbers, direct communication about what's working and what isn't. We'd rather have an uncomfortable conversation early than a bigger problem later.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section>
+  <div class="section-tag">To close</div>
+  <h2>We Don't Just<br><em>Rent Space Online.</em><br>And We Don't Rent<br>Each Other's Potential Either.</h2>
+
+  <p>That line is about our clients. But it applies here too. We are not renting your talent — showing up while it's convenient and moving on when the next thing comes. We are building something durable, together, that is meant to last.</p>
+
+  <p>Wonderly was started because Allie saw that personality-driven brands deserve digital homes that truly belong to them — not rented squares on someone else's platform. The same philosophy applies inside this business. You deserve a place to do your best work, to grow into your full capacity, and to share in what we build.</p>
+
+  <p>The specialization happening at the founder level is not about us doing less. It is about all of us doing more of what we're actually here to do. Allie building the creative standard and the external voice that makes Wonderly Wonderly. Adam building the company that can hold all of us and eventually build what comes next. And each of you owning your domain with the kind of clarity and confidence that makes great work possible.</p>
+
+  <p>The network is already alive. We're just making it visible to itself.</p>
+
+  <p style="margin-top: 28px; font-family: 'Cormorant Garant', serif; font-size: 19px; font-weight: 300; font-style: italic; color: var(--forest);">With deep appreciation for what you bring — Adam + Allie</p>
+</section>
+
+</main>
+
+<footer>
+  <span>Wonderly · Team Brief · March 2026 · Internal</span>
+  <span>Read with: Natural Growth Guide · Strategic Operating Brief</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wonderly — Keys to Content Marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Karla:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void:     #07060a;
+    --deep:     #0e0c12;
+    --surface:  #16141c;
+    --lift:     #201e28;
+    --rule:     rgba(255,255,255,0.07);
+    --rule-s:   rgba(255,255,255,0.04);
+
+    --cream:    #f0eade;
+    --warm:     rgba(240,234,222,0.65);
+    --muted:    rgba(240,234,222,0.35);
+    --dim:      rgba(240,234,222,0.15);
+
+    --violet:   #a890d8;    /* brand signal */
+    --violet-d: #7860a8;
+    --violet-bg: rgba(168,144,216,0.07);
+    --gold:     #d4aa50;
+    --gold-bg:  rgba(212,170,80,0.07);
+    --sage:     #80aa88;
+    --sage-bg:  rgba(128,170,136,0.07);
+    --rose:     #d07878;
+    --rose-bg:  rgba(208,120,120,0.07);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--void);
+    color: var(--cream);
+    font-family: 'Karla', sans-serif;
+    font-size: 15px;
+    line-height: 1.78;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 80px 72px;
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 80% 60% at 100% 0%, rgba(168,144,216,0.08) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 80% at 0% 100%, rgba(212,170,80,0.05) 0%, transparent 50%),
+      var(--void);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at 80% 20%, black 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .cover-eyebrow {
+    font-size: 9.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--violet);
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 2;
+  }
+  .cover h1 {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 74px;
+    font-weight: 300;
+    line-height: 1.0;
+    color: var(--cream);
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+    max-width: 740px;
+  }
+  .cover h1 em { font-style: italic; color: var(--violet); }
+  .cover-sub {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--warm);
+    max-width: 500px;
+    line-height: 1.75;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 60px;
+  }
+  .cover-stakes {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 48px;
+    position: relative;
+    z-index: 2;
+  }
+  .cs-item {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 16px 20px;
+    border-radius: 3px;
+    flex: 1;
+  }
+  .cs-label {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .cs-val {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.25;
+  }
+  .cover-bottom {
+    border-top: 1px solid var(--rule);
+    padding-top: 24px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 48px;
+    align-items: flex-end;
+  }
+  .cb-item label {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 3px;
+  }
+  .cb-item span { font-size: 12px; color: var(--warm); }
+
+  /* ── MAIN ── */
+  main { max-width: 820px; margin: 0 auto; padding: 0 72px 120px; }
+
+  /* ── SECTIONS ── */
+  section {
+    margin-top: 80px;
+    padding-top: 56px;
+    border-top: 1px solid var(--rule);
+  }
+  section:first-child { border-top: none; margin-top: 60px; padding-top: 0; }
+
+  .section-tag {
+    font-size: 9px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--violet);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-tag::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(168,144,216,0.3), transparent);
+  }
+
+  h2 {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 44px;
+    font-weight: 300;
+    line-height: 1.08;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+  h2 em { font-style: italic; color: var(--violet); }
+
+  h3 {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-top: 40px;
+    margin-bottom: 10px;
+  }
+  h3 em { font-style: italic; color: var(--violet); }
+
+  p {
+    font-size: 14.5px;
+    color: var(--warm);
+    line-height: 1.85;
+    margin-bottom: 18px;
+    font-weight: 300;
+  }
+  p strong { font-weight: 600; color: var(--cream); }
+
+  /* ── PHILOSOPHY BLOCK ── */
+  .philosophy {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    padding: 40px 44px;
+    margin: 32px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .philosophy::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--violet), transparent 60%);
+  }
+  .phi-label {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--violet);
+    margin-bottom: 16px;
+  }
+  .phi-statement {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 26px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+  .phi-statement strong { font-style: normal; font-weight: 600; }
+  .phi-sub {
+    font-size: 13.5px;
+    color: var(--warm);
+    line-height: 1.75;
+    margin: 0;
+    font-weight: 300;
+  }
+
+  /* ── PILLARS ── */
+  .pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 32px 0;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .pillar {
+    padding: 28px;
+    position: relative;
+  }
+  .p-violet { background: var(--violet-bg); border: 1px solid rgba(168,144,216,0.14); }
+  .p-gold   { background: var(--gold-bg);   border: 1px solid rgba(212,170,80,0.14); }
+  .p-sage   { background: var(--sage-bg);   border: 1px solid rgba(128,170,136,0.14); }
+  .p-rose   { background: var(--rose-bg);   border: 1px solid rgba(208,120,120,0.14); }
+
+  .pillar-num {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 10px;
+    opacity: 0.3;
+  }
+  .p-violet .pillar-num { color: var(--violet); }
+  .p-gold   .pillar-num { color: var(--gold); }
+  .p-sage   .pillar-num { color: var(--sage); }
+  .p-rose   .pillar-num { color: var(--rose); }
+
+  .pillar-name {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+  .pillar-sub {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .p-violet .pillar-sub { color: var(--violet); }
+  .p-gold   .pillar-sub { color: var(--gold); }
+  .p-sage   .pillar-sub { color: var(--sage); }
+  .p-rose   .pillar-sub { color: var(--rose); }
+
+  .pillar-desc {
+    font-size: 13px;
+    color: var(--warm);
+    line-height: 1.7;
+    margin-bottom: 14px;
+    font-weight: 300;
+  }
+  .pillar-formats {
+    list-style: none;
+    border-top: 1px solid var(--rule);
+    padding-top: 12px;
+  }
+  .pillar-formats li {
+    font-size: 12px;
+    color: var(--muted);
+    padding: 4px 0;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .pillar-formats li::before { content: '→'; flex-shrink: 0; }
+
+  /* ── FUNNEL ── */
+  .funnel {
+    margin: 32px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .funnel-stage {
+    display: grid;
+    grid-template-columns: 180px 1fr auto;
+    gap: 0;
+    align-items: stretch;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .fs-label {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: none;
+  }
+  .fs-stage-name {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--violet);
+    margin-bottom: 3px;
+  }
+  .fs-stage-desc {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    font-family: 'Cormorant Garant', serif;
+    font-size: 15px;
+  }
+  .fs-content {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 18px 22px;
+    border-right: none;
+  }
+  .fs-content-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 5px;
+  }
+  .fs-content-desc {
+    font-size: 12.5px;
+    color: var(--warm);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+  .fs-formats {
+    background: var(--lift);
+    border: 1px solid var(--rule);
+    padding: 18px 18px;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+  }
+  .fs-format-tag {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 3px 8px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  /* ── CHANNEL STRATEGY ── */
+  .channels {
+    margin: 32px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .channel {
+    display: grid;
+    grid-template-columns: 48px 200px 1fr 120px;
+    gap: 0;
+    border: 1px solid var(--rule);
+    align-items: stretch;
+  }
+  .ch-num {
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garant', serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--dim);
+    border-right: 1px solid var(--rule);
+  }
+  .ch-name {
+    background: var(--surface);
+    padding: 18px 20px;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .ch-name-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 2px;
+  }
+  .ch-name-owner {
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--violet);
+  }
+  .ch-desc {
+    padding: 16px 20px;
+    font-size: 13px;
+    color: var(--warm);
+    line-height: 1.65;
+    font-weight: 300;
+    border-right: 1px solid var(--rule);
+  }
+  .ch-cadence {
+    padding: 16px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+  }
+  .ch-cadence-label {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .ch-cadence-val {
+    font-size: 12px;
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  /* ── SERVICE EXPERIENCE ── */
+  .service-moments {
+    margin: 32px 0;
+    position: relative;
+    padding-left: 32px;
+    border-left: 1px solid var(--rule);
+  }
+  .sm-stage {
+    padding: 0 0 40px 28px;
+    position: relative;
+  }
+  .sm-stage::before {
+    content: '';
+    position: absolute;
+    left: -5px; top: 6px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--violet);
+    box-shadow: 0 0 16px rgba(168,144,216,0.4);
+  }
+  .sm-stage:last-child { padding-bottom: 0; }
+  .sm-stage-name {
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--violet);
+    margin-bottom: 3px;
+  }
+  .sm-stage-title {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 21px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+  .sm-desc {
+    font-size: 13.5px;
+    color: var(--warm);
+    line-height: 1.75;
+    margin-bottom: 12px;
+    font-weight: 300;
+  }
+  .sm-signals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .sm-signal {
+    font-size: 10.5px;
+    padding: 4px 10px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .sm-signal.key {
+    border-color: rgba(168,144,216,0.3);
+    color: var(--violet);
+  }
+
+  /* ── CULTURE CONTENT ── */
+  .culture-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    margin: 28px 0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .culture-card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 24px;
+  }
+  .cc-icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .cc-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+  .cc-desc {
+    font-size: 12.5px;
+    color: var(--warm);
+    line-height: 1.65;
+    margin: 0;
+    font-weight: 300;
+  }
+
+  /* ── CADENCE CALENDAR ── */
+  .cadence {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 32px 0;
+  }
+  .cadence-header {
+    background: var(--lift);
+    padding: 14px 24px;
+    display: grid;
+    grid-template-columns: 100px repeat(4, 1fr);
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .cad-head-cell {
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0 12px;
+  }
+  .cad-head-cell:first-child { padding-left: 0; }
+  .cadence-row {
+    display: grid;
+    grid-template-columns: 100px repeat(4, 1fr);
+    gap: 0;
+    border-bottom: 1px solid var(--rule-s);
+  }
+  .cadence-row:last-child { border-bottom: none; }
+  .cad-cell {
+    padding: 12px;
+    font-size: 12.5px;
+    color: var(--warm);
+    border-right: 1px solid var(--rule-s);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  .cad-cell:last-child { border-right: none; }
+  .cad-cell.label {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--violet);
+    display: flex;
+    align-items: center;
+  }
+  .cad-cell.active {
+    color: var(--cream);
+    font-weight: 500;
+  }
+  .cad-cell.secondary { color: var(--muted); }
+
+  /* ── METRICS ── */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 28px 0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .metric-card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 24px;
+  }
+  .mc-label {
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .mc-value {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .mc-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin: 0;
+    font-weight: 300;
+  }
+
+  /* ── CALLOUT ── */
+  .callout {
+    border-left: 2px solid var(--violet);
+    background: var(--violet-bg);
+    border-radius: 0 4px 4px 0;
+    padding: 18px 22px;
+    margin: 24px 0;
+  }
+  .callout p { color: var(--cream); margin: 0; font-size: 14px; line-height: 1.75; }
+  .callout strong { color: var(--violet); }
+
+  .callout-gold { border-left-color: var(--gold); background: var(--gold-bg); }
+  .callout-gold p { color: rgba(240,234,222,0.85); }
+  .callout-gold strong { color: var(--gold); }
+
+  /* ── KEYS SUMMARY ── */
+  .keys-summary {
+    background: var(--deep);
+    border: 1px solid rgba(168,144,216,0.15);
+    border-radius: 6px;
+    padding: 52px 56px;
+    margin-top: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .keys-summary::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--violet), transparent 55%);
+  }
+  .ks-label {
+    font-size: 9px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--violet);
+    margin-bottom: 24px;
+  }
+  .ks-title {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 34px;
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 40px;
+    line-height: 1.15;
+  }
+  .ks-keys {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .ks-key {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 18px;
+    align-items: start;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .ks-key:last-child { border-bottom: none; padding-bottom: 0; }
+  .ks-num {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--dim);
+    line-height: 1.2;
+    padding-top: 1px;
+  }
+  .ks-title-small {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cream);
+    letter-spacing: 0.02em;
+    margin-bottom: 5px;
+  }
+  .ks-body {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+    margin: 0;
+  }
+  .ks-body strong { color: var(--warm); font-weight: 500; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep);
+    border-top: 1px solid var(--rule);
+    padding: 26px 72px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .cover h1, .cover-sub, .cover-eyebrow {
+    animation: fadeUp 0.8s ease both;
+  }
+  .cover-eyebrow { animation-delay: 0.1s; }
+  .cover h1 { animation-delay: 0.2s; }
+  .cover-sub { animation-delay: 0.35s; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-eyebrow">Wonderly · Keys to Content Marketing · March 2026</div>
+  <h1>They Should Arrive<br><em>Already Sold.</em></h1>
+  <p class="cover-sub">A content marketing, brand marketing, thought leadership, and service experience system built on Wonderly's conviction — so leads hit the pipeline warm, trust the team's process, and feel the luxury price is a bargain before the first call.</p>
+
+  <div class="cover-stakes">
+    <div class="cs-item">
+      <div class="cs-label">The goal</div>
+      <div class="cs-val">Inbound leads who arrive pre-convinced and ready to spend</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">The mechanism</div>
+      <div class="cs-val">Content that does the selling before the sales call</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">The standard</div>
+      <div class="cs-val">Service experience so strong the price feels like a bargain</div>
+    </div>
+    <div class="cs-item">
+      <div class="cs-label">The culture play</div>
+      <div class="cs-val">Hiring and culture content that attracts A+ talent before you advertise</div>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cb-item"><label>Built on</label><span>Brand Intensity Audit · Leadership Language · Org Brief</span></div>
+    <div class="cb-item"><label>Content Lead</label><span>Tori Metzger · Allie Lehman (voice)</span></div>
+    <div class="cb-item"><label>Growth Target</label><span>$1.54M → $3M via pricing + content-led acquisition</span></div>
+  </div>
+</div>
+
+<main>
+
+<!-- THE PHILOSOPHY -->
+<section>
+  <div class="section-tag">The Foundation</div>
+  <h2>Content Is Not<br><em>Marketing. It's Proof.</em></h2>
+
+  <p>Most agencies treat content as awareness — a way to stay visible, stay in the feed, keep the name circulating. That's not what Wonderly's content should do. Wonderly's content should do the same thing its work does: make the owned-platform conviction tangible, demonstrate the quality of the thinking before the quality of the work is even seen, and move a potential client from "I've heard of them" to "I need to be working with them" without a single sales call happening.</p>
+
+  <p>The brand intensity audit found that Wonderly's strongest signal is the conviction that owned platforms outlast rented attention. Content marketing is where that conviction proves itself. A studio that publishes Huge Fan, writes with authority about fandom and belonging, and then produces a Webby-nominated platform migration is not just delivering services — it is living its thesis in public. That is the content strategy: make the thesis visible, make the proof undeniable, make the price feel obvious.</p>
+
+  <div class="philosophy">
+    <div class="phi-label">The Content Marketing Philosophy</div>
+    <p class="phi-statement">Content earns the right to charge what the work is worth. <strong>By the time a lead calls, the price should already make sense.</strong></p>
+    <p class="phi-sub">Every piece of content Wonderly publishes is either pre-selling the value of working with Wonderly, deepening the trust of a client already in the relationship, attracting the next A+ team member, or positioning the studio in the mind of the industry. If it doesn't do one of those four things, it doesn't belong in the system.</p>
+  </div>
+</section>
+
+<!-- FOUR CONTENT PILLARS -->
+<section>
+  <div class="section-tag">The Content Architecture</div>
+  <h2>Four Pillars,<br><em>One Conviction</em></h2>
+
+  <p>Every piece of content Wonderly produces lives in one of four pillars. The pillars are distinct but all traceable to the single conviction: <strong>owned infrastructure outlasts rented attention.</strong> The pillars cover acquisition, credibility, culture, and depth — and together they create a content ecosystem that works at every stage of the client and team relationship.</p>
+
+  <div class="pillars">
+    <div class="pillar p-violet">
+      <div class="pillar-num">01</div>
+      <div class="pillar-name">The Philosophy</div>
+      <div class="pillar-sub">Thought Leadership · Allie's Voice</div>
+      <p class="pillar-desc">The "why" behind everything Wonderly builds. The owned-platform conviction, the fandom thesis, the reciprocity ethic. This content positions Wonderly as a studio with a point of view — not just a service provider. It creates the intellectual and emotional environment in which premium pricing makes complete sense.</p>
+      <ul class="pillar-formats">
+        <li>Huge Fan newsletter — Allie's primary external voice</li>
+        <li>Long-form essays on platform ownership, creator economics, fandom</li>
+        <li>Speaking engagements, panels, podcast appearances</li>
+        <li>LinkedIn thought leadership from both Adam and Allie</li>
+        <li>Offline Recess — the algorithm-resistance narrative</li>
+      </ul>
+    </div>
+    <div class="pillar p-gold">
+      <div class="pillar-num">02</div>
+      <div class="pillar-name">The Proof</div>
+      <div class="pillar-sub">Project Marketing · Case Studies</div>
+      <p class="pillar-desc">The work, told with the confidence of someone who has built what they're describing. Not portfolio pages — narrative proof. The Food Section migration. The Escape & Celebrate ecosystem. Each case study should make a potential client feel the specific problem being solved and understand why Wonderly's approach was the right one. Proof converts curiosity into trust.</p>
+      <ul class="pillar-formats">
+        <li>Long-form case studies with problem, process, outcome, and proof</li>
+        <li>Behind-the-scenes project documentation (with client permission)</li>
+        <li>Launch content: client launches celebrated publicly</li>
+        <li>Results content: "six months later" check-ins on client growth</li>
+        <li>Process explainers: why Wonderly builds the way it builds</li>
+      </ul>
+    </div>
+    <div class="pillar p-sage">
+      <div class="pillar-num">03</div>
+      <div class="pillar-name">The People</div>
+      <div class="pillar-sub">Culture · Hiring · Team Voice</div>
+      <p class="pillar-desc">Elite culture doesn't start at the offer letter. It starts with the content that shows what it looks and feels like to work at Wonderly — the standards, the craft philosophy, the calm execution ethos, the growth trajectory. A+ talent should be following Wonderly before they're looking for a new role. Content is what makes that possible.</p>
+      <ul class="pillar-formats">
+        <li>Team introductions: profiles of discipline leads and their craft standards</li>
+        <li>Behind-the-process content: how Wonderly's brief system protects creative work</li>
+        <li>Culture narratives: what a calm, excellent creative team actually looks like</li>
+        <li>Career trajectory content: how people grow at Wonderly</li>
+        <li>Hiring posts written as philosophy, not job descriptions</li>
+      </ul>
+    </div>
+    <div class="pillar p-rose">
+      <div class="pillar-num">04</div>
+      <div class="pillar-name">The Practice</div>
+      <div class="pillar-sub">Educational · Practical · Service-Adjacent</div>
+      <p class="pillar-desc">Content that helps the right audience understand something — about their platform, their audience relationship, their brand — and positions Wonderly as the natural next step. Not generic tips. Specific, opinionated guidance that demonstrates the depth of thinking the studio brings to every project. This pillar does the most direct pre-selling.</p>
+      <ul class="pillar-formats">
+        <li>Platform guides: when to move from Substack, what WordPress actually gives you</li>
+        <li>Brand opinion pieces: what makes membership convert vs what doesn't</li>
+        <li>The "owned vs rented" content series — the thesis made practical</li>
+        <li>Client-type specific guides: for chefs, for authors, for nonprofits</li>
+        <li>FAQ content that answers objections before the sales call</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- THE FUNNEL LOGIC -->
+<section>
+  <div class="section-tag">The Funnel Logic</div>
+  <h2>From Stranger<br>to <em>Ready to Spend</em></h2>
+
+  <p>The content funnel is not about volume. It is about the quality of the belief a potential client holds by the time they reach out. A lead who has read three Huge Fan issues, seen the Food Section case study, and watched Allie speak at Cookbook Week arrives in the pipeline with a completely different posture than a lead who clicked a Facebook ad. Content builds the first type of lead. The system below maps how.</p>
+
+  <div class="funnel">
+    <div class="funnel-stage">
+      <div class="fs-label">
+        <div class="fs-stage-name">Awareness</div>
+        <div class="fs-stage-desc">They notice the conviction</div>
+      </div>
+      <div class="fs-content">
+        <div class="fs-content-title">The POV lands before the service does</div>
+        <div class="fs-content-desc">A creator discovers Huge Fan through a friend's recommendation. An org client sees Allie speak on owned platforms. A developer follows Matt's technical writing. The first encounter is never "here's what we sell" — it's "here's how we see the world." The conviction arrives first.</div>
+      </div>
+      <div class="fs-formats">
+        <span class="fs-format-tag">Huge Fan</span>
+        <span class="fs-format-tag">Speaking</span>
+        <span class="fs-format-tag">Social POV</span>
+        <span class="fs-format-tag">LinkedIn</span>
+      </div>
+    </div>
+    <div class="funnel-stage">
+      <div class="fs-label">
+        <div class="fs-stage-name">Interest</div>
+        <div class="fs-stage-desc">They seek out the proof</div>
+      </div>
+      <div class="fs-content">
+        <div class="fs-content-title">The work confirms what the thinking suggested</div>
+        <div class="fs-content-desc">They go to withwonderly.com. They read the case studies. They see the Food Section migration and recognize the problem it solved. They read the process description and feel understood before they've said a word. The quality of the thinking in the content creates confident expectation that the quality of the work will match.</div>
+      </div>
+      <div class="fs-formats">
+        <span class="fs-format-tag">Case Studies</span>
+        <span class="fs-format-tag">Process Pages</span>
+        <span class="fs-format-tag">Portfolio</span>
+        <span class="fs-format-tag">About Page</span>
+      </div>
+    </div>
+    <div class="funnel-stage">
+      <div class="fs-label">
+        <div class="fs-stage-name">Conviction</div>
+        <div class="fs-stage-desc">They decide before they ask</div>
+      </div>
+      <div class="fs-content">
+        <div class="fs-content-title">The decision is made before the first call</div>
+        <div class="fs-content-desc">The practical content series answers their objections. The "owned vs rented" guide names the exact problem they've been having. The client-type guide speaks directly to their situation. By the time they fill out the contact form, they're not evaluating Wonderly — they're hoping Wonderly takes them on.</div>
+      </div>
+      <div class="fs-formats">
+        <span class="fs-format-tag">Practice Guides</span>
+        <span class="fs-format-tag">FAQ Content</span>
+        <span class="fs-format-tag">Client Stories</span>
+        <span class="fs-format-tag">Results</span>
+      </div>
+    </div>
+    <div class="funnel-stage">
+      <div class="fs-label">
+        <div class="fs-stage-name">Referral</div>
+        <div class="fs-stage-desc">They become the content</div>
+      </div>
+      <div class="fs-content">
+        <div class="fs-content-title">Delighted clients are the strongest content channel</div>
+        <div class="fs-content-desc">The service experience — the onboarding depth, the brief discipline, the launch celebration, the ongoing support — creates clients who tell other people. The project launch content featuring their work gives them something to share. The case study written about their project makes them feel proud of the relationship. They become the referral engine.</div>
+      </div>
+      <div class="fs-formats">
+        <span class="fs-format-tag">Launch Content</span>
+        <span class="fs-format-tag">Case Studies</span>
+        <span class="fs-format-tag">Testimonials</span>
+        <span class="fs-format-tag">Referrals</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHANNEL STRATEGY -->
+<section>
+  <div class="section-tag">Where It Lives</div>
+  <h2>Channel Strategy —<br><em>Owned First, Always</em></h2>
+
+  <p>The channel strategy follows the conviction. Wonderly believes in owned platforms. Wonderly's content marketing should primarily live on owned platforms. Email lists, the Wonderly website, Huge Fan, The Wonder Jam cast — these are the primary channels. Social media is a distribution surface, not a home. The content that lives on social should always be pointing back to something owned.</p>
+
+  <div class="channels">
+    <div class="channel">
+      <div class="ch-num">1</div>
+      <div class="ch-name">
+        <div class="ch-name-title">Huge Fan Newsletter</div>
+        <div class="ch-name-owner">Allie · Primary Voice</div>
+      </div>
+      <div class="ch-desc">The most important owned channel. Allie's philosophy, the fandom thesis, the owned-platform conviction — all in direct relationship with an audience that chose to be there. This is not a promotional vehicle. It is the publication that earns the right for everything else to exist. The list built here becomes the warmest referral network Wonderly has.</div>
+      <div class="ch-cadence">
+        <div class="ch-cadence-label">Cadence</div>
+        <div class="ch-cadence-val">Consistent. Protected. Allie's.</div>
+      </div>
+    </div>
+    <div class="channel">
+      <div class="ch-num">2</div>
+      <div class="ch-name">
+        <div class="ch-name-title">withwonderly.com</div>
+        <div class="ch-name-owner">Tori + Maria · Content Home</div>
+      </div>
+      <div class="ch-desc">The primary proof surface. Case studies, process pages, practice guides, and the blog all live here. Every social post, every email, every speaking mention — they point here. SEO is secondary to conviction. The site should read like a smart, opinionated book about what Wonderly believes — and happen to also show the work.</div>
+      <div class="ch-cadence">
+        <div class="ch-cadence-label">Cadence</div>
+        <div class="ch-cadence-val">2 new pieces/month minimum</div>
+      </div>
+    </div>
+    <div class="channel">
+      <div class="ch-num">3</div>
+      <div class="ch-name">
+        <div class="ch-name-title">LinkedIn</div>
+        <div class="ch-name-owner">Adam + Allie · Thought Leadership</div>
+      </div>
+      <div class="ch-desc">The B2B and industry visibility channel. Adam writing about agency operations, growth, and business architecture. Allie writing about creator brands, owned platforms, and the philosophy of meaningful digital work. Both voices are distinct. Both point back to owned properties. This is where the non-creator track clients and future A+ hires first encounter Wonderly's thinking.</div>
+      <div class="ch-cadence">
+        <div class="ch-cadence-label">Cadence</div>
+        <div class="ch-cadence-val">2–3 posts/week combined</div>
+      </div>
+    </div>
+    <div class="channel">
+      <div class="ch-num">4</div>
+      <div class="ch-name">
+        <div class="ch-name-title">Instagram</div>
+        <div class="ch-name-owner">Maria · Work + Culture</div>
+      </div>
+      <div class="ch-desc">The visual proof channel and culture signal. Project launches, behind-the-process content, team moments, and Wonderly's aesthetic point of view. Not a portfolio feed — a living expression of what it looks and feels like to work at and with Wonderly. The culture content here runs alongside the work content. Both serve recruitment and acquisition.</div>
+      <div class="ch-cadence">
+        <div class="ch-cadence-label">Cadence</div>
+        <div class="ch-cadence-val">4–5 posts/week</div>
+      </div>
+    </div>
+    <div class="channel">
+      <div class="ch-num">5</div>
+      <div class="ch-name">
+        <div class="ch-name-title">Speaking + Events</div>
+        <div class="ch-name-owner">Allie (primary) + Adam</div>
+      </div>
+      <div class="ch-desc">The highest-trust channel. Allie moderating Cookbook Week, appearing on Inside + Outside, presenting at WP Engine events — each appearance builds credibility that no other channel matches. Speaking is where the creator-niche clients encounter Allie as a peer, not a service provider. Actively pursue 4–6 speaking placements per year across both creator and industry audiences.</div>
+      <div class="ch-cadence">
+        <div class="ch-cadence-label">Cadence</div>
+        <div class="ch-cadence-val">4–6 engagements/year</div>
+      </div>
+    </div>
+    <div class="channel">
+      <div class="ch-num">6</div>
+      <div class="ch-name">
+        <div class="ch-name-title">Project Launch Content</div>
+        <div class="ch-name-owner">Tori + Account Lead</div>
+      </div>
+      <div class="ch-desc">Every client launch is a content moment. A well-executed project launch — featuring the client, telling the story, celebrating the work — is simultaneously client relationship investment and Wonderly's strongest acquisition content. Clients share it. Their audiences see it. New leads arrive already knowing what working with Wonderly produces.</div>
+      <div class="ch-cadence">
+        <div class="ch-cadence-label">Cadence</div>
+        <div class="ch-cadence-val">Every qualified launch</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><strong>The owned-first rule:</strong> Every piece of social content should have a destination that Wonderly owns — an email signup, a case study, a guide download, a newsletter issue. Social reach that doesn't convert to owned relationships is rented audience. Wonderly doesn't believe in renting.</p>
+  </div>
+</section>
+
+<!-- SERVICE EXPERIENCE -->
+<section>
+  <div class="section-tag">The Service System</div>
+  <h2>The Price Feels Like<br><em>a Bargain</em></h2>
+
+  <p>The service experience is the second half of the content marketing system. Content creates the expectation. The service experience either confirms or breaks it. For Wonderly to command $150/hr and $25K minimums confidently, the client experience from first contact through post-launch has to be so materially better than what they've experienced elsewhere that the price becomes the least interesting part of the conversation.</p>
+
+  <p>This is not about being nicer. It is about being more precise, more confident, more prepared, and more proactively communicative than the client has ever experienced from a creative partner. Here is the service experience mapped as a content and signal system — every stage has a communication moment that deepens the client's sense that they made the right choice.</p>
+
+  <div class="service-moments">
+    <div class="sm-stage">
+      <div class="sm-stage-name">Before the First Call</div>
+      <div class="sm-stage-title">The brief, the research, the preparation</div>
+      <p class="sm-desc">Before the discovery call, Wonderly has already researched the client's brand, identified the platform problem, and formed a preliminary point of view. The client arrives at the first call and immediately feels that the team has been paying attention before being paid to. That feeling is irreplaceable — and it is content: the intake questionnaire, the pre-call research brief, the framing of the agenda.</p>
+      <div class="sm-signals">
+        <span class="sm-signal key">Intake questionnaire that reads like deep listening</span>
+        <span class="sm-signal key">Pre-call research brief sent 24hrs before</span>
+        <span class="sm-signal">Agenda framed around their problem, not our services</span>
+      </div>
+    </div>
+    <div class="sm-stage">
+      <div class="sm-stage-name">Discovery + Proposal</div>
+      <div class="sm-stage-title">The thinking that makes the price obvious</div>
+      <p class="sm-desc">The proposal is the most underestimated content asset in the service system. A Wonderly proposal should not be a price list with timelines. It should demonstrate that the team has understood the problem more deeply than the client articulated it, proposed a solution with clear reasoning, and made the investment feel like the obvious next step. The proposal is proof of the thinking before the work begins.</p>
+      <div class="sm-signals">
+        <span class="sm-signal key">Problem restatement that surprises the client with its accuracy</span>
+        <span class="sm-signal key">Solution rationale that explains the why, not just the what</span>
+        <span class="sm-signal">Scope clarity so there are no surprises mid-project</span>
+        <span class="sm-signal">Investment framed against the cost of the problem, not the hours</span>
+      </div>
+    </div>
+    <div class="sm-stage">
+      <div class="sm-stage-name">Onboarding</div>
+      <div class="sm-stage-title">The first week sets the standard for everything</div>
+      <p class="sm-desc">The onboarding experience should communicate, in every detail, that Wonderly is more organized, more thoughtful, and more prepared than anyone the client has worked with before. A welcome document. Clear timelines. Named contacts for each stage. The brief discipline starting immediately. First impressions in service relationships are as powerful as first impressions in any other context — and they are content.</p>
+      <div class="sm-signals">
+        <span class="sm-signal key">Welcome package: process overview, team introductions, timeline</span>
+        <span class="sm-signal key">First brief submitted within 48 hours of project kickoff</span>
+        <span class="sm-signal">Clear communication cadence set and explained upfront</span>
+        <span class="sm-signal">Named account lead — one human owns the relationship</span>
+      </div>
+    </div>
+    <div class="sm-stage">
+      <div class="sm-stage-name">Delivery</div>
+      <div class="sm-stage-title">Proactive communication, not reactive reassurance</div>
+      <p class="sm-desc">The most common complaint about creative agencies is not the quality of the work — it is the silence between deliverables. Proactive communication (weekly status updates, milestone confirmations, flagging scope changes before they become problems) transforms the experience from anxiety-inducing to confidence-building. This is Marin's core competency on the non-creator track and Allie's on the creator track — but it should be systematized so it doesn't depend on individual effort.</p>
+      <div class="sm-signals">
+        <span class="sm-signal key">Weekly status note even when there's nothing urgent to report</span>
+        <span class="sm-signal key">Scope change flagged and discussed before it hits the invoice</span>
+        <span class="sm-signal">Milestone celebrations — acknowledge each stage completed</span>
+        <span class="sm-signal">Honest timelines, not optimistic ones</span>
+      </div>
+    </div>
+    <div class="sm-stage">
+      <div class="sm-stage-name">Launch</div>
+      <div class="sm-stage-title">The celebration that becomes acquisition content</div>
+      <p class="sm-desc">Launch is the most emotionally significant moment in the client relationship and the most underleveraged content moment in most agencies. Wonderly's launch experience should feel like a genuine celebration — for the client and for the team. The launch content produced (case study draft, social assets, announcement copy) serves both the client's goals and Wonderly's acquisition system. Done well, every launch generates the next lead.</p>
+      <div class="sm-signals">
+        <span class="sm-signal key">Launch celebration package: social assets, announcement copy</span>
+        <span class="sm-signal key">Case study drafted and ready for client review at launch</span>
+        <span class="sm-signal">Team recognition — the people who built it named and celebrated</span>
+        <span class="sm-signal">Post-launch check-in scheduled at 30 and 90 days</span>
+      </div>
+    </div>
+    <div class="sm-stage">
+      <div class="sm-stage-name">Ongoing Partnership</div>
+      <div class="sm-stage-title">The retainer that grows because the value compounds</div>
+      <p class="sm-desc">The "Partner" phase of the Wonderly process is where the deepest value lives — and where the most underleveraged retention opportunity sits. Clients who stay on retainer get more efficient service, deeper familiarity, and better outcomes over time. Content that educates retainer clients (monthly insights, platform updates, audience growth signals) keeps the relationship active and gives both parties reasons to invest more, not less.</p>
+      <div class="sm-signals">
+        <span class="sm-signal key">Monthly retainer report: what we did, what moved, what's next</span>
+        <span class="sm-signal key">Annual retainer review — revisit goals, reprice if needed</span>
+        <span class="sm-signal">Proactive upsell conversations grounded in client results</span>
+        <span class="sm-signal">Referral invitation when the relationship is strong</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CULTURE CONTENT -->
+<section>
+  <div class="section-tag">The Culture Signal</div>
+  <h2>Elite Culture Starts<br><em>Before the Job Post</em></h2>
+
+  <p>A+ talent is not found through job boards. It is attracted through culture content that makes Wonderly's standards, philosophy, and way of working so visible that the right people are already paying attention before a role exists. The culture content system serves two audiences simultaneously: future team members and future clients. Both want to know what it's like to be in relationship with Wonderly — and both make decisions based on what they see.</p>
+
+  <div class="culture-cards">
+    <div class="culture-card">
+      <span class="cc-icon">✦</span>
+      <div class="cc-title">The Standards Content</div>
+      <p class="cc-desc">What Wonderly's brief discipline, QA process, and revision standards look like in practice. Published not as internal documentation but as proud demonstrations of craft. The message: we work this carefully, and we hire people who value working this carefully.</p>
+    </div>
+    <div class="culture-card">
+      <span class="cc-icon">◈</span>
+      <div class="cc-title">The People Content</div>
+      <p class="cc-desc">Team profiles that read as creative portraits, not org chart entries. Matt on development process. Taylor on design standards. Tori on content strategy. Alyssa and Jerrod on their platforms. These show who Wonderly is, and they make the people who belong here feel recognized before they've applied.</p>
+    </div>
+    <div class="culture-card">
+      <span class="cc-icon">⬡</span>
+      <div class="cc-title">The Philosophy Content</div>
+      <p class="cc-desc">What Wonderly believes about creative work, about how agencies should treat their people, about what a calm execution environment actually produces. The Zingerman's-inspired transparency roadmap, the profit sharing commitment, the growth path — these are cultural proof that Wonderly builds for its team the same way it builds for its clients.</p>
+    </div>
+    <div class="culture-card">
+      <span class="cc-icon">◇</span>
+      <div class="cc-title">The Hiring Content</div>
+      <p class="cc-desc">Job descriptions written as mission statements. Not "minimum 3 years experience in X" — but "we're looking for someone who believes Y and does Z with the kind of care that shows." Hiring content that reads as philosophy attracts people who make decisions based on values, not just compensation.</p>
+    </div>
+    <div class="culture-card">
+      <span class="cc-icon">✿</span>
+      <div class="cc-title">The Growth Content</div>
+      <p class="cc-desc">How people develop at Wonderly — the trajectory from practitioner to discipline lead, the investment in learning, the eventual equity path. A+ talent is not just looking for a good job today. They're looking for a place that will make them better and eventually reward them for the business they helped build.</p>
+    </div>
+    <div class="culture-card">
+      <span class="cc-icon">○</span>
+      <div class="cc-title">The Celebration Content</div>
+      <p class="cc-desc">Team wins, client launches, milestones reached. The culture content that says: this is a place where people feel seen and celebrated for their work. The first profit bonus gets announced. The Webby nomination gets celebrated publicly. These moments are not just internal — they are the most authentic culture signal Wonderly can send.</p>
+    </div>
+  </div>
+
+  <div class="callout-gold callout">
+    <p><strong>The hiring content rule:</strong> Post every role as a culture signal, even when you're not actively hiring. A "we're not hiring right now, but here's what we look for and why" post builds the bench, warms the network, and demonstrates that Wonderly thinks carefully about who joins the team. The people you'll need in 18 months are reading now.</p>
+  </div>
+</section>
+
+<!-- THE CADENCE -->
+<section>
+  <div class="section-tag">The Rhythm</div>
+  <h2>The Content<br><em>Operating Cadence</em></h2>
+
+  <p>Consistency compounds. An uneven content calendar — high volume for a month, silence for six weeks — is worse than a moderate, consistent output maintained over years. The cadence below is sustainable with the current team structure (Tori as lead, Maria on design, Allie on voice) once the content coordinator hire is made. Until then, protect the primary channels and let the secondary ones wait.</p>
+
+  <div class="cadence">
+    <div class="cadence-header">
+      <div class="cad-head-cell"></div>
+      <div class="cad-head-cell">Huge Fan / Email</div>
+      <div class="cad-head-cell">Website / Blog</div>
+      <div class="cad-head-cell">LinkedIn</div>
+      <div class="cad-head-cell">Instagram</div>
+    </div>
+    <div class="cadence-row">
+      <div class="cad-cell label">Weekly</div>
+      <div class="cad-cell secondary">When Allie has voice ready</div>
+      <div class="cad-cell secondary">—</div>
+      <div class="cad-cell active">2–3 posts (Adam + Allie combined)</div>
+      <div class="cad-cell active">4–5 posts (Maria-led)</div>
+    </div>
+    <div class="cadence-row">
+      <div class="cad-cell label">Monthly</div>
+      <div class="cad-cell active">1–2 Huge Fan issues (minimum)</div>
+      <div class="cad-cell active">2 new pieces: case study OR guide OR opinion</div>
+      <div class="cad-cell secondary">1 longer thought leadership piece</div>
+      <div class="cad-cell secondary">1 team / culture feature</div>
+    </div>
+    <div class="cadence-row">
+      <div class="cad-cell label">Quarterly</div>
+      <div class="cad-cell active">Subscriber growth review + topic planning</div>
+      <div class="cad-cell active">1 major case study published</div>
+      <div class="cad-cell active">Speaking placement secured or in progress</div>
+      <div class="cad-cell active">1 hiring or culture post (even if not actively recruiting)</div>
+    </div>
+    <div class="cadence-row">
+      <div class="cad-cell label">On Launch</div>
+      <div class="cad-cell active">Client feature in Huge Fan (with permission)</div>
+      <div class="cad-cell active">Case study drafted + published within 30 days</div>
+      <div class="cad-cell active">Launch announcement post</div>
+      <div class="cad-cell active">Launch visuals + behind-the-scenes</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT GOOD LOOKS LIKE -->
+<section>
+  <div class="section-tag">The Standard</div>
+  <h2>What <em>Good</em><br>Looks Like</h2>
+
+  <p>These are not aspirational benchmarks. They are the indicators that the content marketing system is doing what it was built to do — moving the right people through the funnel and making the service experience confirm the promise.</p>
+
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="mc-label">Pipeline Quality Signal</div>
+      <div class="mc-value">Pre-sold leads</div>
+      <p class="mc-desc">Inbound leads who reference specific content, mention Allie's newsletter, or arrive with the owned-platform problem already named. These leads close faster and at higher prices.</p>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">Content Conversion</div>
+      <div class="mc-value">Owned list growth</div>
+      <p class="mc-desc">Huge Fan subscriber count growing month over month. Social reach converting to email subscribers, not just followers. Every follower who becomes a subscriber is a lead entering an owned relationship.</p>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">Case Study Impact</div>
+      <div class="mc-value">Cited in proposals</div>
+      <p class="mc-desc">When a prospect mentions a specific case study in their inquiry, the proof content is working. Track which case studies are being referenced in new client conversations.</p>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">Service Experience</div>
+      <div class="mc-value">Referral rate</div>
+      <p class="mc-desc">Percentage of new clients coming from current or former client referrals. The service experience metric that matters most — delighted clients become the content channel.</p>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">Culture Signal</div>
+      <div class="mc-value">Inbound applicants</div>
+      <p class="mc-desc">Strong practitioners reaching out before a role is posted. The culture content is working when A+ talent is in the network before you need them.</p>
+    </div>
+    <div class="metric-card">
+      <div class="mc-label">Speaking / Authority</div>
+      <div class="mc-value">Invitations in</div>
+      <p class="mc-desc">Allie and Adam receiving speaking invitations rather than only applying for them. When the content establishes authority, the invitations follow — and each invitation compounds the authority.</p>
+    </div>
+  </div>
+</section>
+
+<!-- KEYS SUMMARY -->
+<div class="keys-summary">
+  <div class="ks-label">The Seven Keys — Applied Summary</div>
+  <div class="ks-title">Content Marketing<br>Built on Conviction</div>
+  <div class="ks-keys">
+    <div class="ks-key">
+      <div class="ks-num">1</div>
+      <div>
+        <div class="ks-title-small">The POV Sells Before the Sales Call Does</div>
+        <p class="ks-body">Lead with the owned-platform conviction in every channel. <strong>The goal is not awareness — it is belief.</strong> By the time a lead reaches out, they should already hold a specific, argued view that Wonderly is the right partner. Content builds that belief; the sales call confirms it.</p>
+      </div>
+    </div>
+    <div class="ks-key">
+      <div class="ks-num">2</div>
+      <div>
+        <div class="ks-title-small">Owned Channels Before Rented Ones</div>
+        <p class="ks-body">Huge Fan, the Wonderly website, and email are the primary channels. <strong>Social is distribution, not destination.</strong> Every piece of social content should point back to something Wonderly owns. Build the audience you control, not the one the algorithm can take away.</p>
+      </div>
+    </div>
+    <div class="ks-key">
+      <div class="ks-num">3</div>
+      <div>
+        <div class="ks-title-small">Proof Converts Curiosity into Trust</div>
+        <p class="ks-body">Case studies are the most powerful content Wonderly makes. <strong>Tell the problem, not just the outcome.</strong> A prospect who reads the Food Section case study and recognizes their own platform problem is already halfway through the sales funnel. Every qualified project launch is a case study opportunity.</p>
+      </div>
+    </div>
+    <div class="ks-key">
+      <div class="ks-num">4</div>
+      <div>
+        <div class="ks-title-small">The Service Experience Is Content</div>
+        <p class="ks-body">The intake questionnaire, the proposal, the onboarding package, the weekly status note, the launch celebration — <strong>every touchpoint communicates whether Wonderly is worth the price.</strong> Design each one with the same care as a published piece. The clients who feel this become the referral engine.</p>
+      </div>
+    </div>
+    <div class="ks-key">
+      <div class="ks-num">5</div>
+      <div>
+        <div class="ks-title-small">Culture Content Builds the Bench Before You Need It</div>
+        <p class="ks-body">A+ talent follows Wonderly before they're looking. <strong>Post every role as a culture signal, not just a job description.</strong> The team profile content, the philosophy pieces, the growth trajectory — these attract people who make decisions based on values, and the right people are reading long before you need them.</p>
+      </div>
+    </div>
+    <div class="ks-key">
+      <div class="ks-num">6</div>
+      <div>
+        <div class="ks-title-small">Allie's Voice Is the Creator Track's Best Acquisition Tool</div>
+        <p class="ks-body">Huge Fan, speaking, LinkedIn — these are not side projects. <strong>They are the primary channel for creator-niche client acquisition.</strong> Protect Allie's time to produce this content. It compounds over years. A subscriber who has read Huge Fan for two years arrives in the pipeline as a warm referral, not a cold lead.</p>
+      </div>
+    </div>
+    <div class="ks-key">
+      <div class="ks-num">7</div>
+      <div>
+        <div class="ks-title-small">Consistency Over Volume. Always.</div>
+        <p class="ks-body">Two excellent pieces a month for three years outperforms twenty mediocre posts in a month and silence for six weeks. <strong>The content system is sustainable or it doesn't exist.</strong> Build to the capacity of the current team, protect it from operational pressure, and let it compound. Content authority is built slowly and lost quickly.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <span>Wonderly · Keys to Content Marketing · March 2026 · Internal</span>
+  <span>Built on: Brand Intensity Audit · Leadership Language · Org Brief</span>
+</footer>
+
+</body>
+</html>

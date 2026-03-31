@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wonderly — A Note on Leadership</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:       #1a1814;
+    --warm:      #f7f3ec;
+    --warm-2:    #ede7da;
+    --warm-3:    #e0d8c8;
+    --rule:      #d4cbbe;
+    --muted:     #8a8070;
+    --accent:    #2e5c40;
+    --accent-2:  #c47d2a;
+    --accent-lt: #eef5f1;
+    --amber-lt:  #fdf4e7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm);
+    color: var(--ink);
+    font-family: 'Epilogue', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    background: var(--ink);
+    padding: 64px 80px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--accent), var(--accent-2), transparent);
+  }
+  .header-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  header h1 {
+    font-family: 'Lora', serif;
+    font-size: 46px;
+    font-weight: 400;
+    line-height: 1.15;
+    color: #f7f3ec;
+    max-width: 640px;
+    margin-bottom: 16px;
+  }
+  header h1 em {
+    font-style: italic;
+    color: #a8c8b4;
+  }
+  .header-sub {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(247,243,236,0.55);
+    max-width: 500px;
+    line-height: 1.75;
+    margin-bottom: 48px;
+  }
+  .header-meta {
+    display: flex;
+    gap: 40px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(247,243,236,0.1);
+  }
+  .header-meta-item label {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(247,243,236,0.3);
+    margin-bottom: 3px;
+  }
+  .header-meta-item span {
+    font-size: 12px;
+    color: rgba(247,243,236,0.65);
+  }
+
+  /* ─── MAIN ─── */
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 80px 100px;
+  }
+
+  /* ─── INTRO LETTER ─── */
+  .letter {
+    padding: 56px 0 0;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 52px;
+    margin-bottom: 0;
+  }
+  .letter-label {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .letter p {
+    font-size: 15px;
+    color: #2a2520;
+    line-height: 1.85;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+  .letter p strong { font-weight: 600; color: var(--ink); }
+  .letter-sig {
+    margin-top: 32px;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink);
+  }
+  .letter-sig span {
+    display: block;
+    font-family: 'Epilogue', sans-serif;
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* ─── SECTIONS ─── */
+  section {
+    padding-top: 60px;
+    border-top: 1px solid var(--rule);
+    margin-top: 60px;
+  }
+  .section-label {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  h2 {
+    font-family: 'Lora', serif;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  h2 em { font-style: italic; }
+  .section-intro {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 520px;
+    margin-bottom: 36px;
+    line-height: 1.8;
+  }
+  h3 {
+    font-family: 'Lora', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-top: 40px;
+    margin-bottom: 10px;
+  }
+  h3 em { font-style: italic; font-weight: 400; }
+  p {
+    font-size: 14.5px;
+    color: #2a2520;
+    line-height: 1.85;
+    margin-bottom: 16px;
+    font-weight: 300;
+  }
+  p strong { font-weight: 600; color: var(--ink); }
+
+  /* ─── PERSON CARDS ─── */
+  .person-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    margin: 8px 0 36px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .person-card {
+    background: var(--warm-2);
+    padding: 32px 28px;
+  }
+  .person-card.green { background: var(--accent-lt); border-top: 3px solid var(--accent); }
+  .person-card.amber { background: var(--amber-lt); border-top: 3px solid var(--accent-2); }
+  .person-name {
+    font-family: 'Lora', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .person-title {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .person-focus {
+    font-size: 13.5px;
+    color: #2a2520;
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 0;
+  }
+  .person-focus strong { font-weight: 600; color: var(--ink); }
+
+  /* ─── DEMAND LISTS ─── */
+  .demand-block {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .demand-header {
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .demand-header-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .demand-header-role {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .demand-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot-green { background: var(--accent); }
+  .dot-amber { background: var(--accent-2); }
+  .demand-items { padding: 0; }
+  .demand-item {
+    padding: 14px 22px;
+    border-bottom: 1px solid var(--warm-2);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: start;
+  }
+  .demand-item:last-child { border-bottom: none; }
+  .demand-text {
+    font-size: 13.5px;
+    color: #2a2520;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .demand-text strong { font-weight: 600; color: var(--ink); }
+  .demand-how {
+    font-size: 10.5px;
+    color: var(--accent);
+    font-weight: 500;
+    white-space: nowrap;
+    padding-top: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── TEAM BRING TABLE ─── */
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    margin: 8px 0;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .team-card {
+    background: var(--warm-2);
+    padding: 24px;
+  }
+  .team-card-role {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .team-card-name {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .team-card-bring {
+    font-size: 13px;
+    color: #3a3530;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  /* ─── PULL QUOTE ─── */
+  .pull-quote {
+    margin: 44px 0;
+    padding: 28px 36px;
+    border-left: 3px solid var(--accent);
+    background: var(--accent-lt);
+    border-radius: 0 5px 5px 0;
+  }
+  .pull-quote p {
+    font-family: 'Lora', serif;
+    font-size: 21px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .pull-quote-amber {
+    border-left-color: var(--accent-2);
+    background: var(--amber-lt);
+  }
+
+  /* ─── ROADMAP ─── */
+  .roadmap {
+    margin: 12px 0;
+    position: relative;
+    padding-left: 24px;
+  }
+  .roadmap::before {
+    content: '';
+    position: absolute;
+    left: 4px; top: 10px; bottom: 10px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), var(--warm-3));
+  }
+  .roadmap-item {
+    position: relative;
+    padding: 0 0 28px 20px;
+  }
+  .roadmap-item::before {
+    content: '';
+    position: absolute;
+    left: -20px; top: 7px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .roadmap-item:last-child { padding-bottom: 0; }
+  .roadmap-item:last-child::before { background: var(--warm-3); border: 1px solid var(--accent); }
+  .roadmap-date {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+    margin-bottom: 2px;
+    font-weight: 500;
+  }
+  .roadmap-title {
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .roadmap-desc { font-size: 13px; color: var(--muted); line-height: 1.65; margin: 0; }
+
+  /* ─── CLOSING ─── */
+  .closing {
+    background: var(--ink);
+    padding: 52px 80px;
+    margin-top: 0;
+  }
+  .closing p {
+    font-family: 'Lora', serif;
+    font-size: 22px;
+    font-weight: 400;
+    font-style: italic;
+    color: #f7f3ec;
+    line-height: 1.6;
+    max-width: 580px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .closing p em { color: #a8c8b4; font-style: normal; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--warm-2);
+    border-top: 1px solid var(--rule);
+    padding: 24px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  header h1, header .header-sub, header .header-eyebrow {
+    animation: fadeUp 0.8s ease both;
+  }
+  header .header-eyebrow { animation-delay: 0.05s; }
+  header h1 { animation-delay: 0.15s; }
+  header .header-sub { animation-delay: 0.28s; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-eyebrow">Wonderly · Internal Leadership Brief · March 2026</div>
+  <h1>A Note on<br><em>How We Lead</em><br>From Here</h1>
+  <p class="header-sub">What you can expect from Adam and Allie — and what we're counting on from each of you — as Wonderly grows into what it's becoming.</p>
+  <div class="header-meta">
+    <div class="header-meta-item"><label>From</label><span>Adam + Allie Lehman</span></div>
+    <div class="header-meta-item"><label>For</label><span>The Full Team</span></div>
+    <div class="header-meta-item"><label>Context</label><span>2026 Org Evolution</span></div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<div class="page">
+
+  <!-- INTRO LETTER -->
+  <div class="letter">
+    <div class="letter-label">To the team</div>
+    <p>We've been building this business the way most small studios do: by doing everything ourselves, learning as we go, and figuring out structure after the fact. That approach got us here — to a team that genuinely cares about the work, clients who trust us, and a studio that has developed a real point of view. We're proud of that.</p>
+    <p>But we're at a moment where staying in that mode starts working against us. To grow — and to build the kind of place where each of you can genuinely develop — we need to be more intentional about <strong>who does what, why, and what we can expect from each other.</strong> That's what this document is about.</p>
+    <p>This isn't a reorganization memo. It's an honest conversation about how we see our own roles evolving, what that means for how you'll experience leadership here, and what we genuinely need from you as this studio becomes what it's capable of becoming.</p>
+    <p>We're not handing off and stepping back. We're handing off so we can step into the work that moves the whole thing forward — and so you can step into yours.</p>
+    <div class="letter-sig">
+      Adam + Allie
+      <span>Co-Founders, Wonderly / The Wonder Jam</span>
+    </div>
+  </div>
+
+  <!-- WHERE WE'RE GOING -->
+  <section>
+    <div class="section-label">The Direction</div>
+    <h2>Where <em>We're Headed</em></h2>
+    <p class="section-intro">The growth plan isn't a number on a slide. It's a description of what this studio wants to become — and why.</p>
+
+    <p>The goal is $3M in revenue by 2029. But more importantly, it's a studio with fewer clients at higher value, where the work we do is deep and the relationships are real. Where the team has meaningful ownership over their craft, their contribution, and eventually their stake in what we've built. Where the people who've helped us grow can actually benefit from that growth.</p>
+
+    <p>The path there runs through three things: <strong>pricing what we're worth</strong>, <strong>deepening the relationships that matter</strong>, and <strong>building a team that doesn't need us in every room</strong>. That last one is the hardest, and it's the most important. It's also what this document is really about.</p>
+
+    <div class="pull-quote">
+      <p>"The business has always been an organic expression of our skills. Now we're ready to specialize — so the team can grow, and so the work can become what it's actually capable of."</p>
+    </div>
+
+    <p>Here's the shape of where we're going, briefly:</p>
+
+    <div class="roadmap">
+      <div class="roadmap-item">
+        <div class="roadmap-date">Now — Q2 2026</div>
+        <div class="roadmap-title">Formalizing what already works</div>
+        <p class="roadmap-desc">Two delivery tracks. Named discipline leads. Scorecards. Clean financial data. Brief templates. We're naming what's already true and building the infrastructure to sustain it.</p>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-date">Q3 – Q4 2026</div>
+        <div class="roadmap-title">Opening the books and hitting stride</div>
+        <p class="roadmap-desc">The team sees the financial picture. Scorecards are live. First $125K month. 40% growth — not from more clients, but from better ones at better prices.</p>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-date">2027</div>
+        <div class="roadmap-title">First profit bonuses and $2M</div>
+        <p class="roadmap-desc">When the company wins, you win — literally. First quarterly profit pool paid out. VTO target hit. New hires contributing. The machine runs with more independence.</p>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-date">2028 – 2029</div>
+        <div class="roadmap-title">$3M, profit sharing, and ownership paths</div>
+        <p class="roadmap-desc">Annual profit sharing. Equity conversations for senior team members. And the foundation in place for The Wonder Jam's next chapter — built by a team that helped create it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALLIE'S ROLE -->
+  <section>
+    <div class="section-label">Allie's Focus</div>
+    <h2>Allie: <em>The Heart and the Standard</em></h2>
+    <p class="section-intro">Allie is the creative soul of Wonderly. She's staying here, building deeper, and the studio's long-term identity lives through her work.</p>
+
+    <p>Allie's background is the through-line of everything Wonderly stands for. Fine arts foundation. Deep technical empathy from learning servers and WordPress before it was fashionable. A decade of listening to what makes personality-driven brands unmistakably themselves. That combination — creative conviction rooted in how things actually work — is rare. It is the reason clients trust us with their brand.</p>
+
+    <p>Her role is evolving in a specific direction: <strong>less execution, more direction.</strong> Not because the execution isn't important — it's everything — but because Allie's judgment, taste, and voice create the most value when they're setting the standard rather than doing the work directly. Taylor, Maria, and Laura do extraordinary work. That work becomes a Wonderly product when Allie's sensibility is the filter it passes through.</p>
+
+    <p>Alongside her creative direction role, Allie leads our creator-track client relationships — the chefs, authors, podcasters, and personal brands who hire Wonderly because they want a partner who is genuinely fascinated by what they're building. That fascination is Allie. It can't be replicated by a process or a template.</p>
+
+    <p>She is also building a public voice — through <em>Huge Fan</em>, through speaking, through the way she thinks about fandom and owned platforms — that is itself one of Wonderly's most valuable long-term assets. Creator clients find us because they've encountered Allie's ideas. That work deserves protected time and real investment, not whatever hours are left over.</p>
+
+    <div class="pull-quote pull-quote-amber">
+      <p>"Deep listening is not just a studio behavior. It's a business strategy. The brands worth building are the ones where the relationship is reciprocal — where we're genuinely curious about the client, and they can feel it."</p>
+    </div>
+  </section>
+
+  <!-- ADAM'S ROLE -->
+  <section>
+    <div class="section-label">Adam's Focus</div>
+    <h2>Adam: <em>The Builder Behind the Builder</em></h2>
+    <p class="section-intro">Adam's focus is shifting toward the infrastructure that makes Wonderly's growth possible — and toward laying the foundation for what comes after.</p>
+
+    <p>Adam's long-term trajectory is different from Allie's, and it's worth being honest about that. Allie is building deeper roots at Wonderly. Adam is building the machine that lets Wonderly grow — and eventually, the foundation for The Wonder Jam's next business.</p>
+
+    <p>That's not a departure. It's a commitment to making this studio excellent enough that it can sustain and thrive without Adam in every room. The org structure, the financial model, the scorecard system, the hiring roadmap — this is Adam's work right now. Not because he's stepping away from the creative or the clients, but because the highest-leverage thing he can do for this team and this studio is build the infrastructure that makes everyone's work more possible.</p>
+
+    <p>In practical terms, this means Adam is focused on <strong>business architecture and strategy</strong>, <strong>team and leadership development</strong>, <strong>financial stewardship</strong>, and the early thinking about what The Wonder Jam's next chapter looks like. Camila is his operational partner. Marin, Matt, Taylor, and Tori are the leaders he's investing in developing. The goal is a studio that doesn't require Adam to be the answer to every question.</p>
+
+    <p>The Wonder Jam has always been described as a "family of businesses" — a common substrate that allows specialization to sprout and thrive. Adam's longer arc is building more of that family. Wonderly gets there first. The next one follows from a foundation Wonderly helps create.</p>
+  </section>
+
+  <!-- WHAT TO DEMAND -->
+  <section>
+    <div class="section-label">Your Right to Demand</div>
+    <h2>What You Can <em>Hold Us To</em></h2>
+    <p class="section-intro">This is not a list of promises. It's a set of standards we're asking you to actively enforce. If we're not delivering these things, tell us.</p>
+
+    <div class="demand-block">
+      <div class="demand-header">
+        <div class="demand-dot dot-green"></div>
+        <div>
+          <div class="demand-header-name">What to demand from Allie</div>
+          <div class="demand-header-role">Creative Director · Creator Track Lead · External Voice</div>
+        </div>
+      </div>
+      <div class="demand-items">
+        <div class="demand-item">
+          <div class="demand-text"><strong>A clear creative standard.</strong> You should always know what "Wonderly quality" means. If you're unsure whether something is on-brand or on-standard, that's a failure of creative direction — not a failure of your judgment. Ask Allie to make it clearer.</div>
+          <div class="demand-how">Ask directly</div>
+        </div>
+        <div class="demand-item">
+          <div class="demand-text"><strong>Feedback that builds your craft.</strong> Allie's role is not just to approve or reject — it's to help you see what she sees. If you're getting feedback without understanding why, ask for the reasoning. That's how taste develops.</div>
+          <div class="demand-how">Ask for the why</div>
+        </div>
+        <div class="demand-item">
+          <div class="demand-text"><strong>Presence in the creative decisions that matter.</strong> Allie should be in the rooms where creative direction is being set — not debugging a timeline or coordinating logistics. If she's caught in operational work, flag it. That's a sign the support structure needs adjusting.</div>
+          <div class="demand-how">Protect her focus</div>
+        </div>
+        <div class="demand-item">
+          <div class="demand-text"><strong>Honest signal on creator client relationships.</strong> Allie leads these relationships. If a creator client is confused about what they're getting, or if the brief doesn't reflect what the client actually needs, Allie needs to know. Don't filter that upward — surface it directly.</div>
+          <div class="demand-how">Bring problems early</div>
+        </div>
+        <div class="demand-item">
+          <div class="demand-text"><strong>A voice that represents us publicly.</strong> Allie's writing and speaking is part of what makes Wonderly findable and credible to the clients we want. If you have ideas for what she should be writing about, or stories from your work that would make great content — share them.</div>
+          <div class="demand-how">Feed the creative</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demand-block">
+      <div class="demand-header">
+        <div class="demand-dot dot-amber"></div>
+        <div>
+          <div class="demand-header-name">What to demand from Adam</div>
+          <div class="demand-header-role">Business Lead · Org Architect · Leadership Developer</div>
+        </div>
+      </div>
+      <div class="demand-items">
+        <div class="demand-item">
+          <div class="demand-text"><strong>Clarity on the plan and where you fit in it.</strong> You should never be guessing about what the business is trying to do or how your role connects to it. If the direction isn't clear, ask Adam to make it specific. Vague strategy is a leadership failure.</div>
+          <div class="demand-how">Ask for the map</div>
+        </div>
+        <div class="demand-item">
+          <div class="demand-text"><strong>Deliberate investment in your development.</strong> Adam's job includes building leaders, not just managing deliverables. If you want to grow into a bigger role, say so explicitly. If you're being underutilized or not being developed, that's worth raising.</div>
+          <div class="demand-how">Name your ambition</div>
+        </div>
+        <div class="demand-item">
+          <div class="demand-text"><strong>Transparent access to the business picture.</strong> The plan is to open the books and share the financial reality with the full team. If the numbers aren't being shared, hold us to that commitment. Understanding how the business works makes your work better.</div>
+          <div class="demand-how">Ask to see the numbers</div>
+        </div>
+        <div class="demand-item">
+          <div class="demand-text"><strong>Fast decisions on the things that block you.</strong> If a structural issue, a resource constraint, or an unclear responsibility is slowing down your work, Adam should resolve it quickly. Surface blockers directly — don't work around them indefinitely.</div>
+          <div class="demand-how">Escalate blockers</div>
+        </div>
+        <div class="demand-item">
+          <div class="demand-text"><strong>A seat at the table when the org evolves.</strong> Changes to structure, roles, or process should be informed by the people doing the work. If a change is being made that affects how you work and you haven't been asked, say something. Good org design requires ground truth.</div>
+          <div class="demand-how">Speak into the design</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT EACH PERSON BRINGS -->
+  <section>
+    <div class="section-label">Your Contribution</div>
+    <h2>What <em>You Bring</em> to the Table</h2>
+    <p class="section-intro">This studio doesn't work because Adam and Allie are good at their jobs. It works because every person on this team shows up with something specific and irreplaceable. Here's what we're counting on from each of you.</p>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-card-role">Creator Track · Design Lead</div>
+        <div class="team-card-name">Taylor</div>
+        <p class="team-card-bring">You hold the creative standard in practice — the brief discipline, the QA gate, the design quality that makes Wonderly's work recognizable. What we need from you is to enforce that standard confidently, even when it's easier to let something through. Your taste is a business asset.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-card-role">Design · Marketing Bridge</div>
+        <div class="team-card-name">Maria</div>
+        <p class="team-card-bring">Your natural fluency between design and marketing — the way you translate Tori's needs into something Taylor's team can build — is one of the studio's most valuable informal systems. We want to formalize and protect that, not eliminate it. Own that interface deliberately.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-card-role">Design · Craft + Output</div>
+        <div class="team-card-name">Laura</div>
+        <p class="team-card-bring">Your ability to lock in and produce stunning work is rare. What we need from you is to protect that focus — to surface when brief clarity isn't there before you start, not after. Your output quality is highest when the inputs are right. Help us make the inputs right.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-card-role">Non-Creator Track · Account Lead</div>
+        <div class="team-card-name">Marin</div>
+        <p class="team-card-bring">You are growing into one of the most important roles in this studio. The non-creator track runs because of you — and eventually it runs fully independently. What we need is for you to take real ownership: of scope, of pricing conversations, of client relationships from first call to final invoice.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-card-role">Development Process Lead</div>
+        <div class="team-card-name">Matt</div>
+        <p class="team-card-bring">You are being formally unleashed. Your job is to make the dev team excellent — not to bill the most hours. Standards, processes, QA discipline, brief compliance, mentorship of Alyssa and Jerrod. When dev work leaves this studio, it should be because you're confident in it.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-card-role">Marketing Lead</div>
+        <div class="team-card-name">Tori</div>
+        <p class="team-card-bring">You are at 76% utilization and doing the work of someone who should have support. What we need from you is to be honest about capacity constraints before they become quality constraints — and to hold the marketing standard across both tracks even as you transition to a more advisory role.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-card-role">WP Lead Developer</div>
+        <div class="team-card-name">Alyssa</div>
+        <p class="team-card-bring">You are the WordPress anchor. Every WP project that runs well, runs because of your technical leadership. What we need is for you to lead the WordPress pipeline clearly — briefing Catherine and Nakul's team, holding the standard, surfacing scope concerns before they become margin problems.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-card-role">Shopify Lead Developer</div>
+        <div class="team-card-name">Jerrod</div>
+        <p class="team-card-bring">You lead the Shopify platform the same way Alyssa leads WordPress. Your technical clarity on scope, integrations, and platform constraints protects the whole non-creator track. When organizational clients buy dev and growth from us, they're buying your execution.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-card-role">Chief of Staff · BOH Lead</div>
+        <div class="team-card-name">Camila</div>
+        <p class="team-card-bring">You are the connective tissue that makes the whole org possible. Your audit is the most important work happening right now. What we need is your honest, unfiltered read of the business — not shaped by what you think we want to hear. The signal you generate through independent observation is exactly the signal we need.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-card-role">Admin Support</div>
+        <div class="team-card-name">Andrea + Lucy</div>
+        <p class="team-card-bring">You are the front door and the back office simultaneously. Invoicing lands on time because of you. Clients feel taken care of because of you. The studio runs smoothly in the background because of you. What we need is clarity on who owns what — we're working on defining that, and we want your input on where the natural split is.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE SHARED COMMITMENT -->
+  <section>
+    <div class="section-label">The Commitment</div>
+    <h2>What We <em>Owe Each Other</em></h2>
+
+    <p>Allie has a phrase she comes back to: fandom should feel reciprocal rather than extractive. We think about the team the same way. The relationship between leadership and the people who do the work only holds if it actually goes both directions.</p>
+
+    <p>You bring your craft, your care, your honesty, and your willingness to grow. In return, we commit to <strong>transparency about where the business is going</strong>, <strong>deliberate investment in your development</strong>, <strong>clear roles with real authority</strong>, and eventually, <strong>meaningful financial participation in what we build together</strong>. The profit bonus, the profit sharing, the equity conversations — those aren't distant hypotheticals. They're the reason the org work matters right now. We're building the infrastructure that makes those things possible.</p>
+
+    <p>What we love about this studio — and we genuinely do love it — is that it was built around real relationships, real craft, and a real point of view. Growing it doesn't mean losing that. It means building the systems that protect it as more people join, as more clients trust us, and as the work gets bigger and more complex.</p>
+
+    <p>The path to $3M is not a financial plan. It is a picture of a studio where the work is excellent, the relationships are deep, the team is thriving, and the business is honest about what it is and where it's going. That is what we are building. And we are building it with you.</p>
+
+    <div class="pull-quote">
+      <p>"Clear process makes creativity effortless. That's true of design. It's just as true of how a leadership team works with the people around them."</p>
+    </div>
+  </section>
+
+</div>
+
+<!-- CLOSING -->
+<div class="closing">
+  <p>"Don't just rent space online." We built a studio on that belief. Now we're building a <em>team</em> on it — people who genuinely own their work, their growth, and their contribution to something lasting.</p>
+</div>
+
+<footer>
+  <span>Wonderly · Leadership Brief · March 2026</span>
+  <span>Internal — Team Distribution</span>
+</footer>
+
+</body>
+</html>
