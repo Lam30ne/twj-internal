@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camila's Findings vs The Artifacts</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Karla:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:      #0e0c0a;
+    --paper:    #f5f0e8;
+    --paper-2:  #ece6d8;
+    --paper-3:  #e0d8c8;
+    --rule:     rgba(14,12,10,0.1);
+    --rule-s:   rgba(14,12,10,0.06);
+
+    /* Status colours — all pass WCAG AA on their backgrounds */
+    --match:       #2a5c38;   /* dark green */
+    --match-bg:    #ddeee3;
+    --match-text:  #0e2418;
+
+    --gap:         #7a3010;   /* dark rust */
+    --gap-bg:      #f2e4da;
+    --gap-text:    #3a1408;
+
+    --new:         #1a4870;   /* dark blue */
+    --new-bg:      #dce8f4;
+    --new-text:    #0a1e30;
+
+    --sharp:       #5a3a8a;   /* dark violet */
+    --sharp-bg:    #ece4f8;
+    --sharp-text:  #200e38;
+
+    /* Camila vs Adam */
+    --camila:  #8a3a18;
+    --adam:    #1a4060;
+
+    --muted:   #4a4438;
+    --body:    #1e1a14;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink:      #f0e8d8;
+      --paper:    #131008;
+      --paper-2:  #1c1810;
+      --paper-3:  #262018;
+      --rule:     rgba(240,232,216,0.1);
+      --rule-s:   rgba(240,232,216,0.06);
+
+      --match:       #68c888;
+      --match-bg:    #0c2018;
+      --match-text:  #90e8a8;
+
+      --gap:         #e88860;
+      --gap-bg:      #200c06;
+      --gap-text:    #f0a880;
+
+      --new:         #70a8e0;
+      --new-bg:      #081828;
+      --new-text:    #90c0f0;
+
+      --sharp:       #c0a0e8;
+      --sharp-bg:    #180c30;
+      --sharp-text:  #d8c0f8;
+
+      --camila:  #e89060;
+      --adam:    #70a8d8;
+
+      --muted:   #908070;
+      --body:    #d0c8b8;
+    }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Karla', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 64px 72px 52px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--camila) 50%, var(--adam) 50%);
+  }
+  .header-eyebrow {
+    font-size: 9.5px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .he-camila { color: var(--camila); }
+  .he-sep { color: var(--rule); }
+  .he-adam { color: var(--adam); }
+  header h1 {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1.08;
+    color: var(--ink);
+    margin-bottom: 12px;
+    max-width: 680px;
+  }
+  header h1 .c { color: var(--camila); font-style: italic; }
+  header h1 .a { color: var(--adam); font-style: italic; }
+  .header-desc {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 36px;
+    font-weight: 300;
+  }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 3px;
+  }
+  .li-match { background: var(--match-bg); color: var(--match-text); border: 1px solid rgba(42,92,56,0.2); }
+  .li-gap   { background: var(--gap-bg);   color: var(--gap-text);   border: 1px solid rgba(122,48,16,0.2); }
+  .li-new   { background: var(--new-bg);   color: var(--new-text);   border: 1px solid rgba(26,72,112,0.2); }
+  .li-sharp { background: var(--sharp-bg); color: var(--sharp-text); border: 1px solid rgba(90,58,138,0.2); }
+  .legend-dot { width: 7px; height: 7px; border-radius: 50%; }
+  .ld-match { background: var(--match); }
+  .ld-gap   { background: var(--gap); }
+  .ld-new   { background: var(--new); }
+  .ld-sharp { background: var(--sharp); }
+
+  /* ── MAIN ── */
+  main { max-width: 1000px; margin: 0 auto; padding: 0 72px 100px; }
+
+  /* ── SECTION ── */
+  .finding {
+    margin-top: 64px;
+    padding-top: 48px;
+    border-top: 1px solid var(--rule);
+  }
+  .finding:first-child { border-top: none; margin-top: 48px; }
+
+  .finding-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    align-items: start;
+    margin-bottom: 28px;
+  }
+  .finding-num {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: var(--rule);
+    line-height: 1;
+    padding-top: 4px;
+    min-width: 44px;
+    text-align: center;
+  }
+  .finding-meta {}
+  .finding-tag {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--camila);
+    margin-bottom: 6px;
+  }
+  .finding-title {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.15;
+    margin-bottom: 6px;
+  }
+  .finding-subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  /* ── SPLIT ── */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    margin-bottom: 3px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+  }
+  .split-full {
+    border-radius: 0 0 5px 5px;
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+
+  .panel {
+    padding: 24px 26px;
+  }
+  .panel-camila {
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+  }
+  .panel-adam {
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+  }
+  .panel-verdict {
+    background: var(--paper-3);
+    border: 1px solid var(--rule);
+    border-top: none;
+  }
+
+  .panel-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .pl-camila { color: var(--camila); }
+  .pl-adam   { color: var(--adam); }
+  .pl-verdict { color: var(--muted); }
+
+  .panel-content {
+    font-size: 13.5px;
+    color: var(--body);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+  .panel-content strong { font-weight: 600; color: var(--ink); }
+  .panel-content em { font-style: italic; color: var(--muted); }
+
+  /* Quote block */
+  .camila-quote {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 17px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--camila);
+    line-height: 1.55;
+    border-left: 2px solid var(--camila);
+    padding-left: 14px;
+    margin-bottom: 12px;
+  }
+
+  /* Status badge */
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 3px;
+    margin-bottom: 12px;
+  }
+  .s-match { background: var(--match-bg); color: var(--match-text); border: 1px solid rgba(42,92,56,0.2); }
+  .s-gap   { background: var(--gap-bg);   color: var(--gap-text);   border: 1px solid rgba(122,48,16,0.2); }
+  .s-new   { background: var(--new-bg);   color: var(--new-text);   border: 1px solid rgba(26,72,112,0.2); }
+  .s-sharp { background: var(--sharp-bg); color: var(--sharp-text); border: 1px solid rgba(90,58,138,0.2); }
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; }
+  .sd-match { background: var(--match); }
+  .sd-gap   { background: var(--gap); }
+  .sd-new   { background: var(--new); }
+  .sd-sharp { background: var(--sharp); }
+
+  /* Verdict panel */
+  .verdict-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .vg-item {}
+  .vg-label {
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+  .vg-val {
+    font-size: 13px;
+    color: var(--body);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  .vg-val strong { color: var(--ink); font-weight: 600; }
+
+  /* ── ACTION ITEMS ── */
+  .action-items {
+    margin-top: 16px;
+  }
+  .ai-label {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .ai-list { list-style: none; }
+  .ai-list li {
+    font-size: 13px;
+    color: var(--body);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--rule-s);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-weight: 300;
+    line-height: 1.55;
+  }
+  .ai-list li:last-child { border-bottom: none; }
+  .ai-list li::before {
+    content: '→';
+    color: var(--muted);
+    flex-shrink: 0;
+    font-size: 11px;
+    margin-top: 2px;
+  }
+
+  /* ── SUMMARY TABLE ── */
+  .summary {
+    margin-top: 72px;
+    padding-top: 48px;
+    border-top: 2px solid var(--rule);
+  }
+  .summary-tag {
+    font-size: 9px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .summary h2 {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  .summary h2 em { font-style: italic; color: var(--camila); }
+
+  .sum-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    font-size: 13px;
+  }
+  .sum-table th {
+    background: var(--paper-3);
+    padding: 11px 16px;
+    text-align: left;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sum-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--rule-s);
+    vertical-align: top;
+    color: var(--body);
+    line-height: 1.55;
+    font-weight: 300;
+  }
+  .sum-table tr:last-child td { border-bottom: none; }
+  .sum-table tr:nth-child(even) td { background: rgba(14,12,10,0.02); }
+  @media (prefers-color-scheme: dark) {
+    .sum-table tr:nth-child(even) td { background: rgba(240,232,216,0.02); }
+  }
+  .td-topic { font-weight: 500; color: var(--ink); }
+  .td-mono {
+    font-family: 'Karla', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── FRIDAY BRIEF ── */
+  .friday {
+    margin-top: 64px;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    padding: 36px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .friday::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--camila), var(--adam));
+  }
+  .friday-tag {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .friday h3 {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .friday-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .fi-group {}
+  .fi-label {
+    font-size: 9.5px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .fi-camila .fi-label { color: var(--camila); }
+  .fi-adam   .fi-label { color: var(--adam); }
+  .fi-list { list-style: none; }
+  .fi-list li {
+    font-size: 13px;
+    color: var(--body);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--rule-s);
+    display: flex;
+    gap: 8px;
+    font-weight: 300;
+    line-height: 1.55;
+  }
+  .fi-list li:last-child { border-bottom: none; }
+  .fi-camila .fi-list li::before { content: '✦'; color: var(--camila); font-size: 8px; flex-shrink: 0; margin-top: 4px; }
+  .fi-adam   .fi-list li::before { content: '✦'; color: var(--adam);   font-size: 8px; flex-shrink: 0; margin-top: 4px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--paper-3);
+    border-top: 1px solid var(--rule);
+    padding: 24px 72px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-eyebrow">
+    <span class="he-camila">Camila's Findings</span>
+    <span class="he-sep">vs</span>
+    <span class="he-adam">Adam's Artifacts</span>
+    <span>· Alignment Review · March 2026</span>
+  </div>
+  <h1>Where <span class="c">Camila</span> and<br>the <span class="a">Artifacts</span> Meet</h1>
+  <p class="header-desc">A side-by-side review of Camila's first-week findings against the strategic documents built in this project. Where they align, where they conflict, what she found that the artifacts missed, and what the artifacts know that Camila needs to receive.</p>
+  <div class="legend">
+    <div class="legend-item li-match"><span class="legend-dot ld-match"></span>Artifacts already address this</div>
+    <div class="legend-item li-gap"><span class="legend-dot ld-gap"></span>Gap — artifacts are missing this</div>
+    <div class="legend-item li-new"><span class="legend-dot ld-new"></span>New from Camila — sharper than artifacts</div>
+    <div class="legend-item li-sharp"><span class="legend-dot ld-sharp"></span>Camila's finding changes the artifacts</div>
+  </div>
+</header>
+
+<main>
+
+<!-- ── FINDING 1 ── -->
+<div class="finding">
+  <div class="finding-header">
+    <div class="finding-num">1</div>
+    <div class="finding-meta">
+      <div class="finding-tag">Camila's Finding · The Restaurant Analogy</div>
+      <div class="finding-title">Nobody Knows Whose<br>Turn It Is to Talk to the Client</div>
+      <div class="finding-subtitle">"Players are not sure the scope of responsibility — especially Marin: I don't know when I should come in, come out."</div>
+    </div>
+  </div>
+
+  <div class="split">
+    <div class="panel panel-camila">
+      <div class="panel-label pl-camila">Camila Said</div>
+      <div class="camila-quote">"Everybody understands the model, but they're not quite sure how they fit and whose responsibility is what."</div>
+      <div class="panel-content">Three root problems: (1) unclear FOH turn-taking with clients, (2) confusing what you produce (BOH) with the client experience (FOH), (3) FOH lacks context to make good decisions and quality control was silently on Adam's plate with no one noticing.</div>
+    </div>
+    <div class="panel panel-adam">
+      <div class="panel-label pl-adam">The Artifacts Say</div>
+      <div class="status s-match"><span class="status-dot sd-match"></span>Addressed</div>
+      <div class="panel-content">The <strong>Strategic Operating Brief</strong> names this directly. The two-track model with named account leads (Allie: creator, Marin: non-creator) and discipline leads (Matt, Taylor, Tori) is built to answer "whose turn" at every stage. Marin owns Track B end-to-end — she is the FOH on that side. Allie owns creator client relationships. Neither needs the other's permission.</div>
+    </div>
+  </div>
+  <div class="split-full">
+    <div class="panel panel-verdict">
+      <div class="panel-label pl-verdict">Verdict</div>
+      <div class="verdict-grid">
+        <div class="vg-item">
+          <div class="vg-label">Alignment</div>
+          <div class="vg-val">Strong. The org structure solves for this exactly.</div>
+        </div>
+        <div class="vg-item">
+          <div class="vg-label">What's Still Missing</div>
+          <div class="vg-val"><strong>A one-page client lifecycle map.</strong> The org chart names owners but doesn't show the handoff sequence visually. Camila needs to see it as a flow, not just a structure.</div>
+        </div>
+        <div class="vg-item">
+          <div class="vg-label">Action for Friday</div>
+          <div class="vg-val">Walk Camila through the two-track model. Show her where FOH ends and BOH begins at each stage of a project.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FINDING 2 ── -->
+<div class="finding">
+  <div class="finding-header">
+    <div class="finding-num">2</div>
+    <div class="finding-meta">
+      <div class="finding-tag">Camila's Finding · Five Things to Define First</div>
+      <div class="finding-title">Define What You Sell Before<br>You Design How to Sell It</div>
+      <div class="finding-subtitle">Client/service types → Ownership → Billing → Financial impact → Response times. In that order. Nothing else makes sense until this is done.</div>
+    </div>
+  </div>
+
+  <div class="split">
+    <div class="panel panel-camila">
+      <div class="panel-label pl-camila">Camila Said</div>
+      <div class="camila-quote">"We need to be so clear that someone with zero knowledge of what you do can graph these out and explain it to anyone."</div>
+      <div class="panel-content">Segment client categories. Inventory all services. Standardize offerings into clear products. Define subscription tiers and scope inclusions. Then assign ownership, billing model, financial impact, and SLAs — in sequence. Everything downstream depends on getting this foundation right first.</div>
+    </div>
+    <div class="panel panel-adam">
+      <div class="panel-label pl-adam">The Artifacts Say</div>
+      <div class="status s-match"><span class="status-dot sd-match"></span>Partially Addressed</div>
+      <div class="panel-content">The <strong>Client Profitability Analysis</strong> and <strong>2026 Budget</strong> have the financial impact layer (her item 4) already built. The two-track structure partially answers the ownership question (item 2). But <strong>items 1, 3, and 5 don't exist as documents.</strong> There is no clean, one-page grid of what Wonderly sells, to whom, at what price structure, with what included/excluded. The financial model assumes those definitions — it doesn't produce them.</div>
+    </div>
+  </div>
+  <div class="split-full">
+    <div class="panel panel-verdict">
+      <div class="panel-label pl-verdict">Verdict</div>
+      <div class="verdict-grid">
+        <div class="vg-item">
+          <div class="vg-label">Alignment</div>
+          <div class="vg-val">Her sequencing is exactly right. The artifacts confirm the financial layer exists — but the definitional layer upstream doesn't.</div>
+        </div>
+        <div class="vg-item">
+          <div class="vg-label">What's Missing</div>
+          <div class="vg-val"><strong>A service + subscription definition document.</strong> One page: service lines, client types, what's included, what's not, billing model per line, FOH owner per type.</div>
+        </div>
+        <div class="vg-item">
+          <div class="vg-label">Action for Friday</div>
+          <div class="vg-val">Adam and Allie answer Camila's five questions together. Allie records a Loom showing how she quotes. Adam shares the pricing spreadsheets. Camila converts it into the definition document.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FINDING 3 ── -->
+<div class="finding">
+  <div class="finding-header">
+    <div class="finding-num">3</div>
+    <div class="finding-meta">
+      <div class="finding-tag">Camila's Finding · Client Lifecycle</div>
+      <div class="finding-title">Offboarding Doesn't Exist.<br>What You Need Is a DTR.</div>
+      <div class="finding-subtitle">"Rather than an offboarding process, it's a DTR process — Define The Relationship. Concierge tells the client what phase they're entering, what they're paying for, how to communicate."</div>
+    </div>
+  </div>
+
+  <div class="split">
+    <div class="panel panel-camila">
+      <div class="panel-label pl-camila">Camila Said</div>
+      <div class="camila-quote">"Production finishes and emails the client. Two weeks are up and they're still asking for things that we should be saying, of course we can help you, but it's going to cost you."</div>
+      <div class="panel-content">The DTR moment: concierge confirms the client is transitioning from production to maintenance. Sends a clear summary of what they purchased, what they have access to, what Wonderly expects for communication, and what falls outside scope going forward. Cross-sell opportunity lives here too.</div>
+    </div>
+    <div class="panel panel-adam">
+      <div class="panel-label pl-adam">The Artifacts Say</div>
+      <div class="status s-gap"><span class="status-dot sd-gap"></span>Gap — Not in Artifacts</div>
+      <div class="panel-content">The <strong>Content Marketing document</strong> maps the service experience from first contact through ongoing partnership — but the transition <em>between</em> phases is missing. Launch → Ongoing Partnership has no named handoff moment. The Pasta Queen's scope creep problem is a direct consequence of this gap: the retainer continued without a DTR that reset expectations when the work expanded.</div>
+    </div>
+  </div>
+  <div class="split-full">
+    <div class="panel panel-verdict">
+      <div class="panel-label pl-verdict">Verdict</div>
+      <div class="verdict-grid">
+        <div class="vg-item">
+          <div class="vg-label">Alignment</div>
+          <div class="vg-val">This is new and correct. No artifact anticipated it.</div>
+        </div>
+        <div class="vg-item">
+          <div class="vg-label">What to Add</div>
+          <div class="vg-val">Insert the DTR as a named stage between Launch and Ongoing Partnership in the service experience system. It belongs to the account lead and is mandatory at every phase transition.</div>
+        </div>
+        <div class="vg-item">
+          <div class="vg-label">Action</div>
+          <div class="vg-val">Update the Content Marketing document. Add DTR to the service moments timeline. Brief Marin on running it first on the non-creator track where it's most urgently needed.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FINDING 4 ── -->
+<div class="finding">
+  <div class="finding-header">
+    <div class="finding-num">4</div>
+    <div class="finding-meta">
+      <div class="finding-tag">Camila's Finding · Capacity</div>
+      <div class="finding-title">ClickUp Shows Current Capacity.<br>Nobody Can See What's Coming.</div>
+      <div class="finding-subtitle">"We are not forecasting our capacity the right way. ClickUp gives current capacity but nobody is saying, heads up — in two weeks we have eight new clients."</div>
+    </div>
+  </div>
+
+  <div class="split">
+    <div class="panel panel-camila">
+      <div class="panel-label pl-camila">Camila Said</div>
+      <div class="camila-quote">"A spreadsheet with FOH, sales, production design, production development, production marketing. An overview snapshot of this week, next week, and three weeks ahead — so when you're on a sales pitch you can say yes or no confidently."</div>
+      <div class="panel-content">Concierge updates it weekly. A 10-minute standup with Taylor, Matt, and Marin interprets it. Capacity decisions get communicated proactively — not discovered when a project starts and the team is already full.</div>
+    </div>
+    <div class="panel panel-adam">
+      <div class="panel-label pl-adam">The Artifacts Say</div>
+      <div class="status s-gap"><span class="status-dot sd-gap"></span>Gap — Scorecards Cover Current, Not Forward</div>
+      <div class="panel-content">The <strong>scorecards</strong> track utilization (Harvest) as a current-state metric for Matt, Taylor, and Tori. <strong>No artifact addresses forward capacity forecasting.</strong> Allie's ClickUp Gantt view (which she mentioned in the meeting) exists as a tool but isn't systematized or owned. The <strong>Adam Operating Brief</strong> names a weekly financial pulse check — capacity forecasting belongs in the same rhythm.</div>
+    </div>
+  </div>
+  <div class="split-full">
+    <div class="panel panel-verdict">
+      <div class="panel-label pl-verdict">Verdict</div>
+      <div class="verdict-grid">
+        <div class="vg-item">
+          <div class="vg-label">Alignment</div>
+          <div class="vg-val">Camila is filling a gap the artifacts didn't name. The tool exists (ClickUp). The practice doesn't.</div>
+        </div>
+        <div class="vg-item">
+          <div class="vg-label">What to Add</div>
+          <div class="vg-val">Add "weekly capacity snapshot" to Camila's scorecard as an owned metric. Add "capacity briefed before sales close" as a process gate. This is her first operational build.</div>
+        </div>
+        <div class="vg-item">
+          <div class="vg-label">Action</div>
+          <div class="vg-val">Camila builds the snapshot format. Concierge maintains it. Camila runs the 10-minute weekly capacity standup with Taylor, Matt, Marin.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FINDING 5 ── -->
+<div class="finding">
+  <div class="finding-header">
+    <div class="finding-num">5</div>
+    <div class="finding-meta">
+      <div class="finding-tag">Camila's Finding · The Sharpest Insight</div>
+      <div class="finding-title">For Creator Clients, Wonderly<br>Is Part of Their Product.</div>
+      <div class="finding-subtitle">"For niche clients, our product is part of their product. For others, our product is a vehicle for their product. That's why the perceived value is different."</div>
+    </div>
+  </div>
+
+  <div class="split">
+    <div class="panel panel-camila">
+      <div class="panel-label pl-camila">Camila Said</div>
+      <div class="camila-quote">"For the Pasta Queen, without our design, whatever she's selling will not be sold. We're bringing her persona to life. But for Aunt Flow, our product is just a vehicle to sell their product."</div>
+      <div class="panel-content">This distinction explains why involvement depth, pricing ceiling, account lead personality, revision tolerance, and service model are fundamentally different between the two tracks — not just operationally different but philosophically different. The niche client is buying Wonderly's identity participation. The non-creator client is buying reliable execution.</div>
+    </div>
+    <div class="panel panel-adam">
+      <div class="panel-label pl-adam">The Artifacts Say</div>
+      <div class="status s-sharp"><span class="status-dot sd-sharp"></span>Sharper Than Artifacts — Updates Them</div>
+      <div class="panel-content">The <strong>Org Brief</strong> names two tracks and their different account leads. The <strong>Brand Intensity Audit</strong> describes two voice registers. But neither document articulates <em>why</em> the tracks are different at a philosophical level. Camila's framing — ingredient vs. vehicle — is the clearest explanation of the two-track thesis in this entire project. It has pricing, scoping, staffing, and relationship implications that should be formally encoded.</div>
+    </div>
+  </div>
+  <div class="split-full">
+    <div class="panel panel-verdict">
+      <div class="panel-label pl-verdict">Verdict</div>
+      <div class="verdict-grid">
+        <div class="vg-item">
+          <div class="vg-label">Alignment</div>
+          <div class="vg-val">This doesn't just align with the artifacts — it improves them. It's the philosophical foundation the two-track model was missing.</div>
+        </div>
+        <div class="vg-item">
+          <div class="vg-label">Where It Should Go</div>
+          <div class="vg-val">Org Brief (why the tracks exist), Founder Team Brief (how to explain the tracks to new hires), Brand Intensity Audit (why the voice registers differ). It belongs in all three.</div>
+        </div>
+        <div class="vg-item">
+          <div class="vg-label">Action</div>
+          <div class="vg-val">Encode this framing formally. "Ingredient vs. vehicle" should become the internal language for the two-track distinction going forward.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FINDING 6 ── -->
+<div class="finding">
+  <div class="finding-header">
+    <div class="finding-num">6</div>
+    <div class="finding-meta">
+      <div class="finding-tag">Camila's Finding · Culture</div>
+      <div class="finding-title">The Team Has Zero Financial<br>Consideration in Daily Decisions.</div>
+      <div class="finding-subtitle">"Maria spent 8 hours on rework for the Pasta Queen. That's making us lose money. But it's not in any consideration from anyone — because it's just something we don't talk about."</div>
+    </div>
+  </div>
+
+  <div class="split">
+    <div class="panel panel-camila">
+      <div class="panel-label pl-camila">Camila Said</div>
+      <div class="camila-quote">"Quality is the first bottom line. But number two, you have to put time into consideration. Because at the end of the day, if we're not hitting our financial targets, then what are we doing?"</div>
+      <div class="panel-content">Triple bottom line thinking: quality + time + financial impact. Not "go faster." But "understand that one more hour impacts everyone across the organization, not just your project." This needs to become a cultural norm — not just a management metric — once unit economics are understood.</div>
+    </div>
+    <div class="panel panel-adam">
+      <div class="panel-label pl-adam">The Artifacts Say</div>
+      <div class="status s-match"><span class="status-dot sd-match"></span>Addressed — But Not Yet Lived</div>
+      <div class="panel-content">The <strong>scorecards</strong> include hours-to-estimate accuracy and project margin for Matt and Marin. The <strong>Zingerman's transparency roadmap</strong> in the Growth Plan opens the books by Q3 2026. The <strong>brief discipline</strong> in the Operating Brief is the structural mechanism — a complete brief before Figma opens protects margin from the front. But Camila correctly identifies that the <em>culture</em> hasn't absorbed this yet. The structure is there. The belief isn't.</div>
+    </div>
+  </div>
+  <div class="split-full">
+    <div class="panel panel-verdict">
+      <div class="panel-label pl-verdict">Verdict</div>
+      <div class="verdict-grid">
+        <div class="vg-item">
+          <div class="vg-label">Alignment</div>
+          <div class="vg-val">Strong structural alignment. Camila is naming the cultural gap that the artifacts haven't closed yet — and won't close until the books open and briefs are enforced.</div>
+        </div>
+        <div class="vg-item">
+          <div class="vg-label">Connection to Make</div>
+          <div class="vg-val">When the brief system rolls out, explicitly connect brief compliance to margin protection. Maria's rework example is the case study to use. Name it by name. Make the cost visible.</div>
+        </div>
+        <div class="vg-item">
+          <div class="vg-label">Action</div>
+          <div class="vg-val">Include financial impact framing in the brief discipline rollout. Not as a threat — as shared context. "A complete brief is how we protect everyone's time, including our own."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FINDING 7 ── -->
+<div class="finding">
+  <div class="finding-header">
+    <div class="finding-num">7</div>
+    <div class="finding-meta">
+      <div class="finding-tag">Camila's Finding · Admin Team</div>
+      <div class="finding-title">Lucy and Andrea Cannot<br>Differentiate Design from Development.</div>
+      <div class="finding-subtitle">"Two years in and not sure when is what. I think if you haven't learned it in two years, you're not going to learn it now."</div>
+    </div>
+  </div>
+
+  <div class="split">
+    <div class="panel panel-camila">
+      <div class="panel-label pl-camila">Camila Said</div>
+      <div class="camila-quote">"The key responsibility for concierge is: act when it's urgent and know who to send where. You need context for that. At this point I don't think they're going to get it."</div>
+      <div class="panel-content">Her prescription: divide tasks individually (not as a duo), evaluate separately, give specific responsibilities, give feedback fairly, give trial time — then make a decision. At least one of them may need to be replaced with someone younger, digitally native, and eager to learn the full picture of the business.</div>
+    </div>
+    <div class="panel panel-adam">
+      <div class="panel-label pl-adam">The Artifacts Say</div>
+      <div class="status s-sharp"><span class="status-dot sd-sharp"></span>Harder Than Artifacts — Updates Them</div>
+      <div class="panel-content">The <strong>Org Brief</strong> says: "Evaluate natural split — client-facing vs. ops-oriented. Or align one to each track." That was cautious. Camila has done the audit and arrived at a harder conclusion: the issue is not role split — it's capability fit. The "wait and see" framing in the artifacts needs to be updated to reflect Camila's finding. The evaluation she's proposing is the right next step, not continued observation.</div>
+    </div>
+  </div>
+  <div class="split-full">
+    <div class="panel panel-verdict">
+      <div class="panel-label pl-verdict">Verdict</div>
+      <div class="verdict-grid">
+        <div class="vg-item">
+          <div class="vg-label">Alignment</div>
+          <div class="vg-val">Camila is ahead of the artifacts here. Her read is harder and more specific — and it aligns with what Adam and Allie both said in the call.</div>
+        </div>
+        <div class="vg-item">
+          <div class="vg-label">What to Update</div>
+          <div class="vg-val">Org Brief "Roles to Evaluate" section: update Andrea/Lucy note from "evaluate natural split" to "individual evaluation underway — Camila owns this."</div>
+        </div>
+        <div class="vg-item">
+          <div class="vg-label">Action</div>
+          <div class="vg-val">Camila designs the individual task split. Both get a clear 30-day evaluation with specific criteria. Camila leads. Adam and Allie support. Decision made — not deferred.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FINDING 8 (Artifacts Know, Camila Needs) ── -->
+<div class="finding">
+  <div class="finding-header">
+    <div class="finding-num">8</div>
+    <div class="finding-meta">
+      <div class="finding-tag">Artifacts Know — Camila Doesn't Have This Yet</div>
+      <div class="finding-title">What the Artifacts Hold<br>That Camila Needs to Receive</div>
+      <div class="finding-subtitle">Camila identified that key knowledge lives in Adam and Allie's heads. Here's what the artifacts have already structured that she should be given immediately.</div>
+    </div>
+  </div>
+
+  <div class="split">
+    <div class="panel panel-camila">
+      <div class="panel-label pl-camila">What Camila Asked For</div>
+      <div class="camila-quote">"If you have it written down, send me the material. If not, record a video. I'll go over the information, try to understand it, and come back with a document. That way you're not taking hours from your day."</div>
+      <div class="panel-content">She needs: the pricing logic, the service definitions, the client category framework, the financial model, the org structure rationale, the two-track philosophy, and the unit economics baseline. Her plan is to receive it, translate it into operational structure, and bring it back for validation.</div>
+    </div>
+    <div class="panel panel-adam">
+      <div class="panel-label pl-adam">What Already Exists</div>
+      <div class="status s-new"><span class="status-dot sd-new"></span>Give Her These Documents</div>
+      <div class="panel-content">
+        The following artifacts answer her questions directly:<br><br>
+        <strong>Strategic Operating Brief</strong> — org structure, two tracks, discipline leads, scorecards<br>
+        <strong>Client Profitability Analysis</strong> — who's profitable and why<br>
+        <strong>2026 Budget (Comprehensive)</strong> — payroll allocation, service line P&L, cash flow<br>
+        <strong>Growth Plan</strong> — $3M path, pricing targets, people plan<br>
+        <strong>Executive Summary</strong> — the clean narrative she can read in 20 minutes<br>
+        <strong>Natural Growth Guide + Brand Intensity Audit</strong> — why the business is designed the way it is
+      </div>
+    </div>
+  </div>
+  <div class="split-full">
+    <div class="panel panel-verdict">
+      <div class="panel-label pl-verdict">Verdict</div>
+      <div class="verdict-grid">
+        <div class="vg-item">
+          <div class="vg-label">Situation</div>
+          <div class="vg-val">Camila is doing knowledge extraction manually that's already been done. The artifacts are the answer to "send me what's in your heads."</div>
+        </div>
+        <div class="vg-item">
+          <div class="vg-label">What to Do</div>
+          <div class="vg-val">Share the full document set with Camila before Friday. Brief her on the financial spreadsheets. Let her read the Executive Summary as orientation. Use Friday to close the gaps she identifies after reading.</div>
+        </div>
+        <div class="vg-item">
+          <div class="vg-label">The Accelerant</div>
+          <div class="vg-val">Camila + these documents + Friday planning day = a month of knowledge transfer compressed into a week. This is the highest-leverage move available right now.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SUMMARY TABLE ── -->
+<div class="summary">
+  <div class="summary-tag">Full Alignment Map</div>
+  <h2>Every Finding, <em>Mapped</em></h2>
+  <table class="sum-table">
+    <thead>
+      <tr>
+        <th>Camila's Finding</th>
+        <th>Status</th>
+        <th>Artifact(s) Relevant</th>
+        <th>Gap / Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="td-topic">Nobody knows whose turn it is with the client</td>
+        <td><div class="status s-match" style="display:inline-flex;margin:0;"><span class="status-dot sd-match"></span>Addressed</div></td>
+        <td class="td-mono">Strategic Operating Brief</td>
+        <td>Two-track model solves this. Add client lifecycle map.</td>
+      </tr>
+      <tr>
+        <td class="td-topic">Define what you sell before anything else</td>
+        <td><div class="status s-gap" style="display:inline-flex;margin:0;"><span class="status-dot sd-gap"></span>Gap</div></td>
+        <td class="td-mono">Budget, Profitability</td>
+        <td>Service + subscription definition document doesn't exist. Build it on Friday.</td>
+      </tr>
+      <tr>
+        <td class="td-topic">Offboarding needs to be a DTR</td>
+        <td><div class="status s-gap" style="display:inline-flex;margin:0;"><span class="status-dot sd-gap"></span>Gap</div></td>
+        <td class="td-mono">Content Marketing doc</td>
+        <td>Add DTR as a named service stage between Launch and Ongoing Partnership.</td>
+      </tr>
+      <tr>
+        <td class="td-topic">ClickUp shows current capacity, not forward</td>
+        <td><div class="status s-gap" style="display:inline-flex;margin:0;"><span class="status-dot sd-gap"></span>Gap</div></td>
+        <td class="td-mono">Scorecards</td>
+        <td>Camila builds the weekly capacity snapshot. Concierge maintains it.</td>
+      </tr>
+      <tr>
+        <td class="td-topic">Ingredient vs. vehicle — why two tracks exist</td>
+        <td><div class="status s-sharp" style="display:inline-flex;margin:0;"><span class="status-dot sd-sharp"></span>Sharpens Artifacts</div></td>
+        <td class="td-mono">Org Brief, Brand Audit, Team Brief</td>
+        <td>Encode this framing in all three documents. It's the clearest two-track explanation in the project.</td>
+      </tr>
+      <tr>
+        <td class="td-topic">Team has no financial consideration in daily work</td>
+        <td><div class="status s-match" style="display:inline-flex;margin:0;"><span class="status-dot sd-match"></span>Addressed (not yet lived)</div></td>
+        <td class="td-mono">Scorecards, Brief Discipline, Growth Plan</td>
+        <td>Brief compliance rollout must explicitly name the margin connection. Maria's rework is the case study.</td>
+      </tr>
+      <tr>
+        <td class="td-topic">Lucy/Andrea capability gap — two years, still unclear</td>
+        <td><div class="status s-sharp" style="display:inline-flex;margin:0;"><span class="status-dot sd-sharp"></span>Harder Than Artifacts</div></td>
+        <td class="td-mono">Org Brief (Roles to Evaluate)</td>
+        <td>Update Org Brief. Camila owns individual evaluation. Decision, not deferral.</td>
+      </tr>
+      <tr>
+        <td class="td-topic">Knowledge lives in founders' heads, not in documents</td>
+        <td><div class="status s-new" style="display:inline-flex;margin:0;"><span class="status-dot sd-new"></span>Artifacts Are the Answer</div></td>
+        <td class="td-mono">All documents</td>
+        <td>Share the full document set with Camila before Friday. This is the knowledge transfer she's asking for.</td>
+      </tr>
+      <tr>
+        <td class="td-topic">Scope creep has no enforcement mechanism</td>
+        <td><div class="status s-match" style="display:inline-flex;margin:0;"><span class="status-dot sd-match"></span>Addressed</div></td>
+        <td class="td-mono">Brief Frameworks, Scorecards</td>
+        <td>Brief discipline and change order gate are built. Need to be implemented via ClickUp templates.</td>
+      </tr>
+      <tr>
+        <td class="td-topic">QBO / financial model needs to underpin everything</td>
+        <td><div class="status s-match" style="display:inline-flex;margin:0;"><span class="status-dot sd-match"></span>Addressed</div></td>
+        <td class="td-mono">Budget, Balance Sheet, Transaction Clustering</td>
+        <td>Financial cleanup roadmap already exists. Camila takes it over. Phase 1 is this week.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ── FRIDAY BRIEF ── -->
+<div class="friday">
+  <div class="friday-tag">Before &amp; On Friday — Recommended Agenda</div>
+  <h3>What to Do With This Before<br>the Planning Day</h3>
+  <p style="font-size:13.5px;color:var(--body);line-height:1.75;font-weight:300;margin-bottom:4px;">The most powerful move is to share the full document set with Camila before Friday so she arrives with context, not questions. Then use the day to close the three foundational gaps she identified: service definitions, client lifecycle map, and the DTR framework.</p>
+  <div class="friday-items">
+    <div class="fi-group fi-camila">
+      <div class="fi-label">Camila Brings to Friday</div>
+      <ul class="fi-list">
+        <li>Her five-part definition framework (what to define and in what order)</li>
+        <li>Her FOH/BOH restaurant analogy diagram</li>
+        <li>Her concierge evaluation plan (individual task split for Lucy/Andrea)</li>
+        <li>Her capacity snapshot format (draft)</li>
+        <li>Open questions after reading the document set</li>
+      </ul>
+    </div>
+    <div class="fi-group fi-adam">
+      <div class="fi-label">Adam + Allie Bring to Friday</div>
+      <ul class="fi-list">
+        <li>Full document set shared with Camila in advance</li>
+        <li>Allie's Loom: how she quotes, tier structure, add-ons</li>
+        <li>Allie's sales decks with current packages</li>
+        <li>Adam's half-finished docs on dev tiers and team structure</li>
+        <li>Answers to Camila's five definition questions</li>
+        <li>Agreement on the "ingredient vs. vehicle" language for the two tracks</li>
+      </ul>
+    </div>
+  </div>
+  <div style="margin-top:24px;padding-top:18px;border-top:1px solid var(--rule);">
+    <p style="font-size:13px;color:var(--muted);font-weight:300;line-height:1.7;font-style:italic;">The goal by end of Friday: Camila has enough to build the service definition document. Adam and Allie have validated what Camila understands. The three foundational gaps — service definitions, lifecycle map, DTR — have owners and timelines.</p>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <span>Camila's Findings vs Adam's Artifacts · March 2026 · Internal</span>
+  <span>Meeting: Camila // Allie // Adam · March 30, 2026</span>
+</footer>
+
+</body>
+</html>
