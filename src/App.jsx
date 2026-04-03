@@ -3,6 +3,17 @@ import DocViewer from './DocViewer'
 
 const docs = [
   {
+    title: 'Operating Framework',
+    route: '/operating-framework',
+    file: 'Wonderly_Operating_Framework.html',
+    tag: 'Operations',
+    tagColor: '#d4a84a',
+    tagBg: '#281e0a',
+    emoji: '⚙️',
+    desc: 'The full operating framework — roles, responsibilities, team structure, delivery model, and how the org runs day to day.',
+    audience: 'Full Leadership Team',
+  },
+  {
     title: 'Strategic Operating Brief',
     route: '/strategic-brief',
     file: 'Wonderly_Strategic_Operating_Brief.html',
