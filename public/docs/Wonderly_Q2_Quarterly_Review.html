@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wonderly — Q2 2026 Quarterly Review & Doc Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Mono:wght@300;400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141210;
+    --ink-mid: #2c2825;
+    --cream: #f5f0e8;
+    --warm: #ede6d8;
+    --mid: #6b6259;
+    --light: #a09690;
+    --border: #d8cfc0;
+    --teal: #2a6b70;
+    --teal-light: #3d9098;
+    --teal-pale: #ddf0f2;
+    --amber: #b07830;
+    --amber-pale: #f5e8d0;
+    --rust: #8c4030;
+    --rust-pale: #f5e0d8;
+    --sage: #3a6045;
+    --sage-pale: #ddf0e4;
+    --status-green: #2a6b45;
+    --status-green-bg: #e0f0e8;
+    --status-amber: #8c6020;
+    --status-amber-bg: #f5ead8;
+    --status-red: #8c2a20;
+    --status-red-bg: #f5e0dc;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(20,18,16,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 0 4rem;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    height: 52px;
+  }
+
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    color: var(--teal-light);
+    text-transform: uppercase;
+    margin-right: auto;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 0;
+    list-style: none;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 0 1.2rem;
+    height: 52px;
+    line-height: 52px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+    border-left: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .nav-links a:hover { color: var(--cream); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 6rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 80% 20%, rgba(42,107,112,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 10% 90%, rgba(176,120,48,0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    color: var(--teal-light);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--teal-light);
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    font-weight: 400;
+    line-height: 1.0;
+    color: var(--cream);
+    margin-bottom: 2.5rem;
+    max-width: 18ch;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--teal-light);
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 4rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 2rem;
+  }
+
+  .hero-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .hero-meta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    color: var(--light);
+    text-transform: uppercase;
+  }
+
+  .hero-meta-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--cream);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 6rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.16em;
+    color: rgba(245,240,232,0.25);
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .hero-scroll::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 3rem;
+    background: rgba(245,240,232,0.15);
+  }
+
+  /* ── PART DIVIDER ── */
+  .part-divider {
+    background: var(--ink-mid);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 3rem 6rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .part-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--teal-light);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .part-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .part-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--cream);
+  }
+
+  .part-title em { font-style: italic; color: var(--teal-light); }
+
+  .part-sub {
+    font-size: 0.85rem;
+    color: var(--light);
+    max-width: 40rem;
+    margin-top: 0.4rem;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 5rem 6rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    color: var(--amber);
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--cream);
+  }
+
+  .section-title em { font-style: italic; color: rgba(245,240,232,0.5); }
+
+  .section-intro {
+    font-size: 1rem;
+    color: rgba(245,240,232,0.65);
+    max-width: 56rem;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+  }
+
+  /* ── DECISION CARDS ── */
+  .decision-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.05);
+    margin-bottom: 1.5px;
+  }
+
+  .decision-card {
+    background: var(--ink);
+    padding: 2rem 2.5rem;
+    position: relative;
+  }
+
+  .decision-card.full {
+    grid-column: 1 / -1;
+  }
+
+  .decision-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .decision-tag::before {
+    content: '';
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--teal);
+  }
+
+  .decision-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 0.7rem;
+  }
+
+  .decision-body {
+    font-size: 0.88rem;
+    color: rgba(245,240,232,0.6);
+    line-height: 1.75;
+  }
+
+  /* ── ACTION ITEMS ── */
+  .action-list {
+    counter-reset: action;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .action-item {
+    counter-increment: action;
+    display: grid;
+    grid-template-columns: 4rem 1fr auto;
+    gap: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+  }
+
+  .action-item:last-child { border-bottom: none; }
+
+  .action-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: rgba(245,240,232,0.2);
+    border-right: 1px solid rgba(255,255,255,0.05);
+    background: rgba(255,255,255,0.02);
+  }
+
+  .action-num::before {
+    content: counter(action, decimal-leading-zero);
+  }
+
+  .action-content {
+    padding: 1.5rem 2rem;
+  }
+
+  .action-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .action-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--cream);
+  }
+
+  .action-owner {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    color: var(--amber);
+    text-transform: uppercase;
+  }
+
+  .action-body {
+    font-size: 0.84rem;
+    color: rgba(245,240,232,0.55);
+    line-height: 1.7;
+  }
+
+  .action-badge {
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: flex-start;
+    border-left: 1px solid rgba(255,255,255,0.05);
+    width: 9rem;
+    flex-shrink: 0;
+  }
+
+  .badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+  }
+
+  .badge-priority { background: rgba(42,107,112,0.2); color: var(--teal-light); border: 1px solid rgba(42,107,112,0.3); }
+  .badge-finance { background: rgba(176,120,48,0.15); color: #d4924a; border: 1px solid rgba(176,120,48,0.3); }
+  .badge-people { background: rgba(58,96,69,0.2); color: #6aaa7a; border: 1px solid rgba(58,96,69,0.3); }
+  .badge-ops { background: rgba(255,255,255,0.05); color: var(--light); border: 1px solid rgba(255,255,255,0.1); }
+
+  /* ── CONCEPTS GRID ── */
+  .concepts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .concept-card {
+    background: var(--ink);
+    padding: 2rem;
+  }
+
+  .concept-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .concept-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .concept-body {
+    font-size: 0.83rem;
+    color: rgba(245,240,232,0.5);
+    line-height: 1.7;
+  }
+
+  /* ── AUDIT ── */
+  .aligned-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .aligned-row {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    padding: 1.4rem 2rem;
+    align-items: start;
+  }
+
+  .aligned-row:last-child { border-bottom: none; }
+
+  .check-icon {
+    color: var(--status-green);
+    font-size: 0.9rem;
+    padding-top: 0.1rem;
+  }
+
+  .aligned-content { padding-left: 0.8rem; }
+
+  .aligned-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    color: var(--cream);
+    margin-bottom: 0.25rem;
+  }
+
+  .aligned-body {
+    font-size: 0.82rem;
+    color: rgba(245,240,232,0.5);
+    line-height: 1.65;
+  }
+
+  /* ── INCONGRUENCE BLOCKS ── */
+  .incongruence-group {
+    margin-bottom: 3rem;
+  }
+
+  .incongruence-group-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--light);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .incongruence-group-label::before {
+    content: attr(data-letter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--cream);
+    font-size: 0.65rem;
+  }
+
+  .incongruence-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .incongruence-item {
+    background: var(--ink);
+    padding: 1.6rem 2rem;
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .status-dot {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .status-dot.red { background: #c0392b; box-shadow: 0 0 6px rgba(192,57,43,0.4); }
+  .status-dot.amber { background: #e67e22; box-shadow: 0 0 6px rgba(230,126,34,0.35); }
+
+  .incongruence-num-col {
+    display: flex;
+    justify-content: center;
+  }
+
+  .incon-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.98rem;
+    color: var(--cream);
+    margin-bottom: 0.35rem;
+  }
+
+  .incon-body {
+    font-size: 0.82rem;
+    color: rgba(245,240,232,0.52);
+    line-height: 1.7;
+  }
+
+  .incon-tag-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .incon-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+  }
+
+  .tag-new { background: rgba(192,57,43,0.15); color: #e88070; border: 1px solid rgba(192,57,43,0.25); }
+  .tag-gap { background: rgba(230,126,34,0.12); color: #d4924a; border: 1px solid rgba(230,126,34,0.22); }
+  .tag-decision { background: rgba(42,107,112,0.15); color: var(--teal-light); border: 1px solid rgba(42,107,112,0.25); }
+  .tag-urgent { background: rgba(140,40,32,0.2); color: #e06050; border: 1px solid rgba(140,40,32,0.3); }
+  .tag-drift { background: rgba(255,255,255,0.05); color: var(--light); border: 1px solid rgba(255,255,255,0.1); }
+
+  /* ── STATUS TABLE ── */
+  .status-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .status-table thead tr {
+    background: rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .status-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--light);
+    padding: 1rem 1.5rem;
+    text-align: left;
+  }
+
+  .status-table tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.15s;
+  }
+
+  .status-table tbody tr:last-child { border-bottom: none; }
+  .status-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+
+  .status-table td {
+    padding: 0.9rem 1.5rem;
+    font-size: 0.84rem;
+    color: rgba(245,240,232,0.7);
+    vertical-align: middle;
+  }
+
+  .status-table td:first-child {
+    color: var(--cream);
+    font-weight: 400;
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .pill-green {
+    background: rgba(42,107,69,0.2);
+    color: #6aaa80;
+    border: 1px solid rgba(42,107,69,0.3);
+  }
+  .pill-green::before { content: '✓'; }
+
+  .pill-amber {
+    background: rgba(176,120,48,0.18);
+    color: #d4924a;
+    border: 1px solid rgba(176,120,48,0.3);
+  }
+  .pill-amber::before { content: '△'; }
+
+  .pill-red {
+    background: rgba(140,42,32,0.2);
+    color: #e07060;
+    border: 1px solid rgba(140,42,32,0.3);
+  }
+  .pill-red::before { content: '✕'; }
+
+  /* ── CALLOUT BOX ── */
+  .callout-box {
+    border-left: 3px solid var(--teal);
+    background: rgba(42,107,112,0.08);
+    padding: 1.5rem 2rem;
+    margin: 2.5rem 0;
+  }
+
+  .callout-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .callout-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--cream);
+    line-height: 1.7;
+  }
+
+  .callout-box.amber {
+    border-left-color: var(--amber);
+    background: rgba(176,120,48,0.08);
+  }
+
+  .callout-box.amber .callout-label { color: #d4924a; }
+
+  .callout-box.rust {
+    border-left-color: var(--rust);
+    background: rgba(140,64,48,0.1);
+  }
+
+  .callout-box.rust .callout-label { color: #d07060; }
+
+  /* ── BOTTOM LINE ── */
+  .bottom-line {
+    background: var(--ink-mid);
+    padding: 5rem 6rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .bottom-line-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .bottom-line-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 2rem;
+  }
+
+  .bottom-line-title em { font-style: italic; color: var(--teal-light); }
+
+  .bottom-line-body {
+    font-size: 0.92rem;
+    color: rgba(245,240,232,0.6);
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+  }
+
+  .stat-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .stat-row {
+    background: var(--ink);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .stat-label {
+    font-size: 0.84rem;
+    color: rgba(245,240,232,0.55);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    padding: 2rem 6rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-left {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.16em;
+    color: rgba(245,240,232,0.2);
+    text-transform: uppercase;
+  }
+
+  /* ── UTILS ── */
+  .prose {
+    font-size: 0.9rem;
+    color: rgba(245,240,232,0.6);
+    line-height: 1.8;
+    max-width: 70ch;
+    margin-bottom: 1rem;
+  }
+
+  .divider {
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+    margin: 2.5rem 0;
+  }
+
+  @media (max-width: 900px) {
+    .nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 5rem 2rem 4rem; }
+    .section { padding: 3rem 2rem; }
+    .part-divider { padding: 2rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .decision-grid { grid-template-columns: 1fr; }
+    .concepts-grid { grid-template-columns: 1fr; }
+    .bottom-line { padding: 3rem 2rem; }
+    .bottom-line-grid { grid-template-columns: 1fr; gap: 2rem; }
+    footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.5rem; }
+    .hero-meta { flex-wrap: wrap; gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">Wonderly · Internal</div>
+  <ul class="nav-links">
+    <li><a href="#decisions">Decisions</a></li>
+    <li><a href="#actions">Actions</a></li>
+    <li><a href="#concepts">Concepts</a></li>
+    <li><a href="#aligned">Aligned</a></li>
+    <li><a href="#incongruent">Gaps</a></li>
+    <li><a href="#table">Status</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding-top: 8rem;">
+  <div class="hero-grid"></div>
+  <div class="hero-eyebrow">Q2 2026 · Leadership Quarterly</div>
+  <h1 class="hero-title">Meeting Record &amp; <em>Document Audit</em></h1>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Date</span>
+      <span class="hero-meta-value">April 3, 2026</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Present</span>
+      <span class="hero-meta-value">Adam · Allie · Camila</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Part One</span>
+      <span class="hero-meta-value">Meeting Synthesis</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Part Two</span>
+      <span class="hero-meta-value">Doc Suite Audit</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Status Items</span>
+      <span class="hero-meta-value">23 Reviewed</span>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     PART ONE — MEETING SYNTHESIS
+════════════════════════════════════════ -->
+
+<div class="part-divider">
+  <span class="part-num">Part One</span>
+  <div class="part-line"></div>
+  <div>
+    <div class="part-title">Meeting <em>Synthesis</em></div>
+    <p class="part-sub">Decisions made, action items sequenced, and concepts agreed upon — April 3, 2026</p>
+  </div>
+</div>
+
+<!-- DECISIONS -->
+<section class="section" id="decisions">
+  <div class="section-header">
+    <span class="section-num">01 — Decisions</span>
+    <h2 class="section-title">What Was <em>Settled</em></h2>
+  </div>
+  <p class="section-intro">These are the items that left the meeting resolved. Not hypotheses. Not directions to explore. Decided.</p>
+
+  <div class="decision-grid">
+    <div class="decision-card">
+      <div class="decision-tag">Internet Policy</div>
+      <div class="decision-title">Connectivity Reimbursement — Approved</div>
+      <div class="decision-body">A minimum internet speed policy for all remote/international team members will be established with a company reimbursement cap of ~$70/month. Adam has already gathered speed data from the team. Framing: infrastructure, not a perk — same logic as office internet.</div>
+    </div>
+    <div class="decision-card">
+      <div class="decision-tag">Org Structure</div>
+      <div class="decision-title">Two Tracks as the Organizing Spine — Confirmed</div>
+      <div class="decision-body">The two-track framework is the foundational lens through which all operational decisions now flow — sales, onboarding, delivery, billing, staffing, KPIs, and growth. Everything else is downstream of this. Not classification. Structure.</div>
+    </div>
+    <div class="decision-card">
+      <div class="decision-tag">Concierge Assignment</div>
+      <div class="decision-title">Lucy → Track 1. Andrea → Track 2.</div>
+      <div class="decision-body">Formalized with existing precedent (~6 months informal). Lucy owns Track 1 client relationship logistics and quarterly strategy session scheduling. Andrea owns Track 2. Decision: make it intentional and build toward it as permanent lane structure as each track scales independently.</div>
+    </div>
+    <div class="decision-card">
+      <div class="decision-tag">Leadership Transition</div>
+      <div class="decision-title">Camila Takes FOH Management in May</div>
+      <div class="decision-body">Camila is out the last week of April. Full front-of-house management transition begins in May. At that point she may be in a position to make "hard calls" if necessary. This is a structural handoff, not a gradual drift.</div>
+    </div>
+    <div class="decision-card full">
+      <div class="decision-tag">Strategic Sequencing</div>
+      <div class="decision-title">Marketing &amp; Growth Conversation Is Explicitly Deferred</div>
+      <div class="decision-body">Agreed: the marketing and growth strategy conversation cannot happen meaningfully until unit economics per client and per service are understood. Camila named this directly; Adam and Allie agreed. Marketing follows financial clarity. Adam acknowledged they'll move naturally toward brand content and BD on their own time regardless — Fridays are the target — but the formal growth strategy waits for unit economics.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIONS -->
+<section class="section" id="actions">
+  <div class="section-header">
+    <span class="section-num">02 — Action Items</span>
+    <h2 class="section-title">The Work <em>Ahead</em></h2>
+  </div>
+  <p class="section-intro">Sequenced by Camila and confirmed by all three. These are the next steps in the order that makes the rest possible.</p>
+
+  <div class="action-list">
+
+    <div class="action-item">
+      <div class="action-num"></div>
+      <div class="action-content">
+        <div class="action-header">
+          <div class="action-name">Document the Two Tracks</div>
+          <div class="action-owner">Camila · First Order</div>
+        </div>
+        <div class="action-body">Verbalize everything discussed into a clear, accessible document defining Track 1 and Track 2: who the client is, what they buy, why they're in that track, the criteria. This becomes the reference the entire team can use. Camila to send draft conclusions by Monday.</div>
+      </div>
+      <div class="action-badge"><span class="badge badge-priority">Priority</span></div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-num"></div>
+      <div class="action-content">
+        <div class="action-header">
+          <div class="action-name">Build the Service / Product Matrix</div>
+          <div class="action-owner">Camila · Allie · Adam</div>
+        </div>
+        <div class="action-body">A matrix that maps services to tracks with both pricing amounts AND delivery timeframes (SLAs). The "Goddess example" is the use case: Track 2 basic membership = 36-hour response window, clearly codified. This is the product catalog operationalized.</div>
+      </div>
+      <div class="action-badge"><span class="badge badge-priority">Priority</span></div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-num"></div>
+      <div class="action-content">
+        <div class="action-header">
+          <div class="action-name">Standardize All Processes Around the Tracks</div>
+          <div class="action-owner">Camila (driving) · Allie · Adam (input)</div>
+        </div>
+        <div class="action-body">Sales process, onboarding process, response time standards — all rebuilt or clarified through the lens of which track the client is in. Everything flows from the track definition. Starts with tracks, bleeds into everything else.</div>
+      </div>
+      <div class="action-badge"><span class="badge badge-ops">Ops</span></div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-num"></div>
+      <div class="action-content">
+        <div class="action-header">
+          <div class="action-name">Camila Sits with Andrea and Lucy</div>
+          <div class="action-owner">Camila</div>
+        </div>
+        <div class="action-body">Structured conversations to assess comfort level, assign ownership clearly by track, and build toward Adam and Allie being fully hands-off on concierge. They're not fishing in the same pond — by design, and by lane.</div>
+      </div>
+      <div class="action-badge"><span class="badge badge-people">People</span></div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-num"></div>
+      <div class="action-content">
+        <div class="action-header">
+          <div class="action-name">Define and Implement KPIs + Evaluation Timeline</div>
+          <div class="action-owner">Camila</div>
+        </div>
+        <div class="action-body">KPIs for front-of-house performance, brief compliance, and delivery quality. Paired with a proposed review timeline for Adam and Allie to approve. Includes the project post-mortem standard: every project gets a timely debrief with value created vs. cost of resources — not just an eventual financial review.</div>
+      </div>
+      <div class="action-badge"><span class="badge badge-ops">Ops</span></div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-num"></div>
+      <div class="action-content">
+        <div class="action-header">
+          <div class="action-name">Present Back-of-House Structure + FOH/BOH Interface</div>
+          <div class="action-owner">Camila</div>
+        </div>
+        <div class="action-body">After FOH is organized, Camila will present how BOH teams connect to FOH through the account manager role. Includes mapping existing team members to potential roles, identifying gaps, flagging where movement isn't possible. The account manager is the single communication layer — BOH only enters for specific, scheduled value-creation moments.</div>
+      </div>
+      <div class="action-badge"><span class="badge badge-priority">Priority</span></div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-num"></div>
+      <div class="action-content">
+        <div class="action-header">
+          <div class="action-name">Team Conversation: Value, Ownership, Costs by Tier</div>
+          <div class="action-owner">Adam (facilitated) · Camila (structured)</div>
+        </div>
+        <div class="action-body">A team-facing communication clarifying what ownership looks like at each level, how each role contributes to the value creation chain, and what accountability looks like going forward. Each layer has different ownership; all add up to the value creation process.</div>
+      </div>
+      <div class="action-badge"><span class="badge badge-people">People</span></div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-num"></div>
+      <div class="action-content">
+        <div class="action-header">
+          <div class="action-name">Unit Economic Analysis</div>
+          <div class="action-owner">Camila</div>
+        </div>
+        <div class="action-body">Understand where the business stands now on a per-client, per-service basis. Prerequisite to the marketing/growth conversation and the annual budget build. This is the thing that has to happen before the rest can be intelligent.</div>
+      </div>
+      <div class="action-badge"><span class="badge badge-finance">Finance</span></div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-num"></div>
+      <div class="action-content">
+        <div class="action-header">
+          <div class="action-name">Build Annual Budget</div>
+          <div class="action-owner">Camila</div>
+        </div>
+        <div class="action-body">Baseline from last year's actuals, layered with this year's targets. Goal: clear picture of how many large clients (Adam/Allie-driven) vs. smaller clients (Marin-driven) are needed to hit the number. Marin needs to know how many little fish to gather; that number doesn't exist yet.</div>
+      </div>
+      <div class="action-badge"><span class="badge badge-finance">Finance</span></div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-num"></div>
+      <div class="action-content">
+        <div class="action-header">
+          <div class="action-name">Adjust Billing Procedures by Track</div>
+          <div class="action-owner">Camila (design) · Ops (execution)</div>
+        </div>
+        <div class="action-body">Billing logic, cadences, and standards need to map to which track the client is in. Currently treated uniformly. Also: integrate the membership cross-sell opportunity into the offboarding/DTR close process.</div>
+      </div>
+      <div class="action-badge"><span class="badge badge-finance">Finance</span></div>
+    </div>
+
+    <div class="action-item">
+      <div class="action-num"></div>
+      <div class="action-content">
+        <div class="action-header">
+          <div class="action-name">Finalize Internet / Connectivity Policy</div>
+          <div class="action-owner">Adam</div>
+        </div>
+        <div class="action-body">Plan already drafted. Policy and reimbursement structure to be finalized and communicated to the team. Cap ~$70/month. Covers everyone's top-end tier for the foreseeable future.</div>
+      </div>
+      <div class="action-badge"><span class="badge badge-ops">Ops</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONCEPTS -->
+<section class="section" id="concepts">
+  <div class="section-header">
+    <span class="section-num">03 — Concepts Agreed Upon</span>
+    <h2 class="section-title">What We <em>Believe</em> Now</h2>
+  </div>
+  <p class="section-intro">Ideas that landed and held. These are now operating philosophy — not just meeting observations.</p>
+
+  <div class="concepts-grid">
+    <div class="concept-card">
+      <span class="concept-icon">⟷</span>
+      <div class="concept-title">Two Tracks Are Not a Hierarchy</div>
+      <div class="concept-body">Track 1 (Creator) and Track 2 (Non-Creator / B2B) are both important. Neither is "better." The team has never been told this explicitly. It must be communicated clearly — the framing matters.</div>
+    </div>
+    <div class="concept-card">
+      <span class="concept-icon">↑</span>
+      <div class="concept-title">Tracks Scale Independently</div>
+      <div class="concept-body">As each track grows, its own delivery team and specialization can scale without contaminating the other. The concierge model mirrors this. Lucy's world grows separately from Andrea's world. They're not fishing in the same pond — by design.</div>
+    </div>
+    <div class="concept-card">
+      <span class="concept-icon">⏱</span>
+      <div class="concept-title">Expedite Fee Model</div>
+      <div class="concept-body">Track 2 basic membership has a 36-hour SLA. If a client needs same-day response, they can pay an expedite fee. Not just revenue — it reinforces scarcity, sets standards, and removes entitlement thinking from both client and team. The "Goddess example" made it real.</div>
+    </div>
+    <div class="concept-card">
+      <span class="concept-icon">◈</span>
+      <div class="concept-title">Account Manager Clears the FOH/BOH Channel</div>
+      <div class="concept-body">The account manager role is the single communication layer between clients and back of house. BOH only enters for specific, scheduled value-creation moments. All service standard communication routes through account management. This is the structural solution to the FOH/BOH friction problem.</div>
+    </div>
+    <div class="concept-card">
+      <span class="concept-icon">₿</span>
+      <div class="concept-title">Blended Cost Rate Must Be Formalized</div>
+      <div class="concept-body">True cost of a team member isn't their hourly rate — it's their rate adjusted for what percentage of their time is billable. Allie has been running this manually in her head for years. Camila's unit economics work will make it real data.</div>
+    </div>
+    <div class="concept-card">
+      <span class="concept-icon">↗</span>
+      <div class="concept-title">Track 2 Revenue Ceiling Is Very High</div>
+      <div class="concept-body">Adam's belief, stated explicitly: Track 2 structured correctly could be a $10M business. The floor can keep rising — Wonderly doesn't have to chase small B2B work forever. As standards and systems mature, minimum contract size increases.</div>
+    </div>
+    <div class="concept-card">
+      <span class="concept-icon">✦</span>
+      <div class="concept-title">"Wonderly by Allie" — The Couture Tier</div>
+      <div class="concept-body">Camila introduced the Prada analogy: Wonderly is the brand, "Wonderly by Allie" is the couture tier. Track 1 creator work could triple in price point as demand and brand positioning strengthens. Adam and Allie both affirmed the direction.</div>
+    </div>
+    <div class="concept-card">
+      <span class="concept-icon">⬡</span>
+      <div class="concept-title">Founder Content as Strategic Unlock</div>
+      <div class="concept-body">Adam and Allie giving away strategic thinking publicly — frameworks, playbooks, concepts — is both a marketing play and a way to serve people who can't afford Wonderly yet. Strong marketing in front of the pipeline reduces friction at the sales conversation. If the prospect understands the value before the intro call, price justification is no longer the job.</div>
+    </div>
+    <div class="concept-card">
+      <span class="concept-icon">⚑</span>
+      <div class="concept-title">The Pattern of Great Calls Followed by Nothing Is Over</div>
+      <div class="concept-body">Allie named this explicitly as a historical pattern. This meeting felt different. The stated intent: alignment doesn't survive only as alignment — it must survive execution. Camila's role is the structural answer to that risk. This closing sentiment is now a commitment on the record.</div>
+    </div>
+  </div>
+
+  <div class="callout-box" style="margin-top: 2.5rem;">
+    <div class="callout-label">On Team Development</div>
+    <div class="callout-text">Camila's direction to Adam: the team has potential but carries real confidence deficits. Many team members — particularly women on international teams — have been conditioned not to speak their minds. Adam's people-reading ability and genuine care make him well-positioned to build intentional development pathways. The ask: think about who becomes a lead in five years, and architect the conversations, opportunities, and books that get them there.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     PART TWO — DOCUMENT AUDIT
+════════════════════════════════════════ -->
+
+<div class="part-divider">
+  <span class="part-num">Part Two</span>
+  <div class="part-line"></div>
+  <div>
+    <div class="part-title">Document Suite <em>Audit</em></div>
+    <p class="part-sub">Cross-referencing the full operating document hub against the April 3 meeting: what aligns, what doesn't, what's missing entirely.</p>
+  </div>
+</div>
+
+<!-- ALIGNED -->
+<section class="section" id="aligned">
+  <div class="section-header">
+    <span class="section-num">04 — Where Things Hold</span>
+    <h2 class="section-title">Alignment <em>Confirmed</em></h2>
+  </div>
+  <p class="section-intro">These concepts are consistent across the document suite and consistent with where the meeting landed. No update needed — the documents are doing their job on these items.</p>
+
+  <div class="aligned-list">
+    <div class="aligned-row">
+      <div class="check-icon">✓</div>
+      <div class="aligned-content">
+        <div class="aligned-title">Two-Track Model as Organizing Spine</div>
+        <div class="aligned-body">Every document that touches org structure treats the two tracks as foundational — Strategic Brief, Founder Brief, Natural Growth Guide, and the meeting. This is the one concept that landed and held across every layer with zero divergence.</div>
+      </div>
+    </div>
+    <div class="aligned-row">
+      <div class="check-icon">✓</div>
+      <div class="aligned-content">
+        <div class="aligned-title">Adam's Zone of Genius — Architect / Closer / Translator</div>
+        <div class="aligned-body">The Team Guide, Adam's Personal Operating Brief, the Adam Operating Guide, and the Founder Brief all describe the same three roles in nearly identical terms. Camila's direction at the end of the meeting (focus on people-reading and conviction-building) maps directly to this framing.</div>
+      </div>
+    </div>
+    <div class="aligned-row">
+      <div class="check-icon">✓</div>
+      <div class="aligned-content">
+        <div class="aligned-title">Allie's Extraction from Operations Toward Creative Direction</div>
+        <div class="aligned-body">The Founder Brief, Allie Profile, and Adam Operating Guide all describe the same trajectory — Allie moves toward creative direction, creator client relationships, and external voice. Allie's meeting statement ("if I don't have to catch six onboarding issues on a Friday, I can create a lot of value") is exactly what the documents are trying to architecturally create.</div>
+      </div>
+    </div>
+    <div class="aligned-row">
+      <div class="check-icon">✓</div>
+      <div class="aligned-content">
+        <div class="aligned-title">Brief Discipline as a Hard Gate</div>
+        <div class="aligned-body">Strategic Operating Brief and Founder Brief both state the same principle with the same firmness: no Figma opens, no dev environment spins up, without a completed brief. Consistent with each other. The meeting treated this as assumed, not debated — which is the goal.</div>
+      </div>
+    </div>
+    <div class="aligned-row">
+      <div class="check-icon">✓</div>
+      <div class="aligned-content">
+        <div class="aligned-title">$3M Goal and Long-Range Revenue Architecture</div>
+        <div class="aligned-body">$3M by 2029 is stated in the Strategic Brief, Founder Brief, and Natural Growth Guide with complete consistency. Revenue milestones, growth rate assumptions, and the logic connecting them are aligned across all three documents.</div>
+      </div>
+    </div>
+    <div class="aligned-row">
+      <div class="check-icon">✓</div>
+      <div class="aligned-content">
+        <div class="aligned-title">Camila as Chief of Staff / BOH Lead</div>
+        <div class="aligned-body">Every document that names Camila's role describes the same scope: financial visibility, operational infrastructure, metrics, and system design. The meeting's direction — that Camila takes over FOH in May and owns the operational sequence — is a natural extension of the documented scope, not a departure.</div>
+      </div>
+    </div>
+    <div class="aligned-row">
+      <div class="check-icon">✓</div>
+      <div class="aligned-content">
+        <div class="aligned-title">The Founders' Role Split (Adam Builds Machine; Allie Holds Creative Standard)</div>
+        <div class="aligned-body">Founder Brief, Adam's Personal Operating Brief, and Adam Operating Guide all describe the same division. The meeting's Friday content-day concept fits cleanly within this architecture. No conflict.</div>
+      </div>
+    </div>
+    <div class="aligned-row">
+      <div class="check-icon">✓</div>
+      <div class="aligned-content">
+        <div class="aligned-title">Tori at Capacity (76%) — Content Coordinator Hire is Urgent</div>
+        <div class="aligned-body">Strategic Brief names it as the highest-leverage next hire at "Now / $1.2M." Adam Personal Operating Brief calls it urgent. Founder Brief tells Tori the ceiling is real. All three documents are perfectly aligned on this — though the meeting's conspicuous silence on it is a different flag (see Section 05).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INCONGRUENT -->
+<section class="section" id="incongruent">
+  <div class="section-header">
+    <span class="section-num">05 — Where Things Don't Hold</span>
+    <h2 class="section-title">Gaps, Drift &amp; <em>Divergence</em></h2>
+  </div>
+  <p class="section-intro">Organized into four categories: decisions made in the meeting that aren't in any document, live doc items that didn't surface in the meeting, entirely new concepts with no documentation, and internal framing tensions between documents.</p>
+
+  <!-- GROUP A -->
+  <div class="incongruence-group">
+    <div class="incongruence-group-label" data-letter="A">Decisions Made in the Meeting — Not Yet in Any Document</div>
+    <div class="incongruence-list">
+
+      <div class="incongruence-item">
+        <div class="incongruence-num-col"><div class="status-dot red"></div></div>
+        <div>
+          <div class="incon-title">Lucy → Track 1 / Andrea → Track 2 — Decision Made, Docs Say TBD</div>
+          <div class="incon-body">The Strategic Operating Brief frames this as a decision point: "clarify natural split" or "align one to each delivery track." The meeting settled this explicitly — the track-based split is the answer, and it already has six months of informal precedent behind it. The documents are now behind the decision. Needs to be updated to reflect a resolved call, not an open one.</div>
+          <div class="incon-tag-row"><span class="incon-tag tag-decision">Decision made</span><span class="incon-tag tag-gap">Doc update needed</span></div>
+        </div>
+      </div>
+
+      <div class="incongruence-item">
+        <div class="incongruence-num-col"><div class="status-dot red"></div></div>
+        <div>
+          <div class="incon-title">Expedite Fee Model — Agreed, Not Documented Anywhere</div>
+          <div class="incon-body">Not in any document at all. The meeting introduced and agreed on this concept: Track 2 basic membership carries a 36-hour SLA, and clients can pay an expedite fee for same-day response. This is a billing policy with real implications for ChargeOver setup, client contract language, and team culture. It exists only in the transcript right now.</div>
+          <div class="incon-tag-row"><span class="incon-tag tag-new">New policy</span><span class="incon-tag tag-gap">Not documented</span></div>
+        </div>
+      </div>
+
+      <div class="incongruence-item">
+        <div class="incongruence-num-col"><div class="status-dot red"></div></div>
+        <div>
+          <div class="incon-title">Camila FOH Handoff in May — Agreed, No Timeline in Docs</div>
+          <div class="incon-body">The documents describe Camila's role scope correctly but carry no handoff timeline. The meeting set a specific trigger: out last week of April, full FOH management in May. This is operational and time-sensitive. It belongs in the document suite, not only in a meeting transcript.</div>
+          <div class="incon-tag-row"><span class="incon-tag tag-decision">Decision made</span><span class="incon-tag tag-gap">Timeline missing</span></div>
+        </div>
+      </div>
+
+      <div class="incongruence-item">
+        <div class="incongruence-num-col"><div class="status-dot red"></div></div>
+        <div>
+          <div class="incon-title">Project Post-Mortem Standard — New Process, Zero Documentation</div>
+          <div class="incon-body">The Strategic Operating Brief describes financial reviews but not project-level post-mortems as a standard. The meeting proposed and all three agreed: every project gets a timely debrief that includes value created vs. cost of resources — not just the eventual financial review. This is a new process standard agreed to in the meeting and absent from all documents.</div>
+          <div class="incon-tag-row"><span class="incon-tag tag-new">New process</span><span class="incon-tag tag-gap">Not documented</span></div>
+        </div>
+      </div>
+
+      <div class="incongruence-item">
+        <div class="incongruence-num-col"><div class="status-dot red"></div></div>
+        <div>
+          <div class="incon-title">Marketing Deferred Until Unit Economics Are Clear — Not Stated Anywhere</div>
+          <div class="incon-body">The Natural Growth Guide and Founder Brief imply marketing accelerates in later phases. The meeting made an explicit sequencing decision: no meaningful growth strategy conversation until unit economics per client and per service are understood. This sequencing logic isn't stated in any document. The current docs treat marketing and operations as roughly parallel tracks — the meeting drew a hard dependency line between them.</div>
+          <div class="incon-tag-row"><span class="incon-tag tag-decision">Sequencing decision</span><span class="incon-tag tag-gap">Doc update needed</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GROUP B -->
+  <div class="incongruence-group">
+    <div class="incongruence-group-label" data-letter="B">Live Document Items That Didn't Surface in the Meeting</div>
+    <div class="incongruence-list">
+
+      <div class="incongruence-item">
+        <div class="incongruence-num-col"><div class="status-dot amber"></div></div>
+        <div>
+          <div class="incon-title">Tori's Content Coordinator Hire — Urgent in Docs, Absent from Meeting</div>
+          <div class="incon-body">The Strategic Brief names this as the highest-priority next hire with a "Now / $1.2M" trigger. The Adam Personal Operating Brief calls it urgent. The Founder Brief tells Tori the 76% ceiling is real. Yet this hire didn't come up in the quarterly meeting at all. Either being handled on a separate track or has quietly stalled. The documents are unanimous on urgency — the meeting had zero velocity on it. Worth a direct status check before the next conversation.</div>
+          <div class="incon-tag-row"><span class="incon-tag tag-urgent">Urgent in docs</span><span class="incon-tag tag-drift">No meeting mention</span></div>
+        </div>
+      </div>
+
+      <div class="incongruence-item">
+        <div class="incongruence-num-col"><div class="status-dot amber"></div></div>
+        <div>
+          <div class="incon-title">Pasta Queen Repricing — "Cannot Wait for Q3," Also Absent from Meeting</div>
+          <div class="incon-body">The Strategic Operating Brief is direct: 759 hours, $73K revenue, 29% margin, January at 2% margin, $3–4K per month in erosion. "This conversation cannot wait for Q3." The meeting didn't reference it. Either it was resolved between document publication and today (and the doc wasn't updated), or it's still drifting without accountability. The level of urgency in the document warrants a status check regardless.</div>
+          <div class="incon-tag-row"><span class="incon-tag tag-urgent">Margin emergency</span><span class="incon-tag tag-drift">No meeting mention</span></div>
+        </div>
+      </div>
+
+      <div class="incongruence-item">
+        <div class="incongruence-num-col"><div class="status-dot amber"></div></div>
+        <div>
+          <div class="incon-title">Annual Retainer Escalators — High-Value, No Velocity</div>
+          <div class="incon-body">The Strategic Brief calls for Allie and Marin to add 5–8% annual increase clauses to all new and renewing retainers, projecting $60–80K/yr in additional recurring revenue within 12 months. The meeting discussed SLAs and billing procedures but didn't surface escalators. This is documented as a high-value operational move that produced no momentum in the quarterly conversation.</div>
+          <div class="incon-tag-row"><span class="incon-tag tag-gap">In docs only</span><span class="incon-tag tag-drift">No meeting mention</span></div>
+        </div>
+      </div>
+
+      <div class="incongruence-item">
+        <div class="incongruence-num-col"><div class="status-dot amber"></div></div>
+        <div>
+          <div class="incon-title">Officer Loans Promissory Note ($76,323) — Compliance Risk, No Status</div>
+          <div class="incon-body">Flagged in the Strategic Operating Brief: $76,323 outstanding to Allie, no repayment schedule, no documentation. IRS requires AFR-compliant promissory note for officer loans. Not mentioned in the meeting. No document updates confirm it's been addressed. This sits quietly as a compliance risk with no visible owner or timeline in the current record.</div>
+          <div class="incon-tag-row"><span class="incon-tag tag-urgent">Compliance risk</span><span class="incon-tag tag-drift">Status unknown</span></div>
+        </div>
+      </div>
+
+      <div class="incongruence-item">
+        <div class="incongruence-num-col"><div class="status-dot amber"></div></div>
+        <div>
+          <div class="incon-title">Tool / Seat Audit and Cancellations — "This Week," No Mention</div>
+          <div class="incon-body">The Strategic Brief flags $4,363/year in confirmed savings from canceling Slab, Clockwise, and Zoom, plus potential $3–8K more from seat audits across eight tools. These were listed as "this week" action items for Adam. No mention in the meeting. Unknown status. Small dollar amounts relative to the strategic conversation — but the discipline of following through on documented decisions matters for the culture of accountability being built.</div>
+          <div class="incon-tag-row"><span class="incon-tag tag-gap">In docs only</span><span class="incon-tag tag-drift">Status unknown</span></div>
+        </div>
+      </div>
+
+      <div class="incongruence-item">
+        <div class="incongruence-num-col"><div class="status-dot amber"></div></div>
+        <div>
+          <div class="incon-title">Natural Growth Guide Q2 Revenue Milestone ($125K Month) — Not Referenced</div>
+          <div class="incon-body">The Natural Growth Guide places "First $125K Month" as the Q2 2026 milestone — 50% above the 2025 monthly average of $84K. The April 3 meeting was Q2 2026 and focused almost entirely on structure and operations. Revenue performance against the documented Q2 milestone wasn't referenced at all. This may mean financial tracking infrastructure isn't operational yet (which would itself confirm the need for Camila's unit economics work), or it was discussed elsewhere in the longer session not captured in this transcript.</div>
+          <div class="incon-tag-row"><span class="incon-tag tag-gap">Milestone gap</span><span class="incon-tag tag-drift">No mention in meeting</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GROUP C -->
+  <div class="incongruence-group">
+    <div class="incongruence-group-label" data-letter="C">New Concepts from the Meeting — Zero Documentation</div>
+    <div class="incongruence-list">
+
+      <div class="incongruence-item">
+        <div class="incongruence-num-col"><div class="status-dot red"></div></div>
+        <div>
+          <div class="incon-title">"Wonderly by Allie" / Luxury Tier for Track 1</div>
+          <div class="incon-body">Camila introduced the Prada analogy — Wonderly is the brand, Wonderly by Allie is the couture tier. Adam and Allie both affirmed the direction. The Allie Profile describes her public positioning and the Founder Brief describes her as the creative standard, but no document introduces a tiered pricing logic for Track 1 or frames the creator track as having a premium sub-brand ceiling. This is a meaningful strategic concept with zero documentation.</div>
+          <div class="incon-tag-row"><span class="incon-tag tag-new">New strategic concept</span><span class="incon-tag tag-gap">Not documented</span></div>
+        </div>
+      </div>
+
+      <div class="incongruence-item">
+        <div class="incongruence-num-col"><div class="status-dot red"></div></div>
+        <div>
+          <div class="incon-title">Track 2 Revenue Ceiling Is $10M — Documents Say ~$1.2M</div>
+          <div class="incon-body">Adam stated Track 2, structured correctly, could be a $10M business. The Strategic Operating Brief treats Track 2 as "growing share → 40% of total revenue" — which at $3M scale is roughly $1.2M. That's not a $10M ambition. There's a significant gap between what Adam articulated in the meeting and what the document suite currently frames as the Track 2 ceiling. This matters for how the track is staffed, priced, and positioned as the business scales past $3M.</div>
+          <div class="incon-tag-row"><span class="incon-tag tag-new">Strategic divergence</span><span class="incon-tag tag-gap">$10M vs $1.2M</span></div>
+        </div>
+      </div>
+
+      <div class="incongruence-item">
+        <div class="incongruence-num-col"><div class="status-dot red"></div></div>
+        <div>
+          <div class="incon-title">Intentional Team Development / Confidence-Building Program</div>
+          <div class="incon-body">Camila's observation — that much of the team carries confidence deficits rooted in cultural conditioning, and that Adam is well-positioned to address this through mentorship, book recommendations, and structured conversation — has no equivalent anywhere in the documents. The Working With Adam guide addresses feedback and communication norms. The Founder Brief mentions people as the path to $3M. Neither speaks to a deliberate people-development practice. This is a leadership commitment that should be documented so it actually happens.</div>
+          <div class="incon-tag-row"><span class="incon-tag tag-new">New commitment</span><span class="incon-tag tag-gap">Not documented</span></div>
+        </div>
+      </div>
+
+      <div class="incongruence-item">
+        <div class="incongruence-num-col"><div class="status-dot red"></div></div>
+        <div>
+          <div class="incon-title">Service / Product Matrix with SLAs — Missing Entirely</div>
+          <div class="incon-body">The Strategic Operating Brief has pricing targets, utilization targets, and revenue-per-client targets. What doesn't exist anywhere is a client-facing service matrix that maps services to tracks with delivery timeframes embedded. This was named as Action Item #2 in the meeting and is required before the billing, onboarding, and process standardization work can proceed. No current document covers this gap.</div>
+          <div class="incon-tag-row"><span class="incon-tag tag-new">Action item</span><span class="incon-tag tag-gap">Missing artifact</span></div>
+        </div>
+      </div>
+
+      <div class="incongruence-item">
+        <div class="incongruence-num-col"><div class="status-dot red"></div></div>
+        <div>
+          <div class="incon-title">Blended Cost Rate Calculation Framework</div>
+          <div class="incon-body">Allie raised this in the meeting: true cost isn't hourly rate — it's hourly rate adjusted for percentage of billable time. She's been running this manually. No document currently describes this methodology or establishes it as a standard calculation. The Strategic Brief has per-client revenue targets but not a cost model to set rational floors for Track 2 pricing. Without this, minimum deal sizes and margin targets are operating on intuition, not data.</div>
+          <div class="incon-tag-row"><span class="incon-tag tag-new">Missing methodology</span><span class="incon-tag tag-gap">Not documented</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GROUP D -->
+  <div class="incongruence-group">
+    <div class="incongruence-group-label" data-letter="D">Internal Framing Tensions Between Documents</div>
+    <div class="incongruence-list">
+
+      <div class="incongruence-item">
+        <div class="incongruence-num-col"><div class="status-dot amber"></div></div>
+        <div>
+          <div class="incon-title">Allie "In the Relationship" vs. "Out of the Process" — Never Made Explicit</div>
+          <div class="incon-body">The Founder Brief tells Marin: "Book it, deliver it, close it — Allie doesn't need to be in the room." That language applies to Track 2 delivery. For Track 1, the Founder Brief says creator clients "are buying access to Allie's sensibility, her philosophy, her deep listening." Both statements are correct simultaneously — but they can read as contradictory depending on which page you're on. The distinction (Allie present for creator client relationships but not for delivery mechanics) needs to be stated explicitly somewhere, or the team will continue defaulting to pulling Allie in whenever anything feels uncertain.</div>
+          <div class="incon-tag-row"><span class="incon-tag tag-gap">Framing gap</span><span class="incon-tag tag-drift">Creates team confusion</span></div>
+        </div>
+      </div>
+
+      <div class="incongruence-item">
+        <div class="incongruence-num-col"><div class="status-dot amber"></div></div>
+        <div>
+          <div class="incon-title">Andrea/Lucy Split: Two Frameworks Still Open in the Strategic Brief</div>
+          <div class="incon-body">The Strategic Operating Brief presents both split options — function-based (one client-facing, one ops) and track-based — as equally valid paths. The meeting decided track-based is the answer. The Concierge Team Role Clarity Brief presumably went further, but the Strategic Brief still presents it as unresolved. A document that presents a decision as open when it's been made creates false optionality and slows accountability.</div>
+          <div class="incon-tag-row"><span class="incon-tag tag-decision">Resolved in meeting</span><span class="incon-tag tag-gap">Doc presents as open</span></div>
+        </div>
+      </div>
+
+      <div class="incongruence-item">
+        <div class="incongruence-num-col"><div class="status-dot amber"></div></div>
+        <div>
+          <div class="incon-title">Working With Adam Guide Undersells What the CoS Relationship Actually Requires</div>
+          <div class="incon-body">The Team Guide describes how to work around Adam's operating patterns and is accurate for the team. But Camila's actual role — Chief of Staff managing upward, holding Adam accountable, running the strategy translation process — is a more specific and demanding function than what the document describes. The guide tells the team to "translate vision into operations." What Camila is doing is running an EOS-adjacent operating cadence and holding the execution infrastructure together. The document doesn't describe what Camila specifically needs from Adam, only what the team in general needs from him. This gap means the most important operating relationship in the business isn't formally described anywhere.</div>
+          <div class="incon-tag-row"><span class="incon-tag tag-gap">Scope undersold</span><span class="incon-tag tag-drift">CoS relationship undocumented</span></div>
+        </div>
+      </div>
+
+      <div class="incongruence-item">
+        <div class="incongruence-num-col"><div class="status-dot amber"></div></div>
+        <div>
+          <div class="incon-title">Master FlowBased Operating Guide — Unclear Audience and Utility</div>
+          <div class="incon-body">This document is comprehensive and well-researched. But it sits outside the Wonderly-specific document family — it reads as a synthesis document built from the personal operating briefs, not as a Wonderly leadership team document. The team would have no obvious use for it. Adam and Allie already have their respective operating guides that cover the same territory more specifically. Its place in the hub is unclear. It risks being the document that gets read by no one because it lacks a clear, differentiated audience and purpose relative to what already exists.</div>
+          <div class="incon-tag-row"><span class="incon-tag tag-drift">Audience unclear</span><span class="incon-tag tag-gap">Utility vs. existing docs</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STATUS TABLE -->
+<section class="section" id="table">
+  <div class="section-header">
+    <span class="section-num">06 — Status Matrix</span>
+    <h2 class="section-title">Full Picture <em>at a Glance</em></h2>
+  </div>
+  <p class="section-intro">Every item reviewed. Green = aligned. Amber = gap or needs update. Red = not documented or directly divergent.</p>
+
+  <table class="status-table">
+    <thead>
+      <tr>
+        <th style="width: 45%">Topic</th>
+        <th style="width: 20%">Status</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Two-track model as organizing spine</td>
+        <td><span class="status-pill pill-green">Aligned</span></td>
+        <td>Fully consistent across all docs and meeting</td>
+      </tr>
+      <tr>
+        <td>Adam's zone of genius (Architect / Closer / Translator)</td>
+        <td><span class="status-pill pill-green">Aligned</span></td>
+        <td>Identical framing across all docs</td>
+      </tr>
+      <tr>
+        <td>Allie's extraction from operations toward creative direction</td>
+        <td><span class="status-pill pill-green">Aligned</span></td>
+        <td>Meeting reinforces what docs intend</td>
+      </tr>
+      <tr>
+        <td>Brief discipline gate (no Figma / dev without brief)</td>
+        <td><span class="status-pill pill-green">Aligned</span></td>
+        <td>Consistent — treated as settled in meeting</td>
+      </tr>
+      <tr>
+        <td>$3M goal and revenue roadmap</td>
+        <td><span class="status-pill pill-green">Aligned</span></td>
+        <td>Consistent across Strategic Brief, Founder Brief, Natural Growth Guide</td>
+      </tr>
+      <tr>
+        <td>Camila as Chief of Staff / BOH Lead</td>
+        <td><span class="status-pill pill-green">Aligned</span></td>
+        <td>Meeting extends her scope; no conflict</td>
+      </tr>
+      <tr>
+        <td>Founders' role split (Adam builds; Allie holds creative)</td>
+        <td><span class="status-pill pill-green">Aligned</span></td>
+        <td>Meeting's Friday content-day fits the architecture</td>
+      </tr>
+      <tr>
+        <td>Tori coordinator hire as urgent</td>
+        <td><span class="status-pill pill-green">Aligned</span></td>
+        <td>Docs aligned — meeting silence is a separate flag</td>
+      </tr>
+      <tr style="border-top: 2px solid rgba(255,255,255,0.06);">
+        <td>Lucy → Track 1 / Andrea → Track 2</td>
+        <td><span class="status-pill pill-amber">Update needed</span></td>
+        <td>Decision made in meeting; docs still frame as TBD</td>
+      </tr>
+      <tr>
+        <td>Camila FOH handoff in May</td>
+        <td><span class="status-pill pill-amber">Missing timeline</span></td>
+        <td>Decision made; no timeline in any document</td>
+      </tr>
+      <tr>
+        <td>Marketing deferred until unit economics clear</td>
+        <td><span class="status-pill pill-amber">Update needed</span></td>
+        <td>Sequencing decision not stated; docs treat as parallel</td>
+      </tr>
+      <tr>
+        <td>Natural Growth Guide Q2 $125K milestone</td>
+        <td><span class="status-pill pill-amber">No visibility</span></td>
+        <td>In docs; not tracked or referenced in meeting</td>
+      </tr>
+      <tr>
+        <td>Allie "in relationship vs. out of process" distinction</td>
+        <td><span class="status-pill pill-amber">Framing gap</span></td>
+        <td>Implicit in docs; never made explicit — creates team confusion</td>
+      </tr>
+      <tr>
+        <td>Annual retainer escalators ($60–80K/yr opportunity)</td>
+        <td><span class="status-pill pill-amber">No velocity</span></td>
+        <td>In docs; absent from meeting; no owner visible</td>
+      </tr>
+      <tr>
+        <td>Tori coordinator hire — meeting velocity</td>
+        <td><span class="status-pill pill-amber">Silent in meeting</span></td>
+        <td>Urgent in docs; completely absent from quarterly conversation</td>
+      </tr>
+      <tr>
+        <td>Pasta Queen repricing (2% margin, $3–4K/mo erosion)</td>
+        <td><span class="status-pill pill-amber">Status unknown</span></td>
+        <td>Urgent in docs; not mentioned — resolved or drifting?</td>
+      </tr>
+      <tr>
+        <td>Officer loans promissory note ($76,323)</td>
+        <td><span class="status-pill pill-amber">Compliance risk</span></td>
+        <td>In docs; no meeting mention; no visible status</td>
+      </tr>
+      <tr>
+        <td>Tool / seat audit and cancellations</td>
+        <td><span class="status-pill pill-amber">Status unknown</span></td>
+        <td>"This week" in docs; no mention in meeting</td>
+      </tr>
+      <tr style="border-top: 2px solid rgba(255,255,255,0.06);">
+        <td>Expedite fee model (36-hr SLA + fee for same-day)</td>
+        <td><span class="status-pill pill-red">Not documented</span></td>
+        <td>New policy agreed in meeting; exists only in transcript</td>
+      </tr>
+      <tr>
+        <td>Project post-mortem standard (value vs. cost)</td>
+        <td><span class="status-pill pill-red">Not documented</span></td>
+        <td>New process agreed in meeting; no equivalent in docs</td>
+      </tr>
+      <tr>
+        <td>"Wonderly by Allie" / luxury tier for Track 1</td>
+        <td><span class="status-pill pill-red">Not documented</span></td>
+        <td>New strategic concept; zero documentation</td>
+      </tr>
+      <tr>
+        <td>Track 2 revenue ceiling ($10M per Adam)</td>
+        <td><span class="status-pill pill-red">Diverges from docs</span></td>
+        <td>Docs frame Track 2 as ~$1.2M share; meeting says $10M ceiling</td>
+      </tr>
+      <tr>
+        <td>Intentional team development / confidence-building program</td>
+        <td><span class="status-pill pill-red">Not documented</span></td>
+        <td>New leadership commitment; no doc equivalent</td>
+      </tr>
+      <tr>
+        <td>Service / product matrix with SLAs</td>
+        <td><span class="status-pill pill-red">Missing artifact</span></td>
+        <td>Action Item #2 from meeting; no existing document</td>
+      </tr>
+      <tr>
+        <td>Blended cost rate calculation methodology</td>
+        <td><span class="status-pill pill-red">Not documented</span></td>
+        <td>Allie running this manually; no formal framework exists</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- BOTTOM LINE -->
+<div class="bottom-line">
+  <div class="bottom-line-grid">
+    <div>
+      <h2 class="bottom-line-title">Bottom <em>Line</em></h2>
+      <p class="bottom-line-body">The documents are strongest where the concepts are most settled — the two tracks, the brief discipline, the founder roles, the $3M arc. They hold together well as a leadership alignment suite for the things decided before this meeting.</p>
+      <p class="bottom-line-body">What the April 3 meeting generated is a layer of operational specificity the documents don't yet carry: the expedite fee, the SLA matrix, the Lucy/Andrea formalization, the May handoff timeline, the post-mortem standard, and the explicit deferral of marketing strategy. Those need to make it into the document suite before the next quarterly — or the documents are already operating instructions for a business that no longer matches the decisions made.</p>
+      <p class="bottom-line-body">The more significant gap is the strategic divergence on Track 2's ceiling ($10M vs. the documents' modest framing) and the "Wonderly by Allie" luxury tier for Track 1. If those ideas hold — and the energy in the meeting suggests they will — the current documents underframe both tracks' long-range potential. That matters for how Camila writes the two-track definition document, which is her first deliverable.</p>
+
+      <div class="callout-box rust" style="margin-top: 2rem;">
+        <div class="callout-label">The Urgency Flag</div>
+        <div class="callout-text">The "Tori hire" and "Pasta Queen repricing" silence in the meeting against their urgency in the documents is the most operationally concerning gap. Both were written as "this week" and "cannot wait for Q3" items. Neither surfaced in a full quarterly strategy session. That's either a sign they've been handled and the docs weren't updated — or a sign they've been drifting. Either answer needs to be confirmed explicitly.</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="stat-stack">
+        <div class="stat-row">
+          <span class="stat-label">Documents reviewed</span>
+          <span class="status-pill pill-green">8</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Total items audited</span>
+          <span class="status-pill pill-green">23</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Fully aligned</span>
+          <span class="status-pill pill-green">8 items</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Gap / update needed</span>
+          <span class="status-pill pill-amber">10 items</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Not documented / divergent</span>
+          <span class="status-pill pill-red">7 items</span>
+        </div>
+        <div class="stat-row" style="border-top: 1px solid rgba(255,255,255,0.08);">
+          <span class="stat-label">New concepts needing a home</span>
+          <span class="status-pill pill-red">5</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Urgent items with no visible status</span>
+          <span class="status-pill pill-amber">3</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Strategic divergence points</span>
+          <span class="status-pill pill-red">2</span>
+        </div>
+      </div>
+
+      <div class="callout-box" style="margin-top: 1.5rem;">
+        <div class="callout-label">Priority Update Queue</div>
+        <div class="callout-text">Camila's two-track document (Action #1) should absorb the most urgent gaps: Lucy/Andrea formalization, the expedite fee model, the SLA framework, and the explicit statement that marketing follows unit economics. The "Wonderly by Allie" tier and the $10M Track 2 ceiling belong in a later strategic update — once Camila's unit economics work establishes what the current numbers actually support.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-left">Wonderly · Internal · April 2026 · Confidential — Leadership Team Only</div>
+  <div class="footer-left">Prepared from Fireflies transcript + operating document suite review</div>
+</footer>
+
+</body>
+</html>

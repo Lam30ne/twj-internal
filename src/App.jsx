@@ -3,6 +3,17 @@ import DocViewer from './DocViewer'
 
 const docs = [
   {
+    title: 'Q2 2026 Quarterly Review',
+    route: '/quarterly-review',
+    file: 'Wonderly_Q2_Quarterly_Review.html',
+    tag: 'Q2 2026',
+    tagColor: '#3d9098',
+    tagBg: '#0a2628',
+    emoji: '📋',
+    desc: 'Meeting synthesis + document audit from April 3. Decisions made, action items, concepts agreed, alignment confirmed, and gaps identified across the full doc suite.',
+    audience: 'Adam · Allie · Camila',
+  },
+  {
     title: 'Operating Framework',
     route: '/operating-framework',
     file: 'Wonderly_Operating_Framework.html',
