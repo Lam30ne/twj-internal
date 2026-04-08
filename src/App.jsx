@@ -69,7 +69,7 @@ const docs = [
     audience: 'Tori · Allie · Adam · Maria',
   },
   {
-    title: 'Camila\'s Findings vs The Artifacts',
+    title: "Camila's Findings vs The Artifacts",
     route: '/camila-review',
     file: 'Camila_vs_Artifacts_Review.html',
     tag: 'Review',
@@ -80,7 +80,7 @@ const docs = [
     audience: 'Adam · Allie · Camila',
   },
   {
-    title: 'A Note on Where We\'re Headed',
+    title: "A Note on Where We're Headed",
     route: '/founder-brief',
     file: 'Wonderly_Founder_Brief_For_Team.html',
     tag: 'Team Brief',
@@ -111,6 +111,17 @@ const docs = [
     emoji: '🧿',
     desc: 'What to protect, what to stop, what to do excellently, and what to let go of. The operating quadrant, weekly rhythm, and drift signals to catch early.',
     audience: 'Adam · Confidential',
+  },
+  {
+    title: 'Talent & Trade — Internal Memo',
+    route: '/talent-trade',
+    file: 'Wonderly_Talent_Trade_Memo.html',
+    tag: 'Team Memo',
+    tagColor: '#90c870',
+    tagBg: '#0c1c06',
+    emoji: '↔️',
+    desc: 'Internal framework for understanding Wonderly’s two client types: Talent and Trade. Clarifies how we think, route work, and structure responsibilities.',
+    audience: 'Full Team',
   },
 ]
 
