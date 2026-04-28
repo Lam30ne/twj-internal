@@ -47,7 +47,7 @@ The financial baseline: **$1.1M in 2025 revenue**, targeting **$1.54M in 2026** 
 
 ## Key Principles Across All Documents
 
-**Two delivery tracks.** Creator clients (Allie leads) vs. Non-creator clients (Marin leads). For creator clients, Wonderly's product is part of their product. For non-creator clients, it's a vehicle for theirs.
+**Two delivery tracks.** The Talent Track (Allie leads) covers personality-driven clients — creators, podcasters, authors. The Trades Track (Marin leads) covers organizational clients — B2B, nonprofits, manufacturers. On the Talent Track, Wonderly's product is part of theirs; on the Trades Track, it's a vehicle for theirs.
 
 **Discipline-lead model.** Matt (Dev), Taylor (Design), Tori (Marketing) own craft and process standards. Account leads own client relationships and outcomes. These are orthogonal, not competitive.
 
