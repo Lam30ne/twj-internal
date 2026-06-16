@@ -41,7 +41,7 @@ These documents were built as part of a strategic planning sprint in March 2026,
 - Camila's first-week operational audit findings
 - EOS / Zingerman's organizational philosophy
 
-The financial baseline: **$1.1M in 2025 revenue**, targeting **$1.54M in 2026** and **$3M by 2029**.
+The financial baseline: **$1.12M in 2025 revenue**, targeting **$1.54M in 2026** and **$3M by 2028** (at 25% net).
 
 ---
 
