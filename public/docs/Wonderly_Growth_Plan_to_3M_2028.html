@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wonderly — Growth Plan: The Path to $3M by 2028</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0c; --paper: #f5f2ec; --paper-2: #ede9e1; --rule: #d4cfc6;
+    --accent: #c85a1e; --accent-light: #f2e8e1; --gold: #b8892a;
+    --green: #2d6a4f; --green-light: #e8f4f0; --red: #9b2226; --red-light: #fdecea;
+    --muted: #7a7570; --col-width: 860px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.7; }
+
+  .cover { background: var(--ink); color: var(--paper); padding: 80px 60px 70px; position: relative; overflow: hidden; }
+  .cover::before { content: ''; position: absolute; top: -60px; right: -60px; width: 320px; height: 320px; border: 1px solid rgba(245,242,236,0.1); border-radius: 50%; }
+  .cover::after { content: ''; position: absolute; bottom: -40px; left: 40px; width: 180px; height: 180px; border: 1px solid rgba(200,90,30,0.3); border-radius: 50%; }
+  .cover-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 28px; }
+  .cover h1 { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 700; line-height: 1.12; margin-bottom: 12px; max-width: 640px; }
+  .cover-sub { font-size: 15px; color: rgba(245,242,236,0.6); margin-bottom: 40px; font-weight: 300; max-width: 580px; }
+  .cover-meta { display: flex; gap: 38px; border-top: 1px solid rgba(245,242,236,0.12); padding-top: 24px; margin-top: 40px; flex-wrap: wrap; }
+  .cover-meta-item label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,242,236,0.4); display: block; margin-bottom: 4px; }
+  .cover-meta-item span { font-size: 13px; color: var(--paper); font-weight: 500; }
+
+  .toc { background: var(--paper-2); border-bottom: 1px solid var(--rule); padding: 24px 60px; }
+  .toc-inner { max-width: var(--col-width); margin: 0 auto; display: flex; gap: 4px; flex-wrap: wrap; }
+  .toc a { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; padding: 6px 12px; border-radius: 3px; transition: all 0.15s; }
+  .toc a:hover { background: var(--rule); color: var(--ink); }
+
+  main { max-width: var(--col-width); margin: 0 auto; padding: 0 60px 80px; }
+  section { margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--rule); }
+  section:first-child { border-top: none; margin-top: 40px; }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--accent); opacity: 0.2; }
+  h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 600; margin-bottom: 6px; line-height: 1.2; }
+  .section-desc { color: var(--muted); font-size: 13px; margin-bottom: 28px; max-width: 600px; }
+  h3 { font-size: 13px; font-weight: 600; letter-spacing: 0.02em; margin-bottom: 12px; margin-top: 28px; color: var(--ink); }
+  p { margin-bottom: 14px; color: #2a2724; font-size: 13.5px; }
+  strong { color: var(--ink); }
+
+  .stat-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; margin: 8px 0 24px; }
+  .stat { background: #fff; padding: 18px 16px; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--ink); line-height: 1; }
+  .stat-num.accent { color: var(--accent); }
+  .stat-num.green { color: var(--green); }
+  .stat-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 8px; line-height: 1.4; }
+
+  .table-wrap { background:#fff; border:1px solid var(--rule); border-radius:6px; overflow:hidden; margin: 8px 0 24px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th { font-family: 'DM Mono', monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); padding: 9px 12px; background: var(--paper-2); border-bottom: 1px solid var(--rule); text-align: left; font-weight: 500; }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--paper-2); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  .td-mono { font-family: 'DM Mono', monospace; font-size: 11.5px; }
+  .td-green { color: var(--green); font-weight: 500; }
+  .td-red { color: var(--red); }
+  .td-muted { color: var(--muted); }
+  .row-goal td { background: var(--green-light); font-weight: 600; }
+  .row-now td { background: var(--accent-light); }
+
+  .callout { background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 4px 4px 0; padding: 14px 18px; margin: 20px 0; }
+  .callout p { color: #4a2010; font-size: 13px; margin: 0; }
+  .callout strong { color: var(--accent); }
+  .callout-green { background: var(--green-light); border-left-color: var(--green); }
+  .callout-green p { color: #1a3d2e; }
+  .callout-green strong { color: var(--green); }
+  .callout-red { background: var(--red-light); border-left-color: var(--red); }
+  .callout-red p { color: #5e1517; }
+  .callout-red strong { color: var(--red); }
+
+  .lever { background:#fff; border:1px solid var(--rule); border-radius:6px; margin-bottom:16px; overflow:hidden; }
+  .lever-head { display:flex; justify-content:space-between; align-items:flex-start; gap:14px; padding:16px 20px; border-bottom:1px solid var(--paper-2); }
+  .lever-n { font-family:'DM Mono',monospace; font-size:10px; color:var(--accent); letter-spacing:0.1em; margin-bottom:4px; }
+  .lever-title { font-size:15px; font-weight:600; }
+  .lever-add { text-align:right; background:var(--green-light); border:1px solid rgba(45,106,79,0.25); border-radius:4px; padding:8px 12px; min-width:128px; flex-shrink:0; }
+  .lever-add-label { font-family:'DM Mono',monospace; font-size:8.5px; text-transform:uppercase; letter-spacing:0.1em; color:var(--green); display:block; margin-bottom:2px; }
+  .lever-add-val { font-family:'DM Mono',monospace; font-size:14px; font-weight:600; color:var(--green); }
+  .lever-body { padding:16px 20px; }
+  .lever-body p { margin-bottom:10px; }
+  .lever-body p:last-child { margin-bottom:0; }
+  .moves { list-style:none; margin:6px 0 0; }
+  .moves li { font-size:12.5px; color:#2a2724; padding:6px 0 6px 20px; position:relative; border-top:1px solid var(--paper-2); }
+  .moves li::before { content:'→'; position:absolute; left:0; color:var(--accent); }
+
+  /* WATERFALL */
+  .waterfall { background:#fff; border:1px solid var(--rule); border-radius:6px; overflow:hidden; margin: 8px 0 20px; }
+  .wf-top { background:var(--ink); color:var(--paper); padding:16px 20px; display:flex; justify-content:space-between; align-items:baseline; }
+  .wf-top-label { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(245,242,236,0.6); }
+  .wf-top-val { font-family:'Playfair Display',serif; font-size:24px; font-weight:700; }
+  .wf-row { display:grid; grid-template-columns: 26px 1fr auto auto; gap:14px; align-items:center; padding:13px 20px; border-bottom:1px solid var(--paper-2); }
+  .wf-row:last-child { border-bottom:none; }
+  .wf-bar { height:10px; border-radius:2px; }
+  .wf-name { font-size:13px; font-weight:600; }
+  .wf-sub { font-size:11px; color:var(--muted); }
+  .wf-pct { font-family:'DM Mono',monospace; font-size:11px; color:var(--muted); text-align:right; }
+  .wf-amt { font-family:'DM Mono',monospace; font-size:13px; font-weight:600; text-align:right; min-width:64px; }
+
+  .milestone-row { display:grid; grid-template-columns:90px 1fr 1fr; gap:18px; padding:16px 0; border-bottom:1px solid var(--rule); align-items:start; }
+  .milestone-row:last-child { border-bottom:none; }
+  .milestone-date { font-family:'DM Mono',monospace; font-size:11px; font-weight:500; color:var(--accent); padding-top:2px; }
+  .milestone-title { font-size:13px; font-weight:600; margin-bottom:4px; }
+  .milestone-desc { font-size:12.5px; color:var(--muted); line-height:1.6; }
+  .milestone-number { display:flex; align-items:baseline; gap:6px; margin-bottom:5px; }
+  .mn-label { font-family:'DM Mono',monospace; font-size:9.5px; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); min-width:80px; }
+  .mn-val { font-family:'DM Mono',monospace; font-size:12px; font-weight:500; color:var(--ink); }
+
+  .risk { background:#fff; border:1px solid var(--rule); border-radius:6px; overflow:hidden; }
+  .risk-row { display:grid; grid-template-columns: 190px 1fr; gap:16px; padding:14px 20px; border-bottom:1px solid var(--paper-2); }
+  .risk-row:last-child { border-bottom:none; }
+  .risk-name { font-size:12.5px; font-weight:600; }
+  .risk-sev { font-family:'DM Mono',monospace; font-size:8.5px; text-transform:uppercase; letter-spacing:0.1em; margin-top:4px; display:inline-block; padding:2px 6px; border-radius:3px; }
+  .sev-high { background:var(--red-light); color:var(--red); }
+  .sev-med { background:var(--accent-light); color:var(--accent); }
+  .risk-mit { font-size:12.5px; color:#2a2724; line-height:1.6; }
+
+  footer { background: var(--ink); color: rgba(245,242,236,0.3); padding: 28px 60px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; display: flex; justify-content: space-between; align-items: center; }
+
+  @media print { .toc { display: none; } section { page-break-inside: avoid; } }
+  @media (max-width: 640px) { .stat-strip { grid-template-columns: repeat(2,1fr); } .milestone-row { grid-template-columns:1fr; } .lever-head{flex-direction:column;} .risk-row{grid-template-columns:1fr;} .wf-row{grid-template-columns:20px 1fr auto;} .wf-pct{display:none;} }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-label">Confidential — Leadership Team Only · Growth Plan</div>
+  <h1>The Path to $3M by 2028</h1>
+  <div class="cover-sub">A three-year growth plan to nearly triple revenue — organically, across both tracks — while holding the margin discipline that makes the growth worth having.</div>
+  <div class="cover-meta">
+    <div class="cover-meta-item"><label>Prepared</label><span>June 2026</span></div>
+    <div class="cover-meta-item"><label>Baseline (2025)</label><span>$1.12M</span></div>
+    <div class="cover-meta-item"><label>Target (2028)</label><span>$3.0M · 25% net</span></div>
+    <div class="cover-meta-item"><label>Growth</label><span>~39% CAGR · organic</span></div>
+  </div>
+</div>
+
+<!-- TOC -->
+<nav class="toc">
+  <div class="toc-inner">
+    <a href="#goal">01 The Goal</a>
+    <a href="#bridge">02 Where Growth Comes From</a>
+    <a href="#levers">03 The Growth Levers</a>
+    <a href="#tracks">04 Two-Track Engine</a>
+    <a href="#margin">05 Growth That Stays Profitable</a>
+    <a href="#cash">06 Cash to Fund Growth</a>
+    <a href="#capacity">07 Capacity &amp; Hiring</a>
+    <a href="#milestones">08 Milestones</a>
+    <a href="#profit">09 Profit &amp; Distribution</a>
+    <a href="#risk">10 Risks</a>
+    <a href="#scorecard">11 Scorecard</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- 01 THE GOAL -->
+<section id="goal">
+  <div class="section-label">01</div>
+  <h2>The Goal</h2>
+  <p class="section-desc">Triple the business in three years — from $1.12M to $3.0M — without an acquisition, a bet-the-company anchor, or a year of chaos. This is a growth plan you can run on rhythm.</p>
+
+  <div class="stat-strip">
+    <div class="stat"><div class="stat-num">$1.12M</div><div class="stat-label">2025 Revenue<br>(QBO actual)</div></div>
+    <div class="stat"><div class="stat-num accent">$3.0M</div><div class="stat-label">2028 Target<br>~39% CAGR</div></div>
+    <div class="stat"><div class="stat-num green">~90</div><div class="stat-label">Clients at $33K avg<br>(from 153 at $7K)</div></div>
+    <div class="stat"><div class="stat-num green">25%</div><div class="stat-label">Net margin held<br>through the growth</div></div>
+  </div>
+
+  <p><strong>The shape of the plan:</strong> revenue grows ~37–40% a year, every year, through four organic levers — pricing, a higher-value client mix, a recurring-revenue engine, and selective net-new sales — spread across the Talent and Trades tracks. No single deal has to land for the year to work, which is what makes a three-year horizon achievable rather than heroic.</p>
+
+  <p><strong>Why the extra year matters:</strong> a 2027 sprint to $3M would have required nearly doubling in a single year and a forced inorganic move. Stretching to 2028 turns that into a steady organic climb, gives gross margin three years to rise from 50% to 58%, and lets overhead fall as a share of revenue gradually instead of all at once. Growth and margin compound together rather than fighting each other.</p>
+
+  <p>The plan keeps a firm profit discipline underneath the growth — a 25% net target, distributed cleanly to owners and shared with the team — but that's the engine room, detailed in <a href="#profit" style="color:var(--accent);">Section 09</a>. The story up front is the growth itself: where it comes from, how it's sold, and what it takes to deliver it.</p>
+</section>
+
+<!-- 02 WHERE GROWTH COMES FROM -->
+<section id="bridge">
+  <div class="section-label">02</div>
+  <h2>Where the Growth Comes From</h2>
+  <p class="section-desc">$1.54M this year becomes $3.0M in 2028. Here is the bridge — every dollar of the ~$1.5M of net growth assigned to a lever, with churn accounted for.</p>
+
+  <h3>Revenue Roadmap</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Year</th><th>Revenue</th><th>YoY Growth</th><th>Clients</th><th>Avg Rev / Client</th></tr></thead>
+      <tbody>
+        <tr><td class="td-mono">2025 Actual</td><td class="td-mono">$1.12M</td><td class="td-muted">—</td><td class="td-mono">153</td><td class="td-mono">$7,206</td></tr>
+        <tr class="row-now"><td class="td-mono" style="color:var(--accent);font-weight:600;">2026 Budget</td><td class="td-mono">$1.54M</td><td class="td-mono">+37%</td><td class="td-mono">~115</td><td class="td-mono">$13,400</td></tr>
+        <tr><td class="td-mono">2027 Plan</td><td class="td-mono">$2.15M</td><td class="td-mono">+40%</td><td class="td-mono">~100</td><td class="td-mono">$21,500</td></tr>
+        <tr class="row-goal"><td class="td-mono">2028 Target</td><td class="td-mono td-green">$3.00M</td><td class="td-mono">+40%</td><td class="td-mono">~90</td><td class="td-mono">$33,300</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:11.5px;color:var(--muted);margin-top:-14px;">The defining move: <em>fewer clients, each far larger</em>. Average revenue per client more than quadruples as the book is pruned and repriced. Growth comes from account size, not account count.</p>
+
+  <h3>The Growth Bridge — $1.54M to $3.0M</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Source</th><th>Contribution</th><th>Confidence</th></tr></thead>
+      <tbody>
+        <tr><td>2026 base run rate</td><td class="td-mono">$1.54M</td><td class="td-muted">Established</td></tr>
+        <tr><td>+ Pricing &amp; rate realization</td><td class="td-mono td-green">+$300K</td><td class="td-green">High</td></tr>
+        <tr><td>+ Higher-value client mix (prune &amp; replace)</td><td class="td-mono td-green">+$250K</td><td class="td-green">High</td></tr>
+        <tr><td>+ Recurring-revenue engine</td><td class="td-mono">+$450K</td><td class="td-muted">Medium</td></tr>
+        <tr><td>+ Net-new project &amp; retainer sales</td><td class="td-mono">+$650K</td><td class="td-muted">Medium</td></tr>
+        <tr><td>− Churn &amp; attrition</td><td class="td-mono td-red">−$200K</td><td class="td-muted">Expected</td></tr>
+        <tr class="row-goal"><td>2028 Total Revenue</td><td class="td-mono">$3.00M</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Two high-confidence levers (pricing, mix) carry ~$550K and are largely within your control today. The two build-it levers (recurring revenue, net-new sales) carry ~$1.1M and depend on capability you grow over the three years. Spread across 24 months, none of these requires a heroic quarter — they require a consistent one.</p>
+</section>
+
+<!-- 03 THE GROWTH LEVERS -->
+<section id="levers">
+  <div class="section-label">03</div>
+  <h2>The Growth Levers</h2>
+  <p class="section-desc">Four levers, ordered by confidence and control. The first two you pull now; the second two you build through 2026–27 into the engine that carries the back half of the plan.</p>
+
+  <div class="lever">
+    <div class="lever-head">
+      <div><div class="lever-n">Lever 01 · High confidence</div><div class="lever-title">Pricing &amp; rate realization</div></div>
+      <div class="lever-add"><span class="lever-add-label">2028 Add</span><span class="lever-add-val">+$300K</span></div>
+    </div>
+    <div class="lever-body">
+      <p>The fastest growth on the board: revenue with no new delivery cost. Your blended effective rate of ~$85/hr sits well under the $120 your quality supports, and not a single retainer escalates today.</p>
+      <ul class="moves">
+        <li>Move the blended effective rate to $110–120/hr in 2026; path to $135 by 2028.</li>
+        <li>Install a $15K project minimum, enforced at the strategy-kickoff gate.</li>
+        <li>Add a 5–8% annual escalator to every retainer at renewal.</li>
+        <li>Reprice the known eroders now (Pasta Queen at 29% margin, the AYOH overrun). Each unrepriced month costs ~$3–4K.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="lever">
+    <div class="lever-head">
+      <div><div class="lever-n">Lever 02 · High confidence</div><div class="lever-title">Higher-value client mix</div></div>
+      <div class="lever-add"><span class="lever-add-label">2028 Add</span><span class="lever-add-val">+$250K</span></div>
+    </div>
+    <div class="lever-body">
+      <p>153 clients at $7,206 becomes ~90 at $33K. The growth engine here is replacement: graduate the smallest, most time-hungry accounts and put a $30K+ engagement in each freed slot. Top-5 concentration is a healthy 34% (largest client ~10%), so accounts can grow without dependency risk.</p>
+      <ul class="moves">
+        <li>Rank the book by margin (Harvest hours ÷ revenue); flag the bottom ~30 time-sinks.</li>
+        <li>Reprice, restructure, or graduate them — replace each with a larger, better-fit client.</li>
+        <li>Hold a hard floor: no new client below the project minimum.</li>
+        <li>Track revenue-per-active-client monthly — the single clearest proxy for the strategy working.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="lever">
+    <div class="lever-head">
+      <div><div class="lever-n">Lever 03 · Build through 2026–27</div><div class="lever-title">A recurring-revenue engine</div></div>
+      <div class="lever-add"><span class="lever-add-label">2028 Add</span><span class="lever-add-val">+$450K</span></div>
+    </div>
+    <div class="lever-body">
+      <p>The lever that makes the growth durable. Recurring revenue compounds, scales faster than project headcount, and is the truest form of your "owned infrastructure outlasts rented attention" thesis. Target ≥30% of revenue recurring (~$75K MRR) by 2028.</p>
+      <ul class="moves">
+        <li>Productize care plans, hosting, security/maintenance, and analytics into fixed monthly tiers.</li>
+        <li>Launch Trades-Track "growth retainers" — ongoing dev + marketing subscriptions, not one-off builds.</li>
+        <li>Convert one-and-done website clients into managed relationships at handoff — renewal designed in, not chased.</li>
+        <li>Make recurring the base load the rest of the plan grows on top of.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="lever">
+    <div class="lever-head">
+      <div><div class="lever-n">Lever 04 · Ramp the engine</div><div class="lever-title">Net-new sales, both tracks</div></div>
+      <div class="lever-add"><span class="lever-add-label">2028 Add</span><span class="lever-add-val">+$650K</span></div>
+    </div>
+    <div class="lever-body">
+      <p>The largest single contributor, and the one that demands a real demand engine. Pipeline at 2× the monthly target on each track, fed by the four-pillar content system — owned platforms first — so you're choosing the best-fit, highest-margin work rather than taking whatever comes.</p>
+      <ul class="moves">
+        <li>Hold pipeline ≥ 2× monthly revenue target on each track, reviewed weekly in L10.</li>
+        <li>Run the four-pillar content engine as the primary lead source.</li>
+        <li>Use the Senior Developer hire to unlock premium Trades builds you can credibly bid.</li>
+        <li>Formalize the Maria ↔ Tori intake path so demand converts to briefed work without a founder bottleneck.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 04 TWO-TRACK ENGINE -->
+<section id="tracks">
+  <div class="section-label">04</div>
+  <h2>The Two-Track Engine</h2>
+  <p class="section-desc">Growth doesn't come from one motion — it comes from two delivery models sharing one infrastructure. The plan grows both, and deliberately grows the Trades Track's share.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Track</th><th>Lead</th><th>2028 Revenue</th><th>Share</th><th>Growth role</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Talent Track</strong><br><span class="td-muted">Design-first · creators, authors, podcasters</span></td><td class="td-mono">Allie</td><td class="td-mono td-green">~$1.8M</td><td class="td-mono">60%</td><td class="td-muted">Core base; grows via pricing, retainer depth, and design-led recurring work.</td></tr>
+        <tr><td><strong>Trades Track</strong><br><span class="td-muted">Dev + growth-first · B2B, orgs, nonprofits</span></td><td class="td-mono">Marin · Adam</td><td class="td-mono td-green">~$1.2M</td><td class="td-mono">40%</td><td class="td-muted">The growth share-gainer; larger builds + growth retainers, runs without Allie.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The Trades Track is the structural unlock for scale: it's a second revenue engine sharing the same back office, discipline leads, and tools — so growing it adds revenue without duplicating overhead. Pushing it from a minority of revenue toward a 40% share is how the business grows without simply adding more of the same work to the same people. The Talent Track stays the larger base and grows through depth — bigger, longer, higher-margin relationships rather than more logos.</p>
+
+  <div class="callout">
+    <p><strong>The leverage:</strong> shared infrastructure means the second $1.2M of Trades revenue costs far less overhead than the first $1.2M of Talent revenue did. That's where the operating leverage in this plan comes from — growth that reuses what you've already built.</p>
+  </div>
+</section>
+
+<!-- 05 GROWTH THAT STAYS PROFITABLE -->
+<section id="margin">
+  <div class="section-label">05</div>
+  <h2>Growth That Stays Profitable</h2>
+  <p class="section-desc">Tripling revenue is only worth it if the margin comes with it. Four disciplines keep net margin climbing to 25% as the top line grows.</p>
+
+  <h3>The margin bridge</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Driver</th><th>2025</th><th>2028</th><th>Mechanism</th></tr></thead>
+      <tbody>
+        <tr><td>Gross margin</td><td class="td-mono">50%</td><td class="td-mono td-green">58%</td><td class="td-muted">Rate up 40%, utilization 60%→68%, brief discipline, recurring mix</td></tr>
+        <tr><td>OpEx as % of revenue</td><td class="td-mono">41%</td><td class="td-mono td-green">33%</td><td class="td-muted">Shared infrastructure — overhead grows slower than revenue</td></tr>
+        <tr class="row-goal"><td>Net margin</td><td class="td-mono">8.6%</td><td class="td-mono">25.0%</td><td>$750K net on $3.0M</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><strong>Pricing and utilization</strong> drive the gross line: the same 40% rate increase that grows revenue lifts margin, and blended utilization rising from 60% to 68% means each person produces more billable value without working more hours.</p>
+  <p><strong>Brief discipline</strong> is the load-bearing wall. The strategy-kickoff gate, scope/out-of-scope definition, and change orders are what stop growth from eroding margin. The AYOH overrun (93% of budget gone before build) and the Pasta Queen 2% month are what a discretionary gate costs. As volume rises, the gate stays structural in ClickUp — no exceptions.</p>
+  <p><strong>Operating leverage</strong> does the rest: leadership comp, the tool stack, and admin are largely semi-fixed, so spread across nearly triple the revenue they fall from 41% to 33% of the top line even as their dollar value rises.</p>
+  <p><strong>Founders out of delivery</strong> — Adam's delivery utilization from 47% to ≤25%, Allie's below 30% — moves your most expensive capacity from billable work to the strategy and sales that actually build the growth.</p>
+</section>
+
+<!-- 06 CASH -->
+<section id="cash">
+  <div class="section-label">06</div>
+  <h2>Cash to Fund Growth</h2>
+  <p class="section-desc">Growth consumes working capital before it produces it. As of June 2026, the balance sheet has the cash this plan needs — most of it just isn't collected yet.</p>
+
+  <div class="stat-strip">
+    <div class="stat"><div class="stat-num accent">$70K</div><div class="stat-label">Cash on hand<br>(below $80K floor)</div></div>
+    <div class="stat"><div class="stat-num accent">$199K</div><div class="stat-label">A/R outstanding<br>42% overdue</div></div>
+    <div class="stat"><div class="stat-num">$31K</div><div class="stat-label">Credit card balance<br>(target $0)</div></div>
+    <div class="stat"><div class="stat-num">$164K</div><div class="stat-label">EIDL loan<br>(long-term)</div></div>
+  </div>
+
+  <h3>Collect first — this is your growth capital</h3>
+  <p>You're owed <strong>$199K</strong>, with <strong>$84K (42%) overdue</strong> across 67 of 125 customers — more than your entire cash balance, sitting in other people's accounts. Bringing DSO from 59 to ≤45 days frees ~$30–50K to fund hiring and the demand engine without borrowing a dollar. Collections become a weekly ritual, owned by Camila.</p>
+
+  <h3>Clear the deck so growth isn't fragile</h3>
+  <ul class="moves" style="margin-bottom:14px;">
+    <li>Pay the <strong>$31K credit card to $0</strong> (the brief's Q4 2026 goal) — the most expensive money on the sheet.</li>
+    <li>Service the <strong>$164K EIDL</strong> on schedule; resolve the <strong>$76K officer loan</strong> (Allie) cleanly.</li>
+    <li>Build a <strong>3-month operating reserve</strong> (~$250–285K) so a slow quarter never forces a bad growth decision.</li>
+  </ul>
+
+  <div class="callout">
+    <p><strong>The sequence:</strong> collect A/R → clear the card → build the reserve → then fund growth and distributions from strength. Growth built on uncollected cash is growth that stalls the first slow month.</p>
+  </div>
+</section>
+
+<!-- 07 CAPACITY -->
+<section id="capacity">
+  <div class="section-label">07</div>
+  <h2>Capacity &amp; Hiring</h2>
+  <p class="section-desc">Five hires carry the growth, each tied to a revenue trigger. Spread over three years they land one or two a year — fast enough to enable the top line, slow enough to protect the margin.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Hire</th><th>Trigger</th><th>Cost</th><th>What it unlocks for growth</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Content Coordinator</strong></td><td class="td-mono">Now / $1.2M</td><td class="td-mono">$45–55K</td><td class="td-muted">Powers the demand engine (Lever 04); frees Tori from her 76% ceiling.</td></tr>
+        <tr><td><strong>Talent Track PM</strong></td><td class="td-mono">$1.3M (2026)</td><td class="td-mono">$50–65K</td><td class="td-muted">Gets Allie out of delivery into strategy + selling — the growth her track needs.</td></tr>
+        <tr><td><strong>Mid-level Developer</strong></td><td class="td-mono">$1.5M (2026–27)</td><td class="td-mono">$65–80K</td><td class="td-muted">Delivery capacity for the project growth; cuts white-label dependency.</td></tr>
+        <tr><td><strong>Senior Developer</strong></td><td class="td-mono">$1.9M (2027)</td><td class="td-mono">$85–110K</td><td class="td-muted">Raises the ceiling on premium Trades builds — directly enables Lever 04.</td></tr>
+        <tr><td><strong>Account Manager (Trades)</strong></td><td class="td-mono">$2.4M (2028)</td><td class="td-mono">$55–75K +comm</td><td class="td-muted">Holds 15–20 accounts so Marin runs enterprise + new business at scale.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The rule holds: <strong>trigger before hire</strong>. Under-hiring caps the top line; over-hiring sinks the margin. Watch blended utilization weekly — it's the early signal for which way you're drifting. The Senior Developer is the one role worth a slight lead on its trigger, because it's a revenue enabler, not just capacity.</p>
+</section>
+
+<!-- 08 MILESTONES -->
+<section id="milestones">
+  <div class="section-label">08</div>
+  <h2>Milestones — Now to 2028</h2>
+  <p class="section-desc">Revenue and run-rate checkpoints. Each has a number and the lever driving it.</p>
+
+  <div class="milestone-row">
+    <div class="milestone-date">Q3 2026</div>
+    <div>
+      <div class="milestone-title">Pricing landed · A/R under control</div>
+      <div class="milestone-desc">$15K minimum + escalators live, eroders repriced. DSO 59 → ≤45. First $125K month — pricing thesis validated in the data.</div>
+    </div>
+    <div>
+      <div class="milestone-number"><span class="mn-label">Rate</span><span class="mn-val">$110–120/hr</span></div>
+      <div class="milestone-number"><span class="mn-label">DSO</span><span class="mn-val">≤ 45 days</span></div>
+    </div>
+  </div>
+
+  <div class="milestone-row">
+    <div class="milestone-date">Q4 2026</div>
+    <div>
+      <div class="milestone-title">$1.6M run rate · recurring engine live</div>
+      <div class="milestone-desc">Productized care/hosting/growth tiers selling. Credit card at $0. 40% growth achieved; fewer-clients-higher-value confirmed in actuals.</div>
+    </div>
+    <div>
+      <div class="milestone-number"><span class="mn-label">Run rate</span><span class="mn-val">$1.6M</span></div>
+      <div class="milestone-number"><span class="mn-label">Recurring</span><span class="mn-val">building</span></div>
+    </div>
+  </div>
+
+  <div class="milestone-row">
+    <div class="milestone-date">2027</div>
+    <div>
+      <div class="milestone-title">$2.15M · Trades share climbing</div>
+      <div class="milestone-desc">Senior Developer in, premium Trades builds landing. Recurring toward 30%. ~100 clients at $21K+ average. Pipeline ≥ 2× target on both tracks.</div>
+    </div>
+    <div>
+      <div class="milestone-number"><span class="mn-label">Revenue</span><span class="mn-val">$2.15M</span></div>
+      <div class="milestone-number"><span class="mn-label">Gross margin</span><span class="mn-val">≥ 56%</span></div>
+    </div>
+  </div>
+
+  <div class="milestone-row">
+    <div class="milestone-date">2028</div>
+    <div>
+      <div class="milestone-title">$3M · 25% net — The Goal</div>
+      <div class="milestone-desc">$3.0M across both tracks (~60/40), ~90 clients at $33K average, recurring ≥30%, 58% gross margin, 25% net. The business tripled, the margin intact.</div>
+    </div>
+    <div>
+      <div class="milestone-number"><span class="mn-label">Revenue</span><span class="mn-val">$3.0M</span></div>
+      <div class="milestone-number"><span class="mn-label">Net margin</span><span class="mn-val">25%</span></div>
+      <div class="milestone-number"><span class="mn-label">Recurring</span><span class="mn-val">≥ 30%</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 PROFIT & DISTRIBUTION -->
+<section id="profit">
+  <div class="section-label">09</div>
+  <h2>Profit &amp; Distribution</h2>
+  <p class="section-desc">The engine room. The 25% net margin the growth produces doesn't just get reported — it gets distributed, cleanly, to owners and team. All of it kept together here.</p>
+
+  <h3>The 2028 profit waterfall</h3>
+  <p>Built on the Profit First bank structure you already run (the Wright-Patt Profit, Owner's Pay, Tax, OpEx, and Reserves accounts). Of $750K net operating profit at 25% margin:</p>
+  <div class="waterfall">
+    <div class="wf-top"><span class="wf-top-label">Net Operating Profit · 2028</span><span class="wf-top-val">$750K</span></div>
+    <div class="wf-row">
+      <div class="wf-bar" style="background:var(--accent);width:18px;"></div>
+      <div><div class="wf-name">Owner Profit Distributions</div><div class="wf-sub">Adam + Allie · quarterly, on top of owner salaries</div></div>
+      <div class="wf-pct">~55%</div><div class="wf-amt" style="color:var(--accent);">$412K</div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-bar" style="background:var(--gold);width:18px;"></div>
+      <div><div class="wf-name">Tax Reserve</div><div class="wf-sub">set aside for owner pass-through liability</div></div>
+      <div class="wf-pct">~27%</div><div class="wf-amt" style="color:var(--gold);">$202K</div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-bar" style="background:var(--green);width:18px;"></div>
+      <div><div class="wf-name">Team Profit-Share Pool</div><div class="wf-sub">10% of net income · the Zingerman's model</div></div>
+      <div class="wf-pct">10%</div><div class="wf-amt" style="color:var(--green);">$75K</div>
+    </div>
+    <div class="wf-row">
+      <div class="wf-bar" style="background:var(--muted);width:18px;"></div>
+      <div><div class="wf-name">Reserve / Reinvestment</div><div class="wf-sub">top-up until 3-month reserve, then reinvest in growth</div></div>
+      <div class="wf-pct">~8%</div><div class="wf-amt" style="color:var(--muted);">$60K</div>
+    </div>
+  </div>
+  <p style="font-size:11.5px;color:var(--muted);margin-top:-12px;">Owner distributions are <em>in addition to</em> reasonable owner salaries, which sit inside OpEx above the profit line. The 25% net margin is the operating result before this allocation. Tax %, reserve %, and the owner/team split are policy dials you set — the figures above are a recommended starting point.</p>
+
+  <h3>Owner distributions across the plan</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Year</th><th>Net Income</th><th>Owner Distributions*</th><th>Per founder (of 2)</th></tr></thead>
+      <tbody>
+        <tr><td class="td-mono">2026</td><td class="td-mono">~$323K</td><td class="td-mono td-green">~$178K</td><td class="td-mono">~$89K</td></tr>
+        <tr><td class="td-mono">2027</td><td class="td-mono">~$494K</td><td class="td-mono td-green">~$272K</td><td class="td-mono">~$136K</td></tr>
+        <tr class="row-goal"><td class="td-mono">2028</td><td class="td-mono">$750K</td><td class="td-mono">~$412K</td><td class="td-mono">~$206K</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:11.5px;color:var(--muted);margin-top:-14px;">*After the team pool, tax reserve, and reserve top-up; on top of owner salaries. ~$860K of owner distributions across the three years. Cadence: allocate to the Profit First accounts twice monthly; distribute quarterly once the quarter clears an 18% net-margin floor.</p>
+
+  <h3>Team profit sharing</h3>
+  <p>A pool equal to <strong>10% of net income</strong>, started this year while it's small so the team learns the system works before the stakes are large. Transparent, formula-driven, paid the same quarters owners distribute, and tied to the same open-book net-income number.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Year</th><th>Pool (10% of net)</th><th>≈ Per person (of ~20)</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td class="td-mono">2026</td><td class="td-mono td-green">~$19K</td><td class="td-mono">~$970</td><td class="td-muted">Launch (partial year)</td></tr>
+        <tr><td class="td-mono">2027</td><td class="td-mono td-green">~$49K</td><td class="td-mono">~$2,470</td><td class="td-muted">Formalized 10% model</td></tr>
+        <tr class="row-goal"><td class="td-mono">2028</td><td class="td-mono">~$75K</td><td class="td-mono">~$3,750</td><td class="td-muted">Full model</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="margin-top:-10px;">Eligibility at 6+ months in good standing; a transparent points formula (a base share for all, plus a tenure multiplier); administered by Camila with the formula documented and reviewed annually. The pool is never skipped in a profitable quarter — that consistency is what turns it from a discretionary bonus into a real ownership signal.</p>
+</section>
+
+<!-- 10 RISKS -->
+<section id="risk">
+  <div class="section-label">10</div>
+  <h2>Risks &amp; the Honest Read</h2>
+  <p class="section-desc">A plan you can trust names its weak points. These are the four most likely to slow the climb to $3M.</p>
+
+  <div class="risk">
+    <div class="risk-row">
+      <div><div class="risk-name">Net-new sales under-deliver</div><span class="risk-sev sev-high">Highest risk</span></div>
+      <div class="risk-mit">Lever 04 is the biggest contributor (+$650K) and the least certain — it needs a demand engine that doesn't fully exist yet. <strong>Mitigation:</strong> stand up the content engine and the Coordinator hire early; hold pipeline ≥ 2× target; lean harder on the higher-confidence pricing and recurring levers if sales lag.</div>
+    </div>
+    <div class="risk-row">
+      <div><div class="risk-name">Hiring ahead of revenue inverts margin</div><span class="risk-sev sev-med">Medium</span></div>
+      <div class="risk-mit">Growth tempts you to staff ahead of the work. <strong>Mitigation:</strong> trigger-before-hire, weekly utilization review; only the Senior Developer leads its trigger, and only because it's a revenue enabler.</div>
+    </div>
+    <div class="risk-row">
+      <div><div class="risk-name">Brief discipline slips under volume</div><span class="risk-sev sev-med">Medium</span></div>
+      <div class="risk-mit">More work means more pressure to skip the gate — and the AYOH/Pasta Queen patterns are what that costs. <strong>Mitigation:</strong> the strategy-kickoff gate stays structural in ClickUp; scope expansion without it is a process violation, not a judgment call.</div>
+    </div>
+    <div class="risk-row">
+      <div><div class="risk-name">Cash constrains the growth</div><span class="risk-sev sev-med">Medium</span></div>
+      <div class="risk-mit">$70K cash and $84K overdue leave little room to fund hiring and demand-gen. <strong>Mitigation:</strong> the Section 06 sequence — collect, clear the card, build a 3-month reserve — before leaning into spend.</div>
+    </div>
+  </div>
+
+  <div class="callout-green callout">
+    <p><strong>The honest bottom line:</strong> $3M by 2028 is an ambitious but achievable organic climb — ~39% a year, no acquisition required, every lever traceable to something you already do. The single biggest dependency is building a real net-new sales engine; everything else is within your control today. Hold the margin discipline underneath it and the growth is worth having, not just impressive on a slide.</p>
+  </div>
+</section>
+
+<!-- 11 SCORECARD -->
+<section id="scorecard">
+  <div class="section-label">11</div>
+  <h2>The Scorecard</h2>
+  <p class="section-desc">Nine numbers, monthly, that tell you the growth is real and profitable. If these hold, $3M holds.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Metric</th><th>Source</th><th>Target</th><th>Cadence</th></tr></thead>
+      <tbody>
+        <tr><td>Revenue run rate</td><td class="td-mono">QBO / ChargeOver</td><td class="td-mono td-green">→ $3.0M by 2028</td><td class="td-mono">Monthly</td></tr>
+        <tr><td>Revenue per active client</td><td class="td-mono">ChargeOver / QBO</td><td class="td-mono">$7K → $33K</td><td class="td-mono">Quarterly</td></tr>
+        <tr><td>Recurring revenue share</td><td class="td-mono">ChargeOver</td><td class="td-mono">≥ 30% by 2028</td><td class="td-mono">Monthly</td></tr>
+        <tr><td>Trades Track share of revenue</td><td class="td-mono">ChargeOver / QBO</td><td class="td-mono">→ 40%</td><td class="td-mono">Monthly</td></tr>
+        <tr><td>Pipeline coverage (each track)</td><td class="td-mono">Pipedrive</td><td class="td-mono">≥ 2× monthly target</td><td class="td-mono">Weekly</td></tr>
+        <tr><td>Net margin (with floor)</td><td class="td-mono">QuickBooks</td><td class="td-mono td-green">25% target · 18% floor</td><td class="td-mono">Monthly</td></tr>
+        <tr><td>Gross margin (Harvest-adjusted)</td><td class="td-mono">QBO + Harvest</td><td class="td-mono">54% → 58%</td><td class="td-mono">Monthly</td></tr>
+        <tr><td>Blended utilization</td><td class="td-mono">Harvest</td><td class="td-mono">60% → 68%</td><td class="td-mono">Weekly</td></tr>
+        <tr><td>DSO (days sales outstanding)</td><td class="td-mono">QBO / ChargeOver</td><td class="td-mono">59 → ≤ 45</td><td class="td-mono">Weekly</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <p><strong>Start here, this quarter:</strong> (1) reprice the known eroders and install the $15K minimum + escalators; (2) put A/R collections on a weekly cadence to fund the growth; (3) productize one recurring offer and sell it; (4) stand up the content engine and make the Coordinator hire so the net-new pipeline has a source. Everything in the plan compounds from these four.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <span>The Wonder Jam · The Path to $3M by 2028 · Confidential</span>
+  <span>Prepared June 2026 · Baseline from live QuickBooks</span>
+</footer>
+
+</body>
+</html>
