@@ -13,6 +13,19 @@ const CARD_BG = '#1c1a16'
 
 const docs = [
   {
+    title: 'RFM Analysis by Track (Talent / Trades)',
+    route: '/rfm-by-track',
+    file: 'Wonderly_RFM_by_Track_2024.html',
+    tag: 'Client Intel',
+    tagColor: '#4db6a0',
+    tagBg: '#08231f',
+    emoji: '📊',
+    desc: 'Provisional RFM segmentation of the active book (Jan 2024–Jun 2026), split into the Talent and Trades tracks and scored each as its own book. Shows how the two businesses differ in shape and risk — Talent top-heavy (61% of revenue in Champions), Trades distributed and carrying almost all At-Risk revenue ($301K). Track labels are inferred (no track field in source data; ~25% low-confidence) and pending review — treat shapes as directional, exact dollars as soft.',
+    audience: 'Adam · Confidential',
+    added: '2026-07-08',
+    updated: '2026-07-08',
+  },
+  {
     title: 'BigOrange — Acquisition Brief for Review',
     route: '/bigorange-brief',
     file: 'BigOrange_Acquisition_Brief.html',

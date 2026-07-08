@@ -1,0 +1,205 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wonderly — RFM by Track</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,700;1,800&family=Lato:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F7F3E9;--cream-2:#EFE9D8;--ink:#1A1A2E;--ink-soft:#2E2E40;--paper:#FFF;--line:#DED6C2;--muted:#6B6456;
+--teal:#1B7A6E;--teal-soft:#E4F0ED;--amber:#C8841E;--amber-soft:#F8ECD8;--gold:#B8932F;--red:#B23A48;--red-soft:#F5E2E4;
+--shadow:0 1px 3px rgba(26,26,46,.06),0 8px 28px rgba(26,26,46,.05)}
+@media (prefers-color-scheme:dark){:root{--cream:#15151F;--cream-2:#1C1C2A;--ink:#F2EEE2;--ink-soft:#D9D4C5;--paper:#1F1F2E;
+--line:#33333F;--muted:#9A9486;--teal:#5FC9B8;--teal-soft:#16322D;--amber:#E6A648;--amber-soft:#332617;--gold:#D4B25A;
+--red:#E27585;--red-soft:#33191E;--shadow:0 1px 3px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.35)}}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:'Lato',sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.12;color:var(--ink)}
+.hero{padding:70px 0 34px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.hero h1{font-size:clamp(40px,7vw,74px);font-weight:900;margin:14px 0 4px}
+.hero .lede{font-size:clamp(18px,2.4vw,22px);color:var(--ink-soft);max-width:64ch;margin-top:14px}
+.badge{display:inline-block;margin-top:20px;background:var(--red-soft);color:var(--red);border:1px solid var(--red);font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:600;padding:6px 14px;border-radius:30px;letter-spacing:.05em}
+.provnote{background:var(--red-soft);border-left:4px solid var(--red);border-radius:0 12px 12px 0;padding:18px 24px;margin:26px 0 0;font-size:15.5px;color:var(--ink-soft)}
+.provnote b{color:var(--ink)}
+.meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px 26px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted)}
+.meta b{color:var(--ink);font-weight:600}
+section{padding:44px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:8px}
+.sec-num{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--gold);font-weight:600}
+h2{font-size:clamp(26px,4vw,38px);font-weight:700}
+.sec-intro{color:var(--ink-soft);max-width:70ch;margin:14px 0 26px;font-size:18px}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.tcard{border-radius:18px;padding:28px;box-shadow:var(--shadow);border:1px solid var(--line);background:var(--paper)}
+.tcard.tal{border-top:6px solid var(--teal)}.tcard.tra{border-top:6px solid var(--amber)}
+.tcard .tt{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+.tcard.tal .tt{color:var(--teal)}.tcard.tra .tt{color:var(--amber)}
+.tcard h3{font-size:46px;font-weight:800;margin:4px 0 2px;font-family:'Playfair Display',serif}
+.tcard .subn{color:var(--muted);font-size:15px;margin-bottom:16px;font-family:'IBM Plex Mono',monospace}
+.tcard .row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-top:1px solid var(--line);font-size:15.5px}
+.tcard .row b{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:16px}
+.tcard .row .hot{color:var(--amber);font-weight:700}
+.contrast{background:var(--ink);color:var(--cream);border-radius:18px;padding:30px 34px;margin-top:8px}
+.contrast h3{color:var(--cream);font-size:24px;margin-bottom:10px;font-style:italic}
+.contrast p{color:#D8D2C2;font-size:17px;max-width:80ch}
+.contrast .big{font-family:'Playfair Display',serif;font-weight:800;font-style:italic;color:#fff}
+.track-band{display:flex;align-items:center;gap:14px;margin:6px 0 22px}
+.track-band .chip{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:6px 16px;border-radius:30px;color:#fff}
+.track-band .ln{flex:1;height:2px;background:var(--line)}
+.directory{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.segpanel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow);border-top:5px solid var(--line)}
+.segpanel .ph{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.pill{display:inline-block;padding:3px 11px;border-radius:20px;font-size:13.5px;font-weight:700;color:#fff}
+.segpanel .nums{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--muted)}
+.segpanel .nums b{color:var(--ink)}
+.segpanel .move{font-size:14px;color:var(--ink-soft);margin:9px 0 8px}
+.segpanel .mix{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--muted);margin-bottom:4px}
+.clist{list-style:none}
+.clist li{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:8px 0;border-top:1px solid var(--line)}
+.clist li:first-child{border-top:none}
+.cname{font-weight:700;font-size:15px}.cmeta{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);display:block;font-weight:400}
+.cval{font-family:'IBM Plex Mono',monospace;font-size:14.5px;font-weight:600;white-space:nowrap}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px}
+.dot.t{background:var(--teal)}.dot.a{background:var(--amber)}
+.q{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red);border:1px solid var(--red);border-radius:4px;padding:0 4px;margin-left:6px;vertical-align:middle;font-weight:600}
+.more{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);padding-top:9px;border-top:1px solid var(--line);margin-top:2px}
+.takeaways{list-style:none;counter-reset:t;display:grid;gap:14px}
+.takeaways li{counter-increment:t;display:grid;grid-template-columns:auto 1fr;gap:18px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 22px;box-shadow:var(--shadow)}
+.takeaways li::before{content:counter(t,decimal-leading-zero);font-family:'IBM Plex Mono',monospace;font-size:15px;color:var(--gold);font-weight:600}
+.takeaways b{font-family:'Playfair Display',serif;font-size:18px}.takeaways p{font-size:15.5px;color:var(--ink-soft);margin-top:3px}
+footer{padding:38px 0 68px;color:var(--muted);font-size:13.5px;font-family:'IBM Plex Mono',monospace}
+@media (max-width:700px){.wrap{padding:0 18px}.vs,.directory{grid-template-columns:1fr}.hero{padding:48px 0 28px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head><body>
+<header class="hero"><div class="wrap">
+<div class="eyebrow">Wonderly · Client Intelligence</div>
+<h1>RFM by Track</h1>
+<p class="lede">The active book split into its two businesses — <b>Talent</b> (creator &amp; personality brands) and <b>Trades</b> (B2B, nonprofits &amp; organizations) — each scored as its own book, because "frequent" and "valuable" mean different things in each.</p>
+<div class="badge">◷ PROVISIONAL · track labels inferred, pending your review</div>
+<div class="provnote">The exports carry no Talent/Trades field, so each client was assigned a track by name and known relationship — <b>about 1 in 4 is a low-confidence guess</b> (marked <span class="q">?</span> below). Correct the mapping in the workbook and this re-runs on your ground truth. Treat the shapes as directional, the exact dollars as soft.</div>
+<div class="meta"><span>Window <b>Jan 2024 – Jun 2026</b></span><span><b>186</b> clients</span><span><b>$2.71M</b></span><span>Scored within track × cohort</span></div>
+</div></header>
+<div class="wrap">
+
+<section><div class="sec-head"><span class="sec-num">01</span><h2>Two different businesses</h2></div>
+<p class="sec-intro">Side by side, the tracks don't just differ in size — they differ in shape, risk, and where attention needs to go.</p>
+<div class="vs">
+  <div class="tcard tal"><div class="tt">Talent · creator &amp; personality</div><h3>$767K</h3><div class="subn">69 clients · 28% of book · avg $11.1K</div>
+    <div class="row"><span>Champions' share of revenue</span><b>61%</b></div>
+    <div class="row"><span>Revenue At Risk</span><b>$28K · 4%</b></div>
+    <div class="row"><span>Recurring share</span><b>84%</b></div>
+    <div class="row"><span>Shape</span><b>Top-heavy</b></div></div>
+  <div class="tcard tra"><div class="tt">Trades · B2B · nonprofit · org</div><h3>$1.94M</h3><div class="subn">117 clients · 72% of book · avg $16.6K</div>
+    <div class="row"><span>Champions' share of revenue</span><b>39%</b></div>
+    <div class="row"><span>Revenue At Risk</span><b class="hot">$301K · 16%</b></div>
+    <div class="row"><span>Recurring share</span><b>82%</b></div>
+    <div class="row"><span>Shape</span><b>Distributed</b></div></div>
+</div>
+<div class="contrast"><h3>The slipping money is almost entirely a Trades problem.</h3>
+<p>Talent revenue concentrates in a handful of high-gravity creators — <span class="big">61% sits with Champions</span> and only <span class="big">4% is At Risk</span>. Trades spreads across many mid-size accounts and carries <span class="big">$301K (16%) of At-Risk revenue</span> — more than 10× Talent's exposure in dollars. Talent runs on brand gravity; Trades runs on active account management. That's exactly why the Trades demand engine is the fractional-CEO focus and Talent flows through Allie's audience.</p></div>
+</section>
+
+<section><div class="sec-head"><span class="sec-num">02</span><h2>Talent — segment by segment</h2></div>
+<p class="sec-intro">Creator and personality brands, scored against each other. A few names carry most of the revenue; the tail is small, one-off, and quick to go quiet.</p>
+<div class="track-band"><span class="chip" style="background:#1B7A6E">Talent</span><span class="ln"></span></div>
+<div class="directory"><div class="segpanel" style="border-top-color:#1B7A6E">
+          <div class="ph"><span class="pill" style="background:#1B7A6E">Champions</span>
+          <span class="nums"><b>16</b> clients · <b>$469,633</b> · 61%</span></div>
+          <div class="move">Recent, frequent, high value. Protect and mine for referrals.</div>
+          <div class="mix">● 12 recurring · ● 4 project</div>
+          <ul class="clist"><li><span><span class="cname"><span class="dot t"></span>NG Management/The Pasta Queen, LLC</span><span class="cmeta">recurring · 0d</span></span><span class="cval">$127,904</span></li><li><span><span class="cname"><span class="dot t"></span>GrossyPelosi, LLC</span><span class="cmeta">recurring · 2d</span></span><span class="cval">$41,417</span></li><li><span><span class="cname"><span class="dot t"></span>Caro Chambers LLC</span><span class="cmeta">recurring · 3d</span></span><span class="cval">$36,959</span></li><li><span><span class="cname"><span class="dot t"></span>Casey Wilson and Danielle Schneider</span><span class="cmeta">recurring · 2d</span></span><span class="cval">$34,976</span></li><li><span><span class="cname"><span class="dot t"></span>Cafehailee LLC</span><span class="cmeta">recurring · 8d</span></span><span class="cval">$30,217</span></li><li><span><span class="cname"><span class="dot t"></span>Glow With Ella, LLC</span><span class="cmeta">recurring · 7d</span></span><span class="cval">$25,295</span></li><li><span><span class="cname"><span class="dot t"></span>Katie Parla</span><span class="cmeta">recurring · 1d</span></span><span class="cval">$23,773</span></li><li><span><span class="cname"><span class="dot t"></span>The Hell Yeah Group, Inc.</span><span class="cmeta">recurring · 9d</span></span><span class="cval">$23,280</span></li></ul><div class="more">+ 8 more — see workbook</div></div><div class="segpanel" style="border-top-color:#3E9B8E">
+          <div class="ph"><span class="pill" style="background:#3E9B8E">Loyal Customers</span>
+          <span class="nums"><b>7</b> clients · <b>$151,733</b> · 20%</span></div>
+          <div class="move">Valuable, steady, slightly less recent. Deepen and re-expand scope.</div>
+          <div class="mix">● 5 recurring · ● 2 project</div>
+          <ul class="clist"><li><span><span class="cname"><span class="dot t"></span>AYOH</span><span class="cmeta">recurring · 18d</span></span><span class="cval">$57,086</span></li><li><span><span class="cname"><span class="dot t"></span>Banana Corn Dog Inc.</span><span class="cmeta">recurring · 19d</span></span><span class="cval">$29,840</span></li><li><span><span class="cname"><span class="dot t"></span>Yatra Media LLC</span><span class="cmeta">recurring · 18d</span></span><span class="cval">$25,691</span></li><li><span><span class="cname"><span class="dot t"></span>Ann Street Studio, Inc.</span><span class="cmeta">project · 323d</span></span><span class="cval">$23,065</span></li><li><span><span class="cname"><span class="dot t"></span>Julie McAllister</span><span class="cmeta">project · 1.1yr</span></span><span class="cval">$10,380</span></li><li><span><span class="cname"><span class="dot t"></span>Nicholas Dekker<span class="q">?</span></span><span class="cmeta">recurring · 14d</span></span><span class="cval">$2,837</span></li><li><span><span class="cname"><span class="dot t"></span>Double Bass HQ</span><span class="cmeta">recurring · 18d</span></span><span class="cval">$2,832</span></li></ul></div><div class="segpanel" style="border-top-color:#6FA8A0">
+          <div class="ph"><span class="pill" style="background:#6FA8A0">Potential Loyalist</span>
+          <span class="nums"><b>12</b> clients · <b>$51,748</b> · 7%</span></div>
+          <div class="move">Recent, growing, not yet recurring. Convert to a retainer.</div>
+          <div class="mix">● 9 recurring · ● 3 project</div>
+          <ul class="clist"><li><span><span class="cname"><span class="dot t"></span>Emily Eggers LLC</span><span class="cmeta">recurring · 5d</span></span><span class="cval">$19,295</span></li><li><span><span class="cname"><span class="dot t"></span>Seedling Theater<span class="q">?</span></span><span class="cmeta">project · 220d</span></span><span class="cval">$7,400</span></li><li><span><span class="cname"><span class="dot t"></span>Madeleine Malcolm.</span><span class="cmeta">project · 30d</span></span><span class="cval">$6,650</span></li><li><span><span class="cname"><span class="dot t"></span>Easy Gay Oven</span><span class="cmeta">project · 142d</span></span><span class="cval">$4,999</span></li><li><span><span class="cname"><span class="dot t"></span>Alexa Romano</span><span class="cmeta">recurring · 6d</span></span><span class="cval">$1,950</span></li><li><span><span class="cname"><span class="dot t"></span>Bonifacio</span><span class="cmeta">recurring · 4d</span></span><span class="cval">$1,950</span></li><li><span><span class="cname"><span class="dot t"></span>Shannon Jones<span class="q">?</span></span><span class="cmeta">recurring · 3d</span></span><span class="cval">$1,950</span></li><li><span><span class="cname"><span class="dot t"></span>Medecipher Solutions<span class="q">?</span></span><span class="cmeta">recurring · 1d</span></span><span class="cval">$1,950</span></li></ul><div class="more">+ 4 more — see workbook</div></div><div class="segpanel" style="border-top-color:#D98324">
+          <div class="ph"><span class="pill" style="background:#D98324">At Risk</span>
+          <span class="nums"><b>4</b> clients · <b>$28,087</b> · 4%</span></div>
+          <div class="move">Were valuable, recency slipping. Personal win-back now.</div>
+          <div class="mix">● 3 recurring · ● 1 project</div>
+          <ul class="clist"><li><span><span class="cname"><span class="dot t"></span>Ricki Beach Club</span><span class="cmeta">recurring · 68d</span></span><span class="cval">$19,814</span></li><li><span><span class="cname"><span class="dot t"></span>Susan Hyatt Inc.</span><span class="cmeta">recurring · 54d</span></span><span class="cval">$4,868</span></li><li><span><span class="cname"><span class="dot t"></span>Closet Core Patterns</span><span class="cmeta">recurring · 25d</span></span><span class="cval">$2,405</span></li><li><span><span class="cname"><span class="dot t"></span>Simply Plated<span class="q">?</span></span><span class="cmeta">project · 2.1yr</span></span><span class="cval">$1,000</span></li></ul></div><div class="segpanel" style="border-top-color:#9AA0A6">
+          <div class="ph"><span class="pill" style="background:#9AA0A6">About to Sleep</span>
+          <span class="nums"><b>10</b> clients · <b>$12,569</b> · 2%</span></div>
+          <div class="move">Fading. Light-touch reactivation before they lapse.</div>
+          <div class="mix">● 7 recurring · ● 3 project</div>
+          <ul class="clist"><li><span><span class="cname"><span class="dot t"></span>Jaimie Selwa</span><span class="cmeta">recurring · 24d</span></span><span class="cval">$1,950</span></li><li><span><span class="cname"><span class="dot t"></span>Gabriela Garcia</span><span class="cmeta">recurring · 24d</span></span><span class="cval">$1,950</span></li><li><span><span class="cname"><span class="dot t"></span>Kristina Hall</span><span class="cmeta">recurring · 24d</span></span><span class="cval">$1,950</span></li><li><span><span class="cname"><span class="dot t"></span>Marly Bird</span><span class="cmeta">recurring · 25d</span></span><span class="cval">$1,950</span></li><li><span><span class="cname"><span class="dot t"></span>Soul Theater<span class="q">?</span></span><span class="cmeta">recurring · 24d</span></span><span class="cval">$1,410</span></li><li><span><span class="cname"><span class="dot t"></span>Parker Construction<span class="q">?</span></span><span class="cmeta">recurring · 29d</span></span><span class="cval">$1,354</span></li><li><span><span class="cname"><span class="dot t"></span>Yolo Akili<span class="q">?</span></span><span class="cmeta">recurring · 27d</span></span><span class="cval">$1,015</span></li><li><span><span class="cname"><span class="dot t"></span>Seth Janitzki<span class="q">?</span></span><span class="cmeta">project · 1.2yr</span></span><span class="cval">$522</span></li></ul><div class="more">+ 2 more — see workbook</div></div><div class="segpanel" style="border-top-color:#C8A84E">
+          <div class="ph"><span class="pill" style="background:#C8A84E">Need Attention</span>
+          <span class="nums"><b>7</b> clients · <b>$22,388</b> · 3%</span></div>
+          <div class="move">Middling on all axes. Give a timely reason to re-engage.</div>
+          <div class="mix">● 5 recurring · ● 2 project</div>
+          <ul class="clist"><li><span><span class="cname"><span class="dot t"></span>Escape and Celebrate, LLC</span><span class="cmeta">recurring · 15d</span></span><span class="cval">$11,681</span></li><li><span><span class="cname"><span class="dot t"></span>Abby Arad</span><span class="cmeta">recurring · 13d</span></span><span class="cval">$4,313</span></li><li><span><span class="cname"><span class="dot t"></span>Naptime Kitchen</span><span class="cmeta">project · 353d</span></span><span class="cval">$2,200</span></li><li><span><span class="cname"><span class="dot t"></span>Stephanie Hanna<span class="q">?</span></span><span class="cmeta">recurring · 19d</span></span><span class="cval">$1,410</span></li><li><span><span class="cname"><span class="dot t"></span>Emily Mollineaux</span><span class="cmeta">recurring · 22d</span></span><span class="cval">$1,410</span></li><li><span><span class="cname"><span class="dot t"></span>Dalay Ket Murray</span><span class="cmeta">recurring · 23d</span></span><span class="cval">$1,050</span></li><li><span><span class="cname"><span class="dot t"></span>Hanisha Patel</span><span class="cmeta">project · 1.1yr</span></span><span class="cval">$324</span></li></ul></div><div class="segpanel" style="border-top-color:#B23A48">
+          <div class="ph"><span class="pill" style="background:#B23A48">Can't Lose Them</span>
+          <span class="nums"><b>1</b> clients · <b>$12,770</b> · 2%</span></div>
+          <div class="move">High past value, gone quiet. Bespoke recovery.</div>
+          <div class="mix">● 1 recurring · ● 0 project</div>
+          <ul class="clist"><li><span><span class="cname"><span class="dot t"></span>Downtime</span><span class="cmeta">recurring · 136d</span></span><span class="cval">$12,770</span></li></ul></div><div class="segpanel" style="border-top-color:#7A7F85">
+          <div class="ph"><span class="pill" style="background:#7A7F85">Hibernating</span>
+          <span class="nums"><b>12</b> clients · <b>$17,779</b> · 2%</span></div>
+          <div class="move">Low across the board. Low-cost reactivation only.</div>
+          <div class="mix">● 10 recurring · ● 2 project</div>
+          <ul class="clist"><li><span><span class="cname"><span class="dot t"></span>Ross Theisen</span><span class="cmeta">recurring · 1.9yr</span></span><span class="cval">$5,134</span></li><li><span><span class="cname"><span class="dot t"></span>Josh Emerick</span><span class="cmeta">recurring · 1.9yr</span></span><span class="cval">$5,134</span></li><li><span><span class="cname"><span class="dot t"></span>Salt + Spine</span><span class="cmeta">project · 2.2yr</span></span><span class="cval">$2,750</span></li><li><span><span class="cname"><span class="dot t"></span>Kelly Nascimento</span><span class="cmeta">recurring · 230d</span></span><span class="cval">$1,081</span></li><li><span><span class="cname"><span class="dot t"></span>Sarah Lenkay<span class="q">?</span></span><span class="cmeta">recurring · 1.4yr</span></span><span class="cval">$845</span></li><li><span><span class="cname"><span class="dot t"></span>Elizabeth Siemer</span><span class="cmeta">recurring · 1.5yr</span></span><span class="cval">$654</span></li><li><span><span class="cname"><span class="dot t"></span>Jupiter Pirates</span><span class="cmeta">project · 2.3yr</span></span><span class="cval">$450</span></li><li><span><span class="cname"><span class="dot t"></span>Manbun Creative</span><span class="cmeta">recurring · 27d</span></span><span class="cval">$420</span></li></ul><div class="more">+ 4 more — see workbook</div></div></div></section>
+
+<section><div class="sec-head"><span class="sec-num">03</span><h2>Trades — segment by segment</h2></div>
+<p class="sec-intro">B2B, nonprofits, and organizations, scored against each other. More clients, more evenly spread — and the At Risk column is where the real money sits.</p>
+<div class="track-band"><span class="chip" style="background:#C8841E">Trades</span><span class="ln"></span></div>
+<div class="directory"><div class="segpanel" style="border-top-color:#1B7A6E">
+          <div class="ph"><span class="pill" style="background:#1B7A6E">Champions</span>
+          <span class="nums"><b>25</b> clients · <b>$765,607</b> · 39%</span></div>
+          <div class="move">Recent, frequent, high value. Protect and mine for referrals.</div>
+          <div class="mix">● 17 recurring · ● 8 project</div>
+          <ul class="clist"><li><span><span class="cname"><span class="dot a"></span>Goddess Maintenance Company</span><span class="cmeta">recurring · 1d</span></span><span class="cval">$230,630</span></li><li><span><span class="cname"><span class="dot a"></span>Collaborate Cleveland</span><span class="cmeta">recurring · 3d</span></span><span class="cval">$51,110</span></li><li><span><span class="cname"><span class="dot a"></span>Creative Housing Inc.</span><span class="cmeta">recurring · 3d</span></span><span class="cval">$44,599</span></li><li><span><span class="cname"><span class="dot a"></span>Stonehenge Capital Company, LLC</span><span class="cmeta">recurring · 9d</span></span><span class="cval">$37,515</span></li><li><span><span class="cname"><span class="dot a"></span>Light Up Columbus</span><span class="cmeta">recurring · 3d</span></span><span class="cval">$35,881</span></li><li><span><span class="cname"><span class="dot a"></span>Black Emotional and Mental Health Collective</span><span class="cmeta">recurring · 11d</span></span><span class="cval">$35,703</span></li><li><span><span class="cname"><span class="dot a"></span>Two West Entertainment Management Inc.</span><span class="cmeta">recurring · 1d</span></span><span class="cval">$33,530</span></li><li><span><span class="cname"><span class="dot a"></span>Avaap</span><span class="cmeta">recurring · 13d</span></span><span class="cval">$32,209</span></li></ul><div class="more">+ 17 more — see workbook</div></div><div class="segpanel" style="border-top-color:#3E9B8E">
+          <div class="ph"><span class="pill" style="background:#3E9B8E">Loyal Customers</span>
+          <span class="nums"><b>9</b> clients · <b>$479,486</b> · 25%</span></div>
+          <div class="move">Valuable, steady, slightly less recent. Deepen and re-expand scope.</div>
+          <div class="mix">● 6 recurring · ● 3 project</div>
+          <ul class="clist"><li><span><span class="cname"><span class="dot a"></span>Aunt Flow</span><span class="cmeta">recurring · 21d</span></span><span class="cval">$262,799</span></li><li><span><span class="cname"><span class="dot a"></span>Farmers Market Management Network</span><span class="cmeta">recurring · 23d</span></span><span class="cval">$63,335</span></li><li><span><span class="cname"><span class="dot a"></span>Greenleaf Job Training Services Inc.</span><span class="cmeta">recurring · 17d</span></span><span class="cval">$61,721</span></li><li><span><span class="cname"><span class="dot a"></span>Founders Circle Capital</span><span class="cmeta">recurring · 16d</span></span><span class="cval">$43,267</span></li><li><span><span class="cname"><span class="dot a"></span>Brooklyn Plant Studio</span><span class="cmeta">project · 382d</span></span><span class="cval">$21,000</span></li><li><span><span class="cname"><span class="dot a"></span>XXI Martinis<span class="q">?</span></span><span class="cmeta">project · 1.3yr</span></span><span class="cval">$12,684</span></li><li><span><span class="cname"><span class="dot a"></span>Staging Spaces Design</span><span class="cmeta">recurring · 16d</span></span><span class="cval">$6,910</span></li><li><span><span class="cname"><span class="dot a"></span>Planned Parenthood of Greater New York</span><span class="cmeta">project · 1.1yr</span></span><span class="cval">$5,729</span></li></ul><div class="more">+ 1 more — see workbook</div></div><div class="segpanel" style="border-top-color:#6FA8A0">
+          <div class="ph"><span class="pill" style="background:#6FA8A0">Potential Loyalist</span>
+          <span class="nums"><b>22</b> clients · <b>$200,617</b> · 10%</span></div>
+          <div class="move">Recent, growing, not yet recurring. Convert to a retainer.</div>
+          <div class="mix">● 12 recurring · ● 10 project</div>
+          <ul class="clist"><li><span><span class="cname"><span class="dot a"></span>ACC Capital</span><span class="cmeta">recurring · 8d</span></span><span class="cval">$60,385</span></li><li><span><span class="cname"><span class="dot a"></span>Minds Matter NYC</span><span class="cmeta">recurring · 6d</span></span><span class="cval">$25,635</span></li><li><span><span class="cname"><span class="dot a"></span>Minds Matter Cleveland</span><span class="cmeta">recurring · 13d</span></span><span class="cval">$21,095</span></li><li><span><span class="cname"><span class="dot a"></span>Glam Studio</span><span class="cmeta">recurring · 6d</span></span><span class="cval">$15,145</span></li><li><span><span class="cname"><span class="dot a"></span>Attitudes! LLC</span><span class="cmeta">project · 24d</span></span><span class="cval">$12,000</span></li><li><span><span class="cname"><span class="dot a"></span>Pin High Columbus</span><span class="cmeta">project · 79d</span></span><span class="cval">$10,100</span></li><li><span><span class="cname"><span class="dot a"></span>Substack, Inc</span><span class="cmeta">project · 35d</span></span><span class="cval">$10,000</span></li><li><span><span class="cname"><span class="dot a"></span>Hungry Mockingbird Productions, LLC</span><span class="cmeta">project · 16d</span></span><span class="cval">$9,900</span></li></ul><div class="more">+ 14 more — see workbook</div></div><div class="segpanel" style="border-top-color:#D98324">
+          <div class="ph"><span class="pill" style="background:#D98324">At Risk</span>
+          <span class="nums"><b>11</b> clients · <b>$301,338</b> · 16%</span></div>
+          <div class="move">Were valuable, recency slipping. Personal win-back now.</div>
+          <div class="mix">● 8 recurring · ● 3 project</div>
+          <ul class="clist"><li><span><span class="cname"><span class="dot a"></span>Citron Hygiene Canada Inc</span><span class="cmeta">recurring · 25d</span></span><span class="cval">$60,450</span></li><li><span><span class="cname"><span class="dot a"></span>Kenneth’s Hair Salons and Day Spas, Inc</span><span class="cmeta">recurring · 295d</span></span><span class="cval">$54,000</span></li><li><span><span class="cname"><span class="dot a"></span>Crimson Design Group</span><span class="cmeta">recurring · 27d</span></span><span class="cval">$53,819</span></li><li><span><span class="cname"><span class="dot a"></span>PRE4CLE c/o Educational Service Center of Northeast Ohio<span class="q">?</span></span><span class="cmeta">recurring · 81d</span></span><span class="cval">$36,930</span></li><li><span><span class="cname"><span class="dot a"></span>Citron Hygiene LP</span><span class="cmeta">project · 1.6yr</span></span><span class="cval">$25,850</span></li><li><span><span class="cname"><span class="dot a"></span>Sunny Meadows Flower Farm</span><span class="cmeta">recurring · 1.2yr</span></span><span class="cval">$24,000</span></li><li><span><span class="cname"><span class="dot a"></span>The Bellepoint Company</span><span class="cmeta">recurring · 251d</span></span><span class="cval">$21,520</span></li><li><span><span class="cname"><span class="dot a"></span>Browder Design, LLC</span><span class="cmeta">project · 1.7yr</span></span><span class="cval">$8,180</span></li></ul><div class="more">+ 3 more — see workbook</div></div><div class="segpanel" style="border-top-color:#9AA0A6">
+          <div class="ph"><span class="pill" style="background:#9AA0A6">About to Sleep</span>
+          <span class="nums"><b>16</b> clients · <b>$62,794</b> · 3%</span></div>
+          <div class="move">Fading. Light-touch reactivation before they lapse.</div>
+          <div class="mix">● 9 recurring · ● 7 project</div>
+          <ul class="clist"><li><span><span class="cname"><span class="dot a"></span>K.A. Menendian Rug Cleaning</span><span class="cmeta">project · 1.5yr</span></span><span class="cval">$11,575</span></li><li><span><span class="cname"><span class="dot a"></span>K.A. Menendian Rug Gallery</span><span class="cmeta">project · 1.5yr</span></span><span class="cval">$11,575</span></li><li><span><span class="cname"><span class="dot a"></span>LINEAEDGE</span><span class="cmeta">recurring · 29d</span></span><span class="cval">$10,935</span></li><li><span><span class="cname"><span class="dot a"></span>501 Salon & Spa | Industry Salon</span><span class="cmeta">project · 1.9yr</span></span><span class="cval">$9,000</span></li><li><span><span class="cname"><span class="dot a"></span>City of Bexley</span><span class="cmeta">recurring · 123d</span></span><span class="cval">$3,474</span></li><li><span><span class="cname"><span class="dot a"></span>Morgan State University</span><span class="cmeta">project · 1.8yr</span></span><span class="cval">$2,900</span></li><li><span><span class="cname"><span class="dot a"></span>The Color Bar Salon</span><span class="cmeta">recurring · 29d</span></span><span class="cval">$2,572</span></li><li><span><span class="cname"><span class="dot a"></span>Aligned Nutrition</span><span class="cmeta">recurring · 30d</span></span><span class="cval">$1,885</span></li></ul><div class="more">+ 8 more — see workbook</div></div><div class="segpanel" style="border-top-color:#C8A84E">
+          <div class="ph"><span class="pill" style="background:#C8A84E">Need Attention</span>
+          <span class="nums"><b>14</b> clients · <b>$69,770</b> · 4%</span></div>
+          <div class="move">Middling on all axes. Give a timely reason to re-engage.</div>
+          <div class="mix">● 9 recurring · ● 5 project</div>
+          <ul class="clist"><li><span><span class="cname"><span class="dot a"></span>Yellowbird Foodshed</span><span class="cmeta">recurring · 20d</span></span><span class="cval">$30,000</span></li><li><span><span class="cname"><span class="dot a"></span>BASE ONE</span><span class="cmeta">project · 1.3yr</span></span><span class="cval">$10,890</span></li><li><span><span class="cname"><span class="dot a"></span>NeighborFood</span><span class="cmeta">project · 345d</span></span><span class="cval">$6,000</span></li><li><span><span class="cname"><span class="dot a"></span>In Good Company Connections</span><span class="cmeta">project · 361d</span></span><span class="cval">$4,450</span></li><li><span><span class="cname"><span class="dot a"></span>Willow PR</span><span class="cmeta">recurring · 21d</span></span><span class="cval">$3,230</span></li><li><span><span class="cname"><span class="dot a"></span>Push Products LLC</span><span class="cmeta">project · 1.2yr</span></span><span class="cval">$3,000</span></li><li><span><span class="cname"><span class="dot a"></span>Jeffcot Law, LLC</span><span class="cmeta">recurring · 24d</span></span><span class="cval">$2,160</span></li><li><span><span class="cname"><span class="dot a"></span>The Darkest Horse<span class="q">?</span></span><span class="cmeta">recurring · 24d</span></span><span class="cval">$1,950</span></li></ul><div class="more">+ 6 more — see workbook</div></div><div class="segpanel" style="border-top-color:#B23A48">
+          <div class="ph"><span class="pill" style="background:#B23A48">Can't Lose Them</span>
+          <span class="nums"><b>2</b> clients · <b>$25,140</b> · 1%</span></div>
+          <div class="move">High past value, gone quiet. Bespoke recovery.</div>
+          <div class="mix">● 0 recurring · ● 2 project</div>
+          <ul class="clist"><li><span><span class="cname"><span class="dot a"></span>North Country Charcuterie, LLC</span><span class="cmeta">project · 2.2yr</span></span><span class="cval">$17,140</span></li><li><span><span class="cname"><span class="dot a"></span>Craft & Willow</span><span class="cmeta">project · 2.3yr</span></span><span class="cval">$8,000</span></li></ul></div><div class="segpanel" style="border-top-color:#7A7F85">
+          <div class="ph"><span class="pill" style="background:#7A7F85">Hibernating</span>
+          <span class="nums"><b>17</b> clients · <b>$38,462</b> · 2%</span></div>
+          <div class="move">Low across the board. Low-cost reactivation only.</div>
+          <div class="mix">● 11 recurring · ● 6 project</div>
+          <ul class="clist"><li><span><span class="cname"><span class="dot a"></span>Igloo Letterpress</span><span class="cmeta">recurring · 2.2yr</span></span><span class="cval">$12,000</span></li><li><span><span class="cname"><span class="dot a"></span>Health Connect One</span><span class="cmeta">recurring · 266d</span></span><span class="cval">$8,618</span></li><li><span><span class="cname"><span class="dot a"></span>1763 Farm LLC</span><span class="cmeta">project · 2.2yr</span></span><span class="cval">$4,500</span></li><li><span><span class="cname"><span class="dot a"></span>Kristen Hall City Design</span><span class="cmeta">project · 2.2yr</span></span><span class="cval">$3,500</span></li><li><span><span class="cname"><span class="dot a"></span>Verite Dermatology</span><span class="cmeta">recurring · 319d</span></span><span class="cval">$2,038</span></li><li><span><span class="cname"><span class="dot a"></span>Mochinut</span><span class="cmeta">recurring · 330d</span></span><span class="cval">$1,500</span></li><li><span><span class="cname"><span class="dot a"></span>Be Here Now, LLC</span><span class="cmeta">recurring · 136d</span></span><span class="cval">$1,500</span></li><li><span><span class="cname"><span class="dot a"></span>Franklinton High School</span><span class="cmeta">recurring · 1.2yr</span></span><span class="cval">$1,112</span></li></ul><div class="more">+ 9 more — see workbook</div></div><div class="segpanel" style="border-top-color:#8FBFB6">
+          <div class="ph"><span class="pill" style="background:#8FBFB6">Promising</span>
+          <span class="nums"><b>1</b> clients · <b>$447</b> · 0%</span></div>
+          <div class="move">Recent, early, low spend so far. Nurture.</div>
+          <div class="mix">● 1 recurring · ● 0 project</div>
+          <ul class="clist"><li><span><span class="cname"><span class="dot a"></span>Kooperman I Mentel I Crossley I Yaross</span><span class="cmeta">recurring · 15d</span></span><span class="cval">$447</span></li></ul></div></div></section>
+
+<section><div class="sec-head"><span class="sec-num">04</span><h2>What to take from this</h2></div>
+<ul class="takeaways">
+<li><div><b>Manage the two books differently.</b><p>Talent needs a few flagship relationships protected and replicated. Trades needs disciplined account management across a wide mid-tier, because that's where revenue quietly slips.</p></div></li>
+<li><div><b>The Trades At-Risk list is the priority action.</b><p>$301K across 11 accounts — Kenneth's, PRE4CLE, Citron, Sunny Meadows, Bellepoint. Recoverable with outreach, and concentrated enough to work through by name this quarter.</p></div></li>
+<li><div><b>Talent's risk is concentration, not churn.</b><p>With 61% of Talent revenue in Champions, the exposure is dependence on a few creators. Growing the Potential Loyalist tier is how that de-risks over time.</p></div></li>
+<li><div><b>Correct the mapping to trust the dollars.</b><p>The shapes above are robust; the exact splits move with the ~25% low-confidence calls. Fix the workbook's Track Mapping and this sharpens into a real operating tool.</p></div></li>
+</ul></section>
+
+<footer><p>PROVISIONAL. Window Jan 1 2024 – Jun 26 2026. Track assigned by inference (no track field in source); ~25% low-confidence, marked ?. R/F/M scored 1–5 by quantile within track × cohort (recurring vs project); small pools (Talent-project, n=14) are coarse. Recency = days since last activity; Frequency = invoices; Monetary = cash received. USD.</p>
+<p style="margin-top:9px">To finalize: correct "Corrected Track" in the workbook's Track Mapping tab (dropdown) and re-run. Client track is the only inferred input; all other figures come straight from the exports.</p></footer>
+</div></body></html>
