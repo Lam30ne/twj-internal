@@ -19,6 +19,8 @@ The index page links to all documents with descriptions and intended audiences.
 | Document | Purpose | Audience |
 |---|---|---|
 | [`index.html`](index.html) | Document hub — start here | All |
+| [`BigOrange_Acquisition_Brief.html`](public/docs/BigOrange_Acquisition_Brief.html) | First-conversation read on BigOrange Marketing as a potential Trades-track acquisition — fit, what to verify, timing, and review lenses for Allie and Camila | Adam · Allie · Camila |
+| [`Acquisition_Target_Brief_BigOrange.html`](public/docs/Acquisition_Target_Brief_BigOrange.html) | Analytical companion — BigOrange run against the Acquisition Guide (valuation, diagnostic, deal shape, when to walk); reusable per-target template | Adam · Confidential |
 | [`Camila_vs_Artifacts_Review.html`](Camila_vs_Artifacts_Review.html) | Camila's first-week findings mapped against the strategy documents — what aligns, what's new, and what the artifacts already know | Adam · Allie · Camila |
 | [`Wonderly_Strategic_Operating_Brief.html`](Wonderly_Strategic_Operating_Brief.html) | Full operating model: org structure, two delivery tracks, discipline leads, scorecards, financial targets, hiring roadmap, brief frameworks | Full Leadership Team |
 | [`Wonderly_Natural_Growth_Guide.html`](Wonderly_Natural_Growth_Guide.html) | The philosophy underneath the strategy — fungi-inspired organizational principles mapped precisely to Wonderly's structure and growth path | Full Leadership Team |

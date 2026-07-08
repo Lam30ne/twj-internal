@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BigOrange — Acquisition Brief for Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lato:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF7EF; --cream-2:#F3ECDD; --card:#FFFFFF;
+    --ink:#1D1B18; --ink-soft:#4A463F; --line:#E3DAC8;
+    --teal:#0E7C7B; --teal-soft:#0E7C7B15; --amber:#C9791C; --amber-soft:#C9791C15;
+    --plum:#7A4E7E; --plum-soft:#7A4E7E15; --red:#A6432E; --red-soft:#A6432E12;
+    --green:#3F7A34; --green-soft:#3F7A3412;
+    --shadow:0 1px 2px rgba(29,27,24,.05),0 8px 24px rgba(29,27,24,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --cream:#141310; --cream-2:#1C1A16; --card:#211E19;
+      --ink:#F4EEE2; --ink-soft:#B9B2A4; --line:#332F27;
+      --teal:#4FBFBD; --teal-soft:#4FBFBD1A; --amber:#E0A458; --amber-soft:#E0A4581A;
+      --plum:#C79BCB; --plum-soft:#C79BCB1A; --red:#E08A76; --red-soft:#E08A7614;
+      --green:#7FB56F; --green-soft:#7FB56F14;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--cream); color:var(--ink); font-family:'Lato',system-ui,sans-serif; font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px; margin:0 auto; padding:44px 22px 72px}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--amber); margin:0 0 10px}
+  h1{font-family:'Playfair Display',serif; font-weight:800; font-size:clamp(30px,6.2vw,46px); line-height:1.05; margin:0 0 12px; letter-spacing:-.015em}
+  .sub{color:var(--ink-soft); margin:0; max-width:64ch; font-size:18px}
+  .meta{font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--ink-soft); margin:16px 0 0; letter-spacing:.02em; line-height:1.5}
+  h2{font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(20px,4vw,26px); margin:46px 0 4px; letter-spacing:-.01em}
+  h2 .num{font-family:'IBM Plex Mono',monospace; font-size:15px; color:var(--ink-soft); font-weight:500; margin-right:10px}
+  h2 + .lede{color:var(--ink-soft); margin:0 0 14px; max-width:64ch; font-size:15.5px}
+  p{max-width:66ch}
+  .verdict{border-left:5px solid var(--amber); background:var(--amber-soft); padding:22px 24px; border-radius:0 14px 14px 0; margin-top:24px}
+  .verdict h3{font-family:'Playfair Display',serif; margin:0 0 8px; font-size:22px}
+  .verdict p{margin:0; color:var(--ink-soft)} .verdict p + p{margin-top:10px} .verdict b{color:var(--ink)}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:13px; padding:20px 22px; box-shadow:var(--shadow); margin-top:14px}
+  .card p{margin:0} .card p + p{margin-top:12px}
+  ul{list-style:none; margin:0; padding:0}
+  li{position:relative; padding:9px 0 9px 24px; font-size:15.5px; border-top:1px solid var(--line)}
+  li:first-child{border-top:none}
+  li:before{content:"\25B8"; position:absolute; left:0; top:9px; color:var(--amber); font-size:13px}
+  li b{color:var(--ink)}
+
+  /* plain-terms inline note, for a reader newer to this */
+  .plain{background:var(--cream-2); border:1px dashed var(--line); border-radius:10px; padding:12px 15px; margin-top:14px; font-size:14.5px; color:var(--ink-soft)}
+  .plain b{color:var(--ink); font-family:'IBM Plex Mono',monospace; font-size:12.5px; letter-spacing:.03em; text-transform:uppercase; display:block; margin-bottom:4px; color:var(--amber)}
+
+  /* numbers */
+  .data{overflow-x:auto; margin-top:14px}
+  table{border-collapse:collapse; width:100%; min-width:480px; font-family:'IBM Plex Mono',monospace; font-size:14px}
+  th,td{text-align:right; padding:10px 14px; border-bottom:1px solid var(--line)}
+  th:first-child,td:first-child{text-align:left; font-family:'Lato',sans-serif; font-weight:700; color:var(--ink)}
+  thead th{color:var(--ink-soft); font-weight:500; border-bottom:1.5px solid var(--line)}
+  tbody tr:last-child td{border-bottom:none}
+  .down{color:var(--red)} .proj{color:var(--ink-soft)}
+
+  /* review-ask two-up */
+  .ask2{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px}
+  .who{border-radius:14px; padding:20px 22px; border:1.5px solid}
+  .who.allie{border-color:var(--amber); background:linear-gradient(180deg,var(--amber-soft),var(--card))}
+  .who.cam{border-color:var(--teal); background:linear-gradient(180deg,var(--teal-soft),var(--card))}
+  .who .k{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:4px}
+  .who.allie .k{color:var(--amber)} .who.cam .k{color:var(--teal)}
+  .who h4{font-family:'Playfair Display',serif; margin:0 0 10px; font-size:19px}
+  .who li{font-size:14.5px; padding-left:22px}
+  .who.allie li:before{content:"\25B8"; color:var(--amber)}
+  .who.cam li:before{content:"\25B8"; color:var(--teal)}
+
+  .flag{border-color:var(--red)}
+  .flag li:before{content:"\25B8"; color:var(--red)}
+
+  .kicker{font-family:'Playfair Display',serif; font-size:clamp(17px,3.2vw,21px); text-align:center; margin:40px 0 0; line-height:1.45}
+  .kicker b{font-weight:700}
+  .foot{font-size:13px; color:var(--ink-soft); margin-top:34px; line-height:1.55; border-top:1px solid var(--line); padding-top:18px}
+  .foot b{color:var(--ink)} .foot + .foot{margin-top:10px; border-top:none; padding-top:0}
+
+  @media (max-width:560px){ .ask2{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Acquisition Brief · For Allie &amp; Camila · Review Draft</p>
+  <h1>BigOrange Marketing</h1>
+  <p class="sub">This is the conversation I told the owner I'd have with you two. I had a first, get-to-know-you call — no commitment on either side — and want your read before we decide whether to keep going.</p>
+  <p class="meta">Cincinnati · founded 2017 · ~5 people · WBENC women-owned · 100% owned by Margee Moore (CEO)<br>Listed: asking $790K · open to full or majority sale · seller open to employee-ownership structures</p>
+
+  <div class="verdict">
+    <h3>Where I've landed after one call</h3>
+    <p><b>This is the most values-aligned target we've come across — and I want to be careful not to let that do the thinking for us.</b> Margee is a 60-year-old founder who built a women-owned agency to give women flexible work, reads the same books we do, and is selling largely because she wants her team to reach employee ownership and has decided she can't grow there fast enough on her own. That's rare, and it's real.</p>
+    <p>The open questions aren't <em>whether</em> it fits — it fits Trades cleanly. They're three things we can only answer with more information: <b>what the numbers actually are</b>, <b>whether now is the right time for us</b>, and <b>how a deal would be structured and guaranteed.</b> That last one lands specifically on Allie. More below.</p>
+  </div>
+
+  <h2><span class="num">00</span>For Allie — what "acquisition" means here</h2>
+  <p class="lede">Skip if this is old hat. Written because it's newer terrain for you, and the decisions ahead are partly yours.</p>
+  <div class="card">
+    <p>Everything we've done to grow has been by <em>building</em> — winning clients, hiring, making the work. <b>Acquisition is a second way to grow: you buy a business that already exists</b> rather than building its equivalent from scratch. It's the same method Zingerman's and the folks we admire use to become a community of businesses instead of one big one.</p>
+    <p>The reason we'd ever do it is our own $3M-and-beyond map: buying a strong, on-thesis agency can add revenue, senior talent, and a client base faster than hiring our way there — <em>if</em> the numbers are healthy and we're ready to absorb it. Both of those "ifs" are exactly what this brief is trying to pressure-test. Nothing here commits us to anything; this is the "should we look closer?" stage.</p>
+    <div class="plain">
+      <b>The five terms that show up below</b>
+      <b>SDE</b><span style="text-transform:none;letter-spacing:0;font-family:'Lato',sans-serif;color:var(--ink-soft)">— roughly what the owner really earns from the business each year (profit + their own pay + a few personal add-backs). It's how small businesses like this are priced.</span>
+    </div>
+    <p style="margin-top:10px; font-size:14.5px; color:var(--ink-soft)"><b style="color:var(--ink)">SBA</b> — a government-backed bank loan used to buy the business. <b style="color:var(--ink)">Earnout</b> — paying part of the price later, only if the business hits agreed results. <b style="color:var(--ink)">EOT / ESOP</b> — structures that hand ownership to employees over time. <b style="color:var(--ink)">WBENC</b> — the women-owned certification (both they and we care about it).</p>
+  </div>
+
+  <h2><span class="num">01</span>Who they are, and who Margee is</h2>
+  <div class="card">
+    <p>BigOrange is a Cincinnati digital-marketing agency — StoryBrand-certified, HubSpot partner, niched into IT/managed-service providers, home builders, landscaping, and professional services. Their clients <b>outsource marketing to them entirely</b> and meet with them twice a month; the work runs on a documented 7-step website blueprint and repeatable content process. They use Claude to run client "portals," everything human-edited. In short: process-driven, senior, and genuinely good at the thing.</p>
+    <p><b>Ownership is clean.</b> Despite a "three friends started it" origin story, Margee has always been the sole, 100% owner — she carried the books and the financial risk from day one. One early partner left; the other, Janice, is now a part-time creative contractor, not an owner. So this is a <b>single-owner business</b>, which is much simpler than it first looked.</p>
+    <p><b>Why she's selling is the part that stood out.</b> She just turned 60, her husband is retired, and she wants to get the company to its next stage. Her real goal is employee ownership for her team — she's a Great Game of Business reader, literally steering this quarter toward profit margin — but she's concluded that growing there on sales alone will take longer than her runway allows. So she'd like to sell this year, then stay ~2 years in a role (sales or otherwise), and she's flexible if the right buyer doesn't need her that long.</p>
+  </div>
+
+  <h2><span class="num">02</span>Why this one is interesting</h2>
+  <p class="lede">The strategic fit, honestly stated.</p>
+  <div class="card"><ul>
+    <li><b>It's cleanly a Trades business.</b> Their clients are almost exactly Marin's buyer — B2B, service companies, traditional industries. This isn't a Talent play; it slots into the track we're trying to grow.</li>
+    <li><b>The team shapes fit our gap.</b> They have a small, senior, strategy-led team; we have a junior production powerhouse and an under-structured marketing lead layer. Their seniority could guide our youngsters; our capacity could serve their clients. That complementarity is the real thesis.</li>
+    <li><b>Shared values, not just marketing copy.</b> Women-owned, WBENC-certified, built for flexibility, aimed at employee ownership. She wants to join a larger org partly so her people can finally get benefits (they're stuck under a PEO threshold). This is the same book we're writing.</li>
+    <li><b>A motivated, kind seller on a clear timeline</b> who's open to staying, open to earnouts implicitly, and open to employee-ownership structures. That's a workable counterpart.</li>
+    <li><b>A visible upside lever:</b> she thinks they're <em>under</em>-charging for AI-search (AEO) work and aren't pushing a lead-gen offer they already have, because they're near capacity. Room to grow that we could help unlock.</li>
+  </ul></div>
+
+  <h2><span class="num">03</span>What we don't know yet — and must verify</h2>
+  <p class="lede">The cautions. Note: she and I did <em>not</em> discuss her financials on this call — she asked ours. Everything below is from the public listing and needs confirming.</p>
+  <div class="card">
+    <div class="data">
+      <table>
+        <thead><tr><th>Listing figures</th><th>2023</th><th>2024</th><th>2025</th><th class="proj">2026 proj</th></tr></thead>
+        <tbody>
+          <tr><td>Revenue</td><td>$1.22M</td><td>$1.38M</td><td>~$1.30M</td><td class="proj">$1.30M</td></tr>
+          <tr><td>SDE (owner earnings)</td><td>$237K</td><td class="down">$167K</td><td class="down">$118K</td><td class="proj">$215K</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:16px"><b>Two things to probe, calmly, in diligence:</b></p>
+    <ul>
+      <li><b>The margin dip.</b> Owner earnings roughly halved over two years while revenue held flat, and the asking price leans on a 2026 rebound the listing doesn't explain. There are benign explanations — she's near capacity by choice, invested in the team/office, may run lean margins to pay people well, and is actively working on margin this quarter. But we need to understand it before it's a number, not after.</li>
+      <li><b>Price vs. our own yardstick.</b> By the framework in our Acquisition Guide (2–4× SDE for a business this size), $790K sits above the range on current earnings. That's not a dealbreaker — it's an opening-position gap that structure can close (see §4). It does mean the sticker isn't the price.</li>
+      <li><b>Key-person reality.</b> Simpler than I first feared — it's Margee, not three founders — and softened by documented process and her 2-year stay. Still, she's the relationships and the rainmaker; a real transition and non-compete matter.</li>
+    </ul>
+  </div>
+
+  <h2><span class="num">04</span>How a deal could be shaped</h2>
+  <p class="lede">Not a proposal — just so we're all speaking the same language if we go further.</p>
+  <div class="card"><ul>
+    <li><b>Anchor on real earnings, let her projection live in an earnout.</b> We'd base an offer on verified trailing numbers, and structure the rest so the price climbs toward her ask only if the business actually performs. Her forecast, her risk to carry — fair to everyone.</li>
+    <li><b>Keep her in for the transition</b> — which she wants anyway — with a non-compete so the relationships don't walk.</li>
+    <li><b>Whose entity, and whose guarantee — this is Allie's call.</b> An SBA loan requires a personal guarantee from any 20%+ owner. If this sits under The Wonder Jam, <b>that guarantee is Allie's</b>, because she owns 100%. If it's structured as Adam's personal deal, it's on us personally instead. That's a real fork, and it's yours to weigh — I don't want to walk toward it by accident.</li>
+    <li><b>New, separate entity</b> so nothing dilutes or endangers Wonderly's own certification — and here there's a genuinely interesting question worth expert input: <b>can BigOrange's WBENC status be preserved</b> (it tests women's ownership <em>and</em> control) under our structure? Could be a strength; needs the certifier and our attorney, not a guess.</li>
+  </ul></div>
+
+  <h2><span class="num">05</span>The honest timing question</h2>
+  <p class="lede">The strongest argument against moving now isn't about them — it's about us.</p>
+  <div class="card flag"><ul>
+    <li>Our own financial instrumentation isn't finished. Buying another business's books before ours are fully clean adds complexity right where we're trying to reduce it.</li>
+    <li>The shared-services spine that would let us absorb an acquisition cleanly is still being built.</li>
+    <li>Our own guide says: fix unit economics before scaling demand. This adds revenue at a thinner margin than ours — the opposite order.</li>
+    <li><b>The counter-argument, which is real:</b> her senior team could partly <em>be</em> the leadership layer we're missing, and her 6-month sell / 2-year-stay timeline gives us runway to get ready in parallel rather than rushing. So the question may be "at what pace," not "yes or no."</li>
+  </ul></div>
+
+  <h2><span class="num">06</span>What I'd like from each of you</h2>
+  <div class="ask2">
+    <div class="who allie">
+      <div class="k">Allie — the ownership &amp; values lens</div>
+      <h4>Your read, honestly</h4>
+      <ul>
+        <li>Does this excite you, or am I being pulled by how aligned she is?</li>
+        <li>How do you feel about the guarantee/ownership question landing on you if it sits under The Wonder Jam?</li>
+        <li>Brand &amp; certification: keep BigOrange as its own brand, or integrate? Any instinct on the WBENC angle?</li>
+        <li>Is folding in a values-aligned team the kind of growth we <em>want</em>, not just can do?</li>
+      </ul>
+    </div>
+    <div class="who cam">
+      <div class="k">Camila — the operating &amp; diligence lens</div>
+      <h4>Pressure-test me</h4>
+      <ul>
+        <li>Given where our own instrumentation and spine actually are — what's the earliest we could absorb this without straining the team?</li>
+        <li>What would you want to see in a diligence pack first? (Recurring vs. project revenue split, client concentration, the margin story.)</li>
+        <li>Where's the integration risk you've seen before that I'm underweighting?</li>
+        <li>Does one-at-a-time capacity allow this right now, or does something else have to finish first?</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2><span class="num">07</span>The decision in front of us</h2>
+  <div class="card">
+    <p>Small and reversible: <b>do we keep exploring?</b> If yes, the next step is low-cost — I submit the inquiry through the marketplace, request a diligence pack (financials, contracts, client mix), and we get real numbers to replace the listing's. That tells us far more, commits us to nothing, and honors her timeline.</p>
+    <p>If either of you thinks the timing is wrong for <em>us</em> regardless of fit, I'd rather hear it now — that's a completely valid place to land, and it's exactly why I'm bringing this to you before going further. Tell me where I've got it wrong.</p>
+  </div>
+
+  <p class="kicker">The fit is the easy part.<br><b>Whether it's the right thing for us to take on right now is the real question — that's what I need you two on.</b></p>
+
+  <p class="foot"><b>Status.</b> One introductory call, held; no offer, no commitment, no numbers verified. All financial figures above are from the public listing and are to be confirmed in diligence.</p>
+  <p class="foot"><b>Not advice.</b> A judgment aid for our own decision, not legal, tax, or financial advice. Any real step needs our attorney (structure, purchase agreement, guarantee, WBENC), our CPA (earnings quality, S-corp and woman-owned implications), and our SBA lender (current terms).</p>
+</div>
+</body>
+</html>

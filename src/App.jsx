@@ -13,6 +13,32 @@ const CARD_BG = '#1c1a16'
 
 const docs = [
   {
+    title: 'BigOrange — Acquisition Brief for Review',
+    route: '/bigorange-brief',
+    file: 'BigOrange_Acquisition_Brief.html',
+    tag: 'Acquisition',
+    tagColor: '#e0a458',
+    tagBg: '#281a08',
+    emoji: '🍊',
+    desc: 'First-conversation read on a Cincinnati women-owned agency (BigOrange Marketing) as a potential Trades-track acquisition — who they are, why the fit is strong, what to verify, the honest timing question, and distinct review lenses for Allie (ownership/guarantee/certification) and Camila (diligence/integration/timing).',
+    audience: 'Adam · Allie · Camila',
+    added: '2026-07-07',
+    updated: '2026-07-07',
+  },
+  {
+    title: 'Acquisition Target Brief — BigOrange',
+    route: '/bigorange-target',
+    file: 'Acquisition_Target_Brief_BigOrange.html',
+    tag: 'Acquisition',
+    tagColor: '#e0a458',
+    tagBg: '#281a08',
+    emoji: '🎯',
+    desc: 'The analytical companion: BigOrange run against the Acquisition Guide — SDE trend, valuation multiples vs. our framework, the fixable-vs-structural diagnostic, deal-shape options, and when to walk. Structured as a reusable per-target prep sheet.',
+    audience: 'Adam · Confidential',
+    added: '2026-07-07',
+    updated: '2026-07-07',
+  },
+  {
     title: 'Q2 2026 Quarterly Review',
     route: '/quarterly-review',
     file: 'Wonderly_Q2_Quarterly_Review.html',

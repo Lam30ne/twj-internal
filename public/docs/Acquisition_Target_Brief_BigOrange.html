@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Target Brief — BigOrange Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lato:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF7EF; --cream-2:#F3ECDD; --card:#FFFFFF;
+    --ink:#1D1B18; --ink-soft:#4A463F; --line:#E3DAC8;
+    --teal:#0E7C7B; --teal-soft:#0E7C7B15; --amber:#C9791C; --amber-soft:#C9791C15;
+    --plum:#7A4E7E; --plum-soft:#7A4E7E15; --red:#A6432E; --red-soft:#A6432E12;
+    --green:#3F7A34;
+    --shadow:0 1px 2px rgba(29,27,24,.05),0 8px 24px rgba(29,27,24,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --cream:#141310; --cream-2:#1C1A16; --card:#211E19;
+      --ink:#F4EEE2; --ink-soft:#B9B2A4; --line:#332F27;
+      --teal:#4FBFBD; --teal-soft:#4FBFBD1A; --amber:#E0A458; --amber-soft:#E0A4581A;
+      --plum:#C79BCB; --plum-soft:#C79BCB1A; --red:#E08A76; --red-soft:#E08A7614;
+      --green:#7FB56F;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--cream); color:var(--ink); font-family:'Lato',system-ui,sans-serif; font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:840px; margin:0 auto; padding:44px 22px 72px}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--amber); margin:0 0 10px}
+  h1{font-family:'Playfair Display',serif; font-weight:800; font-size:clamp(30px,6.5vw,48px); line-height:1.05; margin:0 0 12px; letter-spacing:-.015em}
+  .sub{color:var(--ink-soft); margin:0; max-width:64ch; font-size:18px}
+  .meta{font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--ink-soft); margin:14px 0 0; letter-spacing:.02em}
+  h2{font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(20px,4vw,26px); margin:46px 0 4px; letter-spacing:-.01em}
+  h2 .num{font-family:'IBM Plex Mono',monospace; font-size:15px; color:var(--ink-soft); font-weight:500; margin-right:10px}
+  h2 + .lede{color:var(--ink-soft); margin:0 0 16px; max-width:64ch; font-size:15.5px}
+  .verdict{border-left:5px solid var(--amber); background:var(--amber-soft); padding:22px 24px; border-radius:0 14px 14px 0; margin-top:24px}
+  .verdict h3{font-family:'Playfair Display',serif; margin:0 0 8px; font-size:23px}
+  .verdict p{margin:0; color:var(--ink-soft)} .verdict p + p{margin-top:10px} .verdict b{color:var(--ink)}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:13px; padding:20px 22px; box-shadow:var(--shadow); margin-top:14px}
+  ul{list-style:none; margin:0; padding:0}
+  li{position:relative; padding:9px 0 9px 24px; font-size:15.5px; border-top:1px solid var(--line)}
+  li:first-child{border-top:none}
+  li:before{content:"▸"; position:absolute; left:0; top:9px; color:var(--amber); font-size:13px}
+  li b{color:var(--ink)}
+
+  /* data table */
+  .data{overflow-x:auto; margin-top:14px}
+  table{border-collapse:collapse; width:100%; min-width:520px; font-family:'IBM Plex Mono',monospace; font-size:14.5px}
+  th,td{text-align:right; padding:11px 14px; border-bottom:1px solid var(--line)}
+  th:first-child,td:first-child{text-align:left; font-family:'Lato',sans-serif; font-weight:700; color:var(--ink)}
+  thead th{color:var(--ink-soft); font-weight:500; border-bottom:1.5px solid var(--line)}
+  tbody tr:last-child td{border-bottom:none}
+  .proj{color:var(--ink-soft)}
+  .down{color:var(--red)} .up{color:var(--green)}
+  .mult{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px}
+  .mult .m{background:var(--cream-2); border:1px solid var(--line); border-radius:11px; padding:14px 16px}
+  .mult .big{font-family:'IBM Plex Mono',monospace; font-size:22px; font-weight:500; color:var(--ink)}
+  .mult .lab{font-size:12.5px; color:var(--ink-soft); margin-top:3px}
+  .mult .flag{color:var(--red); font-weight:700}
+  .mult .ok{color:var(--green); font-weight:700}
+
+  .tag{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; padding:3px 9px; border-radius:20px; margin-left:8px; vertical-align:middle}
+  .tag.yes{background:var(--teal-soft); color:var(--teal); border:1px solid var(--teal)}
+  .tag.no{background:var(--red-soft); color:var(--red); border:1px solid var(--red)}
+  .tag.maybe{background:var(--amber-soft); color:var(--amber); border:1px solid var(--amber)}
+
+  .ask{background:linear-gradient(180deg,var(--teal-soft),var(--card)); border:1.5px solid var(--teal); border-radius:14px; padding:22px 24px; margin-top:16px}
+  .ask .k{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--teal); margin-bottom:12px}
+  .ask li:before{content:"\201C"; font-family:'Playfair Display',serif; font-size:22px; top:6px; color:var(--teal)}
+  .ask li{padding-left:26px; font-size:16px}
+
+  .walk li:before{content:"\2715"; color:var(--red); font-weight:700; font-size:12px; top:11px}
+  .walk{border-color:var(--red)}
+
+  .diag{border:1.5px solid var(--amber); border-radius:14px; padding:6px 0; margin-top:16px; overflow:hidden}
+  .diag .row{display:grid; grid-template-columns:1fr 1fr}
+  .diag .col{padding:18px 20px}
+  .diag .col:first-child{border-right:1px solid var(--line)}
+  .diag h4{font-family:'Playfair Display',serif; margin:0 0 6px; font-size:18px}
+  .diag .lab{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:8px}
+  .diag .g{color:var(--green)} .diag .r{color:var(--red)}
+  .diag p{margin:0; font-size:14.5px; color:var(--ink-soft)}
+
+  .kicker{font-family:'Playfair Display',serif; font-size:clamp(18px,3.4vw,22px); text-align:center; margin:38px 0 0; line-height:1.4}
+  .kicker b{font-weight:700}
+  .foot{font-size:13px; color:var(--ink-soft); margin-top:34px; line-height:1.55; border-top:1px solid var(--line); padding-top:18px}
+  .foot b{color:var(--ink)} .foot + .foot{margin-top:10px; border-top:none; padding-top:0}
+
+  @media (max-width:560px){
+    .mult{grid-template-columns:1fr}
+    .diag .row{grid-template-columns:1fr}
+    .diag .col:first-child{border-right:none; border-bottom:1px solid var(--line)}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Target Brief · Trades Track · Intro-Conversation Prep</p>
+  <h1>BigOrange Marketing</h1>
+  <p class="sub">A judgment sheet to carry <em>into</em> the room — the listing run against your own Acquisition Guide, with the questions that actually decide it. Clone this format per target.</p>
+  <p class="meta">Cincinnati Metro · est. 2017 · ~5 people · WBENC women-owned · asking $790K · full or majority</p>
+
+  <div class="verdict">
+    <h3>The honest read, up front</h3>
+    <p><b>Best-fit target you could plausibly find — wrapped around a margin that's halving and a price built on a projection.</b> On strategy this is almost too on-thesis: B2B service-company clients (MSP/IT, home builders, landscaping, pro services) that outsource marketing entirely — that's Marin's buyer, a clean Trades/Swell adjacency, in Ohio, women-owned, with a seller open to employee-ownership structures.</p>
+    <p>On substance, two things gate it. <b>SDE has fallen ~50% in two years on flat revenue</b>, and the ask is priced off a 2026 recovery the seller hasn't shown you how they'll hit. And <b>"5 employees" is three founders and ~two staff</b> — the value is those three women's relationships and certifications, which is exactly what your guide says can walk out the door. <b>Keep talking. Get the data. Don't price off their projection.</b></p>
+  </div>
+
+  <h2><span class="num">01</span>Does it belong in the family?</h2>
+  <p class="lede">Your first gate, before valuation. Two clear passes, one open question.</p>
+  <div class="card"><ul>
+    <li><b>Flywheel <span class="tag yes">pass</span></b> Their clients are Trades Track buyers almost exactly — MSP/IT, residential builders/developers, professional services. Their book becomes Wonderly/Swell pipeline; Swell's engine could feed theirs. This genuinely feeds what you run.</li>
+    <li><b>Which branch <span class="tag yes">clear</span></b> Trades adjacency / Swell demand engine — not a new branch, not "cheap and available." A productized, niched, outsourced-marketing shop is on-map.</li>
+    <li><b>Operator <span class="tag maybe">unresolved — the whole deal hinges here</span></b> Owner "willing to stay 6mo–3yr" is a transition runway, not a managing partner. You need to know <em>which</em> founder(s) stay and whether one is a true managing-partner candidate. No operator who owns it → you'd be buying a job, which is the one thing you're leaving.</li>
+  </ul></div>
+
+  <h2><span class="num">02</span>The number problem</h2>
+  <p class="lede">Same multiple discipline you used to value Wonderly — pointed the other way.</p>
+  <div class="card">
+    <div class="data">
+      <table>
+        <thead><tr><th>&nbsp;</th><th>2023</th><th>2024</th><th>2025</th><th class="proj">2026 proj</th></tr></thead>
+        <tbody>
+          <tr><td>Revenue</td><td>$1,223,140</td><td>$1,383,660</td><td>~$1,300,000</td><td class="proj">$1,300,000</td></tr>
+          <tr><td>SDE</td><td>$236,919</td><td class="down">$167,465</td><td class="down">$118,400</td><td class="proj up">$215,000</td></tr>
+          <tr><td>SDE margin</td><td>19.4%</td><td class="down">12.1%</td><td class="down">9.1%</td><td class="proj up">16.5%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul style="margin-top:16px">
+      <li><b>The SDE cliff is the story.</b> $237K → $167K → $118K while revenue held flat. That's earnings quality deteriorating, not a business compounding. Optimism isn't cash flow.</li>
+      <li><b>The 2026 number is a pricing tool, not a forecast.</b> +82% SDE on flat revenue, no mechanism shown. It exists to make the multiple look reasonable.</li>
+    </ul>
+    <div class="mult">
+      <div class="m"><div class="big flag">6.7&times;</div><div class="lab">Ask &divide; <b>trailing</b> SDE ($118K) — ~2&times; your ceiling</div></div>
+      <div class="m"><div class="big">4.7&times;</div><div class="lab">Ask &divide; best actual year ($167K) — top of range</div></div>
+      <div class="m"><div class="big">4.5&times;</div><div class="lab">Ask &divide; 3-yr avg SDE ($174K)</div></div>
+      <div class="m"><div class="big ok">3.7&times;</div><div class="lab">Ask &divide; their <b>projected</b> SDE ($215K) — the number they want you anchored to</div></div>
+    </div>
+    <p style="margin:16px 0 0; font-size:15px; color:var(--ink-soft)"><b style="color:var(--ink)">Your framework's answer:</b> 2–4&times; on actual SDE puts fair value roughly <b style="color:var(--ink)">$240K–$500K</b> on trailing, ~$700K only at the generous ceiling of the best year. <b style="color:var(--ink)">$790K is above your range on every actual basis.</b></p>
+  </div>
+
+  <h2><span class="num">03</span>The one question that decides it</h2>
+  <p class="lede">Everything else is diligence. This is the fork.</p>
+  <div class="diag"><div class="row">
+    <div class="col">
+      <div class="lab g">If it's this &rarr; opportunity</div>
+      <h4 class="g">Fixable ops problem</h4>
+      <p>Margin fell because they added the office, over-hired, or founders drew up. Your pricing, utilization, and shared-services discipline restore it. You buy at trailing price and fix the exact thing you're good at fixing. This is <em>extend a strength.</em></p>
+    </div>
+    <div class="col">
+      <div class="lab r">If it's this &rarr; walk</div>
+      <h4 class="r">Structural compression</h4>
+      <p>MSP-marketing is crowded and commoditizing — they publish head-to-head "vs. competitor" pages, and everyone's bolting "AI-driven" onto the same StoryBrand playbook. If pricing power is eroding market-wide, you're catching a falling knife.</p>
+    </div>
+  </div></div>
+
+  <h2><span class="num">04</span>What to ask in <em>this</em> room</h2>
+  <p class="lede">Tailored from your guide to what this specific business is hiding.</p>
+  <div class="ask">
+    <div class="k">Ask the founders, directly</div>
+    <ul>
+      <li>Why sell now — really? (Then check it against a book that halved its SDE.)</li>
+      <li>Walk me through the SDE decline. What changed from 2023 to today?</li>
+      <li>The 2026 jump to $215K — what specifically gets you there on flat revenue?</li>
+      <li>Of the five, who are the three founders — and which of you stays, how long, doing what? What walks with whoever leaves?</li>
+      <li>What share of revenue is contract retainer with minimum terms vs. project vs. hourly?</li>
+      <li>Top three clients — what percent of revenue, and are they under contract or loyal to one of you?</li>
+      <li>Does the WBENC certification survive a change of ownership? On what conditions?</li>
+      <li>Three years of tax returns and bank statements, not just the P&amp;L — and would you carry a seller note and take an earnout?</li>
+    </ul>
+  </div>
+
+  <h2><span class="num">05</span>If it became a deal — the shape that protects you</h2>
+  <div class="card"><ul>
+    <li><b>Anchor on trailing, not projected.</b> Open near trailing-SDE value (~$400–500K zone), not their $790K. Their number lives in the upside, not the base.</li>
+    <li><b>Make the projection an earnout.</b> It's <em>their</em> 2026 forecast — so let them carry it. Price climbs toward their number only if the SDE recovery actually lands. Straight out of your key-person playbook.</li>
+    <li><b>Transition + non-compete on all three founders.</b> With value this concentrated in three people, a handoff and a real non-compete aren't optional — a departing founder rebuilding this across the street is the risk.</li>
+    <li><b>Whose balance sheet, decided on purpose.</b> Under The Wonder Jam → Allie's guarantee, and the WBENC-preservation question runs through her ownership. Personal deal → your guarantee. Pick the fork deliberately.</li>
+    <li><b>New entity, don't dilute the anchor.</b> Its own LLC / QSub; keep any partner equity in the branch, never in the certified anchor.</li>
+  </ul></div>
+
+  <h2><span class="num">06</span>Your own timing gate</h2>
+  <p class="lede">Where this sits against what you've said has to come first.</p>
+  <div class="card walk"><ul>
+    <li>Your guide gates acquisition on an operator <em>and</em> a shared-services spine — the spine isn't built yet.</li>
+    <li>Your current binding constraint is financial instrumentation you haven't finished. Buying someone else's messy books before your own are clean compounds the problem.</li>
+    <li>It doesn't fix your margin — it imports a thinner, declining one. Unit economics before demand.</li>
+    <li><b>The exception that would change the timing:</b> if one founder is a genuine managing-partner operator who stays and owns it, this could <em>accelerate</em> the spine instead of straining it. That's the thing worth finding out.</li>
+  </ul></div>
+
+  <p class="kicker">Best-fit target you've seen.<br><b>Which is exactly why it needs the discipline of your own guide, not less of it.</b></p>
+
+  <p class="foot"><b>How to use this.</b> A prep sheet for your conversation, not legal, tax, or financial advice. Every real step needs your attorney (structure, purchase agreement, non-compete), your CPA (earnings quality, the S-corp and woman-owned/WBENC implications), and your SBA lender (current terms) before anything is signed.</p>
+  <p class="foot"><b>Reusable.</b> This is the template — swap the target name, drop in the numbers, re-run sections 01–06. The Trades/amber theme signals track at a glance; switch the accent to teal for a Talent-side target.</p>
+</div>
+</body>
+</html>
