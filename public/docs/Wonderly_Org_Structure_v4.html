@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wonderly — Internal Structure v4.0 · One House, Two Teams</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1814;
+    --warm: #f5f0e8;
+    --cream: #faf7f2;
+    --gold: #c9a84c;
+    --gold-light: #e8d9a8;
+    --rust: #b85c38;
+    --slate: #4a5568;
+    --muted: #8a8070;
+    --lead: #d97706;
+    --prod: #6d28d9;
+    --foh: #0f7957;   /* Clients Team — Revenue & Satisfaction */
+    --boh: #b85c38;   /* Production Team — Efficiency & Quality */
+    --talent: #2a9d8f;
+    --trades: #d99a2b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: var(--ink);
+    color: var(--warm);
+    padding: 80px 64px 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.12);
+  }
+  .cover-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    max-width: 640px;
+    position: relative;
+  }
+  .cover h1 em { font-style: italic; color: var(--gold); }
+  .cover-sub {
+    font-size: 15px;
+    color: rgba(245,240,232,0.68);
+    max-width: 560px;
+    margin-bottom: 48px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: rgba(245,240,232,0.42);
+    letter-spacing: 0.06em;
+    border-top: 1px solid rgba(201,168,76,0.2);
+    padding-top: 24px;
+    position: relative;
+  }
+  .cover-meta strong { color: var(--gold); font-weight: 500; }
+
+  /* ── LAYOUT ── */
+  .page { max-width: 860px; margin: 0 auto; padding: 64px 48px; }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+  h4 { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+  p { font-size: 14.5px; color: var(--slate); margin-bottom: 14px; max-width: 680px; }
+  strong { font-weight: 500; color: var(--ink); }
+  em.gloss { color: var(--muted); font-style: italic; }
+
+  .divider { border: none; border-top: 1px solid rgba(201,168,76,0.25); margin: 48px 0; }
+
+  .pull-quote {
+    border-left: 3px solid var(--gold);
+    padding: 16px 24px;
+    margin: 28px 0;
+    background: rgba(201,168,76,0.06);
+    border-radius: 0 8px 8px 0;
+  }
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--ink);
+    margin: 0;
+    max-width: 100%;
+  }
+
+  /* ── SUPERSEDE BANNER ── */
+  .supersede {
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 0 0 8px;
+  }
+  .supersede p { margin: 0; font-size: 13.5px; color: var(--slate); max-width: 100%; }
+  .supersede strong { color: #7a5a00; }
+
+  /* ── ORG CHART ── */
+  .chart { margin: 8px 0 12px; }
+  .chart-teams { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .chart-col { border-radius: 12px; padding: 4px; }
+  .chart-col.clients { background: rgba(15,121,87,0.06); border: 1px solid rgba(15,121,87,0.25); }
+  .chart-col.prod    { background: rgba(184,92,56,0.06); border: 1px solid rgba(184,92,56,0.25); }
+  .chart-head {
+    text-align: center;
+    padding: 16px 12px 10px;
+  }
+  .chart-head .team-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    margin-bottom: 2px;
+  }
+  .chart-col.clients .team-name { color: var(--foh); }
+  .chart-col.prod .team-name { color: var(--boh); }
+  .chart-head .team-goal {
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+  }
+  .chart-box {
+    background: white;
+    border: 1px solid rgba(26,24,20,0.1);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin: 6px;
+  }
+  .chart-box .cb-role { font-size: 13.5px; font-weight: 500; color: var(--ink); }
+  .chart-box .cb-who { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+  .chart-note {
+    text-align: center; font-size: 11px; color: var(--muted); margin-top: 12px; letter-spacing: 0.04em;
+  }
+
+  /* ── TEAM / ROLE CARDS ── */
+  .role-tag {
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500;
+    margin-bottom: 10px; display: inline-block; padding: 3px 10px; border-radius: 20px;
+  }
+  .tag-foh { background: rgba(15,121,87,0.1); color: var(--foh); }
+  .tag-boh { background: rgba(184,92,56,0.1); color: var(--boh); }
+  .tag-lead-role { background: rgba(201,168,76,0.15); color: #7a5a00; }
+
+  .role-card {
+    background: white;
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 10px;
+    padding: 22px 24px;
+    margin: 16px 0;
+  }
+  .role-card.clients { border-left: 3px solid var(--foh); }
+  .role-card.prod { border-left: 3px solid var(--boh); }
+  .role-card h3 { margin-bottom: 8px; }
+  .role-card p { font-size: 13.5px; margin-bottom: 10px; }
+  .role-card p:last-child { margin-bottom: 0; }
+  .altitude {
+    font-size: 12px; color: var(--muted); font-style: italic;
+    border-top: 1px dashed rgba(201,168,76,0.3); padding-top: 10px; margin-top: 4px;
+  }
+
+  /* ── OBSERVATION CALLOUT ── */
+  .observe {
+    background: rgba(217,119,6,0.07);
+    border: 1px solid rgba(217,119,6,0.28);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+  .observe .obs-label {
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--lead); font-weight: 600; margin-bottom: 6px;
+  }
+  .observe p { font-size: 13px; margin: 0; color: var(--slate); max-width: 100%; }
+
+  /* ── CROSSWALK TABLE ── */
+  .crosswalk { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13px; }
+  .crosswalk th {
+    text-align: left; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; padding: 10px 14px; border-bottom: 1px solid rgba(201,168,76,0.3);
+  }
+  .crosswalk td { padding: 12px 14px; border-bottom: 1px solid rgba(26,24,20,0.07); color: var(--slate); vertical-align: top; }
+  .crosswalk td.was { color: var(--muted); }
+  .crosswalk td.now { color: var(--ink); font-weight: 500; }
+  .crosswalk tr:last-child td { border-bottom: none; }
+
+  /* ── OPEN QUESTIONS ── */
+  .oq {
+    background: white; border: 1px solid #e8e0d0; border-radius: 10px;
+    padding: 20px 22px; margin: 14px 0; border-top: 3px solid var(--gold);
+  }
+  .oq h4 { font-size: 14px; font-weight: 500; margin-bottom: 6px; color: var(--ink); }
+  .oq p { font-size: 13px; margin: 0; }
+  .oq .oq-status {
+    display: inline-block; font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 600; padding: 2px 8px; border-radius: 20px; margin-bottom: 8px;
+    background: rgba(201,168,76,0.15); color: #7a5a00;
+  }
+
+  .footer {
+    background: var(--ink); color: rgba(245,240,232,0.6);
+    padding: 40px 48px; text-align: center; font-size: 12px; letter-spacing: 0.04em;
+  }
+  .footer strong { color: var(--gold); font-weight: 500; }
+
+  @media (max-width: 700px) {
+    .cover { padding: 56px 28px 48px; }
+    .page { padding: 44px 24px; }
+    .chart-teams { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-label">Wonderly · Internal Structure</div>
+  <h1>One House, <em>Two Teams</em></h1>
+  <p class="cover-sub">
+    The team organized around the two outcomes it owns — revenue &amp; satisfaction on one side,
+    efficiency &amp; quality on the other. Camila's v4.0 chart, adopted and pressure-tested.
+  </p>
+  <div class="cover-meta">
+    <span><strong>Version</strong> · v4.0</span>
+    <span><strong>Date</strong> · July 2026</span>
+    <span><strong>Author</strong> · Camila Camargo</span>
+    <span><strong>Audience</strong> · Full Leadership Team</span>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="supersede">
+    <p><strong>What this replaces.</strong> On the org-structure dimension, this supersedes the
+    Front-of-House / Back-of-House model in the <em>Operating Framework</em> and <em>Strategic
+    Operating Brief</em>. Those documents remain the source of truth for everything else —
+    scorecards, financial targets, brief frameworks, the two-track go-to-market. The crosswalk
+    below maps the old role names to the new ones so nothing gets lost in the rename.</p>
+  </div>
+
+  <div class="pull-quote">
+    <p>Wonderly is the biggest fan of its clients — and believes not just in creating the highest-quality
+    value, but in delivering it in the best way possible. We help personality-driven brands turn their
+    momentum into something they actually own.</p>
+  </div>
+
+  <p>With that in mind, we organize the team around two groups defined by the outcome each one owns:
+  a <strong>Clients Team</strong> and a <strong>Production Team</strong>. The split separates people by
+  what they are accountable for — revenue and satisfaction on one side, efficiency and quality on the
+  other. The Clients Team is judged on how much revenue the client relationship generates (new bookings,
+  upsells, renewals) and how satisfied the client stays throughout. The Production Team is judged on
+  efficiency (utilization, budget and schedule variance, cycle time) and quality (craft standards,
+  revision rates, Quality Gate pass rate).</p>
+
+  <p><em class="gloss">Note on axes: "Clients / Production" is the internal accountability structure.
+  "Talent / Trades" remains the client-type axis — it now lives inside the Client Consultant role as
+  the three archetypes (Allie · Adam · Matt), not as a separate org chart. The two axes are
+  complementary, not competing.</em></p>
+
+  <hr class="divider">
+
+  <div class="section-label">The Chart</div>
+  <h2>How the house is laid out</h2>
+
+  <div class="chart">
+    <div class="chart-teams">
+      <div class="chart-col clients">
+        <div class="chart-head">
+          <div class="team-name">Clients Team</div>
+          <div class="team-goal">Revenue &amp; Satisfaction</div>
+        </div>
+        <div class="chart-box">
+          <div class="cb-role">Client Consultant</div>
+          <div class="cb-who">Allie (Talent) · Adam (brand-forward Trade) · Matt (technical builds)</div>
+        </div>
+        <div class="chart-box">
+          <div class="cb-role">Client Manager</div>
+          <div class="cb-who">Owns sales, relationship &amp; renewal · <em>named assignments open</em></div>
+        </div>
+        <div class="chart-box">
+          <div class="cb-role">Client Coordinator</div>
+          <div class="cb-who">Operational backbone of the client experience</div>
+        </div>
+      </div>
+      <div class="chart-col prod">
+        <div class="chart-head">
+          <div class="team-name">Production Team</div>
+          <div class="team-goal">Efficiency &amp; Quality</div>
+        </div>
+        <div class="chart-box">
+          <div class="cb-role">Project Manager</div>
+          <div class="cb-who">Project execution + Production-wide economics</div>
+        </div>
+        <div class="chart-box">
+          <div class="cb-role">Design — by seniority</div>
+          <div class="cb-who">Senior / Mid / Junior · Creative Director owns craft (Allie)</div>
+        </div>
+        <div class="chart-box">
+          <div class="cb-role">Development — by platform</div>
+          <div class="cb-who">WordPress &amp; Shopify pods · Dev Lead owns architecture</div>
+        </div>
+        <div class="chart-box">
+          <div class="cb-role">Marketing — by service</div>
+          <div class="cb-who">Content Production &amp; Paid Content</div>
+        </div>
+      </div>
+    </div>
+    <p class="chart-note">The Integrator / COO function sits above both teams — see open questions.</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-label">Clients Team</div>
+  <h2>Goal: Revenue &amp; Satisfaction</h2>
+
+  <div class="role-card clients">
+    <span class="role-tag tag-foh">Tier-One · Adam · Allie · Matt</span>
+    <h3>Client Consultant</h3>
+    <p>Carries forward the core value of deep listening on the inquiry, qualifying fit, and framing
+    the strategic shape of the engagement by archetype — <strong>Allie</strong> for Talent,
+    <strong>Adam</strong> for brand-forward Trade, <strong>Matt</strong> for technically complex builds.
+    The Consultant is the domain expert Wonderly leans on to diagnose what a client actually needs.</p>
+    <p>With the Client Manager now owning sales and closing, the Consultant's role narrows toward the
+    front-end diagnostic and strategic framing — re-entering at key moments (kickoff and renewal) rather
+    than owning the deal through to close. Consultants also attend the quarterly strategy meeting for
+    premium-tier clients.</p>
+    <p>Three peers, each anchored to a natural client archetype, operating at the same altitude with
+    clients rather than in a hierarchy. Matt's domain is both narrow and broad: he leads Trade clients
+    where technical complexity is the primary reason they hired Wonderly, and any client — Trade or
+    Talent — where technical leadership is what the engagement fundamentally requires. If the ask is
+    "build us a sophisticated platform," Matt is the Consultant, regardless of track. Many clients
+    already perceive Adam, Allie, and Matt this way; the framing simply makes explicit what is
+    effectively true.</p>
+    <p class="altitude">Altitude — enters at the front-end diagnostic and at renewal; the strategist,
+    not the closer.</p>
+  </div>
+
+  <div class="observe">
+    <div class="obs-label">⚑ Observation (Camila)</div>
+    <p>This is the piece of the restructure most worth pressure-testing before rollout.</p>
+  </div>
+
+  <div class="role-card clients">
+    <span class="role-tag tag-foh">Primary Revenue Owner</span>
+    <h3>Client Manager</h3>
+    <p>Owns the client relationship from handoff through every renewal — holding judgment calls, leading
+    the closing and membership conversations, and now owning <strong>sales</strong> as well. The Client
+    Manager is the primary revenue owner inside the Clients Team: qualifying and closing new business,
+    and owning upsell and renewal for the life of the account. This consolidation is what lets Wonderly
+    point to one person per account accountable for revenue from first conversation to renewal.</p>
+    <p>They approve every client-facing communication, lead every significant conversation, and step in
+    whenever a situation requires judgment rather than execution. They are not running logistics or
+    chasing confirmations — the Coordinator owns that. Their job is to be the person the client trusts
+    most, present in exactly the right moments to deepen that trust.</p>
+    <p class="altitude">Altitude — hold altitude, present for decisions.</p>
+  </div>
+
+  <div class="role-card clients">
+    <span class="role-tag tag-foh">Satisfaction Backbone</span>
+    <h3>Client Coordinator</h3>
+    <p>The operational backbone of the client experience — systems setup, scheduling, day-to-day
+    communication, service-request triage, and proactive flagging of client sentiment. This is the role
+    most directly responsible for the satisfaction half of the team's goal: response time, smooth
+    onboarding, and nothing falling through the cracks.</p>
+    <p>The principle: no client should ever feel the coordination behind their experience. That feeling
+    is engineered — the result of three roles operating in their lanes, handing off cleanly, and trusting
+    each other to do their part without being chased.</p>
+    <p class="altitude">Altitude — the ground game; owns the day-to-day so the Manager can hold altitude.</p>
+  </div>
+
+  <div class="observe">
+    <div class="obs-label">⚑ Open Item (Camila) — the sales handoff</div>
+    <p>Moving sales ownership from Client Consultant to Client Manager changes the Fit Call → How Call →
+    Close sequence the old process was built around. Before rollout, decide: does the Consultant still
+    join the Fit Call as the domain expert, or does the Manager run point from first contact with the
+    Consultant looped in only for complex/technical scoping?</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-label">Production Team</div>
+  <h2>Goal: Efficiency &amp; Quality</h2>
+
+  <div class="role-card prod">
+    <span class="role-tag tag-boh">Execution + Economics</span>
+    <h3>Project Manager</h3>
+    <p>Owns both the execution of individual projects and the financial and operational stewardship of
+    Production as a whole. On individual projects: schedules, task assignment, cross-team coordination
+    between Design, Development, and Marketing, and quality checkpoints before work ships. Leads the
+    internal kickoff, sets the quality benchmark, and briefs the production team on who the client is and
+    what excellent looks like — carrying the Clients Team's strategic framing through into the brief.</p>
+    <p>Across Production as a whole: owns unit economics, capacity planning, resource allocation, hiring,
+    tooling, and margin discipline. A peer to the craft and platform leads — with veto authority on cost,
+    and no authority on craft. They don't make the work better; the craft leads do that. They make sure
+    the conditions exist for the work to be better: right people on right projects, honest capacity,
+    visible costs, protected margin — so nobody (including Allie) has to context-switch from craft to
+    spreadsheets to keep the business healthy.</p>
+    <p>Runs the operational cadence: weekly 1:1s with each craft lead, weekly margin dashboard refresh,
+    monthly margin review with Allie, quarterly Production retro.</p>
+    <p class="altitude">Altitude — one internal presence at every kickoff and quality checkpoint; the
+    steward of Production's health.</p>
+  </div>
+
+  <div class="observe">
+    <div class="obs-label">⚑ Observation (Camila)</div>
+    <p>This merges two full-time mandates — hands-on project execution and Production-wide
+    economics/capacity — into one seat. Worth watching as project volume grows: the split may need to
+    come back once one person can no longer hold both well.</p>
+  </div>
+
+  <div class="role-card prod">
+    <h3>Design Team — organized by seniority</h3>
+    <p>Instead of a single lead directing an undifferentiated pool, Design is tiered: <strong>Senior</strong>
+    designers take flagship and high-complexity work and mentor; <strong>Mid-level</strong> designers
+    execute independently on standard scopes; <strong>Junior</strong> designers develop under closer
+    review. The Creative Director (Allie) continues to own craft quality and standards across all three
+    tiers.</p>
+  </div>
+
+  <div class="role-card prod">
+    <h3>Development Team — organized by platform</h3>
+    <p>Two platform-specific pods — <strong>WordPress</strong> and <strong>Shopify</strong> — each with
+    its own technical standards and review process, rather than one generalist pool. A Development Lead
+    owns technical quality and architecture calls across both platforms and staffs projects to the pod
+    with the right expertise.</p>
+  </div>
+
+  <div class="role-card prod">
+    <h3>Marketing Team — organized by service</h3>
+    <p>Two sub-teams: <strong>Content Production</strong> (organic content, editorial, creative assets)
+    and <strong>Paid Content</strong> (paid media, ad campaigns, performance).</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-label">Continuity</div>
+  <h2>How this maps to what we had</h2>
+  <p>The rename is mostly a sharpening, not a reinvention. The Front-of-House / Back-of-House instinct
+  from the Operating Framework is intact — it's now named for the outcomes each side owns. The one
+  genuinely new thing is the <strong>Client Manager</strong> as a single, named revenue owner per
+  account, which pulls sales ownership out of the Consultant seat.</p>
+
+  <table class="crosswalk">
+    <thead>
+      <tr><th>Prior model</th><th>v4.0</th><th>What changed</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="was">Front of House</td>
+        <td class="now">Clients Team</td>
+        <td>Same instinct, named for its outcome (revenue &amp; satisfaction).</td>
+      </tr>
+      <tr>
+        <td class="was">Back of House</td>
+        <td class="now">Production Team</td>
+        <td>Same instinct, named for its outcome (efficiency &amp; quality).</td>
+      </tr>
+      <tr>
+        <td class="was">Strategy Lead (Adam · Allie · Matt)</td>
+        <td class="now">Client Consultant</td>
+        <td>Preserved as three archetype-anchored peers; narrowed to front-end diagnostic + renewal.</td>
+      </tr>
+      <tr>
+        <td class="was">— (sales sat with Strategy Lead)</td>
+        <td class="now">Client Manager</td>
+        <td><strong>New seat.</strong> One named revenue owner per account, first contact → renewal.</td>
+      </tr>
+      <tr>
+        <td class="was">Concierge (Lucy · Andrea)</td>
+        <td class="now">Client Coordinator</td>
+        <td>Renamed. The by-track split (Lucy/Talent, Andrea/Trades) is not carried into the chart — see open questions.</td>
+      </tr>
+      <tr>
+        <td class="was">Project Manager</td>
+        <td class="now">Project Manager</td>
+        <td>Now also absorbs Production-wide economics/capacity (previously a separate mandate).</td>
+      </tr>
+      <tr>
+        <td class="was">Discipline leads (Taylor · Matt · Tori)</td>
+        <td class="now">Craft + platform leads</td>
+        <td>Design tiered by seniority; Dev split into platform pods with a Dev Lead; Marketing split Content / Paid.</td>
+      </tr>
+      <tr>
+        <td class="was">Talent / Trades tracks</td>
+        <td class="now">Consultant archetypes</td>
+        <td>Client-type axis preserved inside the Consultant role, not as a separate org structure.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="divider">
+
+  <div class="section-label">Before Rollout</div>
+  <h2>Reconciliation &amp; open questions</h2>
+  <p>Camila's chart is strong and the direction is settled. What's genuinely open are a handful of
+  named-assignment and sequencing questions — some Camila flagged directly, some that fall out of the
+  rename when set against the prior model. None of these are blockers; they're the decisions to make
+  before the terminology goes live to the team.</p>
+
+  <div class="oq">
+    <span class="oq-status">Open · from Camila</span>
+    <h4>Sales handoff sequence</h4>
+    <p>Does the Consultant still run the Fit Call and How Call, or does the Client Manager own the full
+    cycle from first contact, with the Consultant looped in only for complex/technical scoping?</p>
+  </div>
+
+  <div class="oq">
+    <span class="oq-status">Open · from Camila</span>
+    <h4>PM capacity — one seat or two?</h4>
+    <p>Is one person realistic for both hands-on project execution and Production-wide economics/capacity
+    at current volume, or does this need to be two people from day one?</p>
+  </div>
+
+  <div class="oq">
+    <span class="oq-status">Open · from Camila</span>
+    <h4>Named Talent Client Manager</h4>
+    <p>Allie currently holds the Talent relationship on an interim basis. Is that still interim, or
+    permanent? And who is the Talent-side Client Manager if not Allie?</p>
+  </div>
+
+  <div class="oq">
+    <span class="oq-status">Open · from Camila</span>
+    <h4>Marketing leadership</h4>
+    <p>One lead over both Content Production and Paid Content, or a lead per sub-team?</p>
+  </div>
+
+  <div class="oq">
+    <span class="oq-status">Flag · reconciliation</span>
+    <h4>Where does Marin land?</h4>
+    <p>Marin isn't named in the chart, but has been the rainmaker / Trades account-relationship lead.
+    "Owns sales, relationship, and renewal" is a near-exact description of the new <strong>Client
+    Manager</strong> seat on the Trades side. Worth confirming explicitly rather than leaving it to be
+    inferred — Marin's absence from the chart is the most likely thing to read as a demotion if it isn't
+    named.</p>
+  </div>
+
+  <div class="oq">
+    <span class="oq-status">Flag · reconciliation</span>
+    <h4>Does the Coordinator stay split by track?</h4>
+    <p>Lucy (Talent) and Andrea (Trades) were a settled by-track concierge split. The chart renames the
+    role to Client Coordinator and doesn't carry the split. Deliberate consolidation, or should the
+    track split survive under the new name? The client-experience economics of Talent vs. Trades are
+    different enough that this is worth a decision, not a default.</p>
+  </div>
+
+  <div class="oq">
+    <span class="oq-status">Flag · reconciliation</span>
+    <h4>Integrator / COO placement</h4>
+    <p>The chart shows the two teams but not the seat above them. Camila functions as COO / Integrator
+    over both — worth drawing explicitly, since the whole two-team accountability model depends on
+    someone owning the seam between revenue and production. (Consent to the formal Integrator role is
+    still gated on the July financial infrastructure landing.)</p>
+  </div>
+
+  <div class="oq">
+    <span class="oq-status">Flag · reconciliation</span>
+    <h4>Is Matt double-hatted?</h4>
+    <p>Matt appears as a tier-one Client Consultant (technical builds). The Development Lead who owns
+    architecture across the WordPress/Shopify pods is described but not named. If that's still Matt,
+    he's on both teams — worth naming intentionally, or handing the Dev Lead seat to someone else so the
+    Consultant role is clean.</p>
+  </div>
+
+  <div class="oq">
+    <span class="oq-status">Housekeeping</span>
+    <h4>Process docs need a terminology pass</h4>
+    <p>The Strategy Kickoff Gate, Quality Gate, and client-lifecycle process doc all reference the old
+    role names and need a pass to update terminology — and, where the sales handoff or the PM merge
+    changes them, the actual sequence of steps.</p>
+  </div>
+
+</div>
+
+<div class="footer">
+  <strong>The Wonder Jam</strong> · Columbus, Ohio · Internal &amp; Confidential<br>
+  v4.0 · One House, Two Teams · Camila Camargo · July 2026
+</div>
+
+</body>
+</html>

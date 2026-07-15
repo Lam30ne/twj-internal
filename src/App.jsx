@@ -13,6 +13,19 @@ const CARD_BG = '#1c1a16'
 
 const docs = [
   {
+    title: 'Internal Structure v4.0 — One House, Two Teams',
+    route: '/org-structure',
+    file: 'Wonderly_Org_Structure_v4.html',
+    tag: 'Structure',
+    tagColor: '#0f9d76',
+    tagBg: '#062018',
+    emoji: '🏗',
+    desc: "Camila's v4.0 org chart, adopted. The team organized around the two outcomes it owns — Clients Team (revenue & satisfaction) and Production Team (efficiency & quality). Renames and re-cuts the Front-of-House/Back-of-House model: Client Consultant (Adam/Allie/Matt), a new Client Manager as single revenue owner per account, Client Coordinator, and a Project Manager that now absorbs Production economics. Includes a crosswalk from the old role names and an honest reconciliation section (Marin's seat, the concierge track-split, Integrator placement, open decisions before rollout).",
+    audience: 'Full Leadership Team',
+    added: '2026-07-15',
+    updated: '2026-07-15',
+  },
+  {
     title: 'RFM Analysis by Track (Talent / Trades)',
     route: '/rfm-by-track',
     file: 'Wonderly_RFM_by_Track_2024.html',

@@ -19,6 +19,7 @@ The index page links to all documents with descriptions and intended audiences.
 | Document | Purpose | Audience |
 |---|---|---|
 | [`index.html`](index.html) | Document hub — start here | All |
+| [`Wonderly_Org_Structure_v4.html`](public/docs/Wonderly_Org_Structure_v4.html) | **Current org structure.** One House, Two Teams — Camila's v4.0 chart. Clients Team (revenue & satisfaction) and Production Team (efficiency & quality), with a crosswalk from the old role names and the open decisions before rollout | Full Leadership Team |
 | [`BigOrange_Acquisition_Brief.html`](public/docs/BigOrange_Acquisition_Brief.html) | First-conversation read on BigOrange Marketing as a potential Trades-track acquisition — fit, what to verify, timing, and review lenses for Allie and Camila | Adam · Allie · Camila |
 | [`Acquisition_Target_Brief_BigOrange.html`](public/docs/Acquisition_Target_Brief_BigOrange.html) | Analytical companion — BigOrange run against the Acquisition Guide (valuation, diagnostic, deal shape, when to walk); reusable per-target template | Adam · Confidential |
 | [`Camila_vs_Artifacts_Review.html`](Camila_vs_Artifacts_Review.html) | Camila's first-week findings mapped against the strategy documents — what aligns, what's new, and what the artifacts already know | Adam · Allie · Camila |
@@ -49,9 +50,11 @@ The financial baseline: **$1.12M in 2025 revenue**, targeting **$1.54M in 2026**
 
 ## Key Principles Across All Documents
 
-**Two delivery tracks.** The Talent Track (Allie leads) covers personality-driven clients — creators, podcasters, authors. The Trades Track (Marin leads) covers organizational clients — B2B, nonprofits, manufacturers. On the Talent Track, Wonderly's product is part of theirs; on the Trades Track, it's a vehicle for theirs.
+**One House, Two Teams (structure, v4.0 — July 2026).** The team is organized around the two outcomes it owns: the **Clients Team** (revenue & satisfaction — Client Consultant, Client Manager, Client Coordinator) and the **Production Team** (efficiency & quality — Project Manager plus craft/platform leads). This supersedes the earlier Front-of-House / Back-of-House naming; see `Wonderly_Org_Structure_v4.html` for the crosswalk and open decisions.
 
-**Discipline-lead model.** Matt (Dev), Taylor (Design), Tori (Marketing) own craft and process standards. Account leads own client relationships and outcomes. These are orthogonal, not competitive.
+**Two delivery tracks (client-type axis).** The Talent Track (Allie leads) covers personality-driven clients — creators, podcasters, authors. The Trades Track covers organizational clients — B2B, nonprofits, manufacturers. On the Talent Track, Wonderly's product is part of theirs; on the Trades Track, it's a vehicle for theirs. Under v4.0 the tracks live inside the Client Consultant role as its three archetypes (Allie · Adam · Matt) rather than as a separate org chart. *(Marin's seat under the new chart is an open reconciliation item — likely the Trades-side Client Manager.)*
+
+**Craft & platform leads.** Design is tiered by seniority under the Creative Director (Allie); Development splits into WordPress and Shopify pods under a Dev Lead; Marketing splits into Content Production and Paid Content. Leads own craft and process standards; the Clients Team owns relationships and outcomes. These are orthogonal, not competitive.
 
 **Owned platforms first.** Every document, like every client project, reflects the core conviction: owned infrastructure outlasts rented attention.
 
