@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /
+
+# Internal leadership materials; do not crawl or index.
