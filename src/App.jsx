@@ -156,7 +156,7 @@ const docs = [
     updated: '2026-03-22',
   },
   {
-    title: 'Camila\'s Findings vs The Artifacts',
+    title: "Camila's Findings vs The Artifacts",
     route: '/camila-review',
     file: 'Camila_vs_Artifacts_Review.html',
     tag: 'Review',
@@ -169,7 +169,7 @@ const docs = [
     updated: '2026-04-01',
   },
   {
-    title: 'A Note on Where We\'re Headed',
+    title: "A Note on Where We're Headed",
     route: '/founder-brief',
     file: 'Wonderly_Founder_Brief_For_Team.html',
     tag: 'Team Brief',
@@ -206,6 +206,17 @@ const docs = [
     audience: 'Adam · Confidential',
     added: '2026-03-28',
     updated: '2026-03-28',
+  },
+  {
+    title: 'Talent & Trade — Internal Memo',
+    route: '/talent-trade',
+    file: 'Wonderly_Talent_Trade_Memo.html',
+    tag: 'Team Memo',
+    tagColor: '#90c870',
+    tagBg: '#0c1c06',
+    emoji: '↔️',
+    desc: 'Internal framework for understanding Wonderly’s two client types: Talent and Trade. Clarifies how we think, route work, and structure responsibilities.',
+    audience: 'Full Team',
   },
 ]
 
